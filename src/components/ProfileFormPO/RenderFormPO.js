@@ -1,8 +1,7 @@
 import React from 'react';
-import FormPOContainer from './FormPOContainer';
 
 const RenderFormPO = () => {
-  return <FormPOContainer />;
+  return <div>Test</div>;
 };
 
 export default RenderFormPO;
