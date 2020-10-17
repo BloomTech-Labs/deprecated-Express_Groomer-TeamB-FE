@@ -1,1 +1,1 @@
-export { default as ProfileFormPO } from './ProfileFormPO';
+export { default as ProfileFormPO } from './FormPOContainer';
