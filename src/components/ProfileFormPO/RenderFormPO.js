@@ -52,25 +52,18 @@ const RenderFormPO = props => {
         <Form.Item
           label="Address"
           name="address"
-          rules={[{ required: true }]}
           initialValue={props.userInfo.address}
         >
           <Input />
         </Form.Item>
 
-        <Form.Item
-          label="City"
-          name="city"
-          rules={[{ required: true }]}
-          initialValue={props.userInfo.city}
-        >
+        <Form.Item label="City" name="city" initialValue={props.userInfo.city}>
           <Input />
         </Form.Item>
 
         <Form.Item
           label="State"
           name="state"
-          rules={[{ required: true }]}
           initialValue={props.userInfo.state}
         >
           <Input />
@@ -79,7 +72,6 @@ const RenderFormPO = props => {
         <Form.Item
           label="Zip Code"
           name="zip_code"
-          rules={[{ required: true }]}
           initialValue={props.userInfo.zip_code}
         >
           <Input />
@@ -88,7 +80,6 @@ const RenderFormPO = props => {
         <Form.Item
           label="Country"
           name="country"
-          rules={[{ required: true }]}
           initialValue={props.userInfo.country}
         >
           <Input />
