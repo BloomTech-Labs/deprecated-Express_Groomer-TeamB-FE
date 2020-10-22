@@ -1,9 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import LoginContainer from '../pages/Login/LoginContainer';
-import LandingContainer from '../pages/Landing/LandingContainer';
-import ExampleList from '../pages/ExampleList/ExampleListContainer';
-import ProfileList from '../pages/ProfileList/ProfileListContainer';
+import { Link } from 'react-router-dom';
+
 import './nav.css';
 import 'antd/dist/antd.css';
 
