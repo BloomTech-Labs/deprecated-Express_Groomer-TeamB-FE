@@ -6,9 +6,11 @@ nav {
   width: 95%;
   height: 5rem;
   margin-left: 2%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
   font-size: 1.2rem;
-  background: yellow;
-  border: 1px dotted black;
+  border: 1px solid black;
 }
 /* .nav-bar { 
   width: 98%;
