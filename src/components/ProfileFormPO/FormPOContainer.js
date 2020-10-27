@@ -70,10 +70,6 @@ const FormPOContainer = props => {
     console.log(errorInfo);
   };
 
-  const toggleDeleteModal = () => {
-    setShowDelete(!setShowDelete);
-  };
-
   return (
     <RenderFormPO
       onFinish={onFinish}
@@ -82,7 +78,7 @@ const FormPOContainer = props => {
       isRegistered={isRegistered}
       resultInfo={resultInfo}
       showDelete={showDelete}
-      toggleDeleteModal={toggleDeleteModal}
+      setShowDelete={setShowDelete}
       email={props.email}
     />
   );
