@@ -17,6 +17,7 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { GroomerProfilePage } from './components/pages/GroomerProfile';
 import NavBar from './components/navigation/navigation';
 
 ReactDOM.render(
@@ -52,7 +53,7 @@ function App() {
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
-
+        <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <Route component={NotFoundPage} />
       </Switch>
