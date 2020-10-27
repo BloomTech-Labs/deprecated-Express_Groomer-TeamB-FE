@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Button, Alert } from 'antd';
+import { Form, Input, Button, Alert, Modal } from 'antd';
 import 'antd/dist/antd.css';
 
 const RenderFormPO = props => {
@@ -90,7 +90,7 @@ const RenderFormPO = props => {
           </Button>
         </Form.Item>
 
-        {/* When form is submited this alert will show succsess or error message */}
+        {/* When form is submited this alert will show success or error message */}
         {resultInfo.message !== null ? (
           <Form.Item>
             <Alert
@@ -100,19 +100,32 @@ const RenderFormPO = props => {
             />
           </Form.Item>
         ) : null}
+
+        {/* Delete profile modal */}
+        <Form.Item>
+          {isRegistered ? (
+            <Button
+              type="primary"
+              onClick={() => props.setShowDelete(true)}
+              danger
+            >
+              Delete Profile
+            </Button>
+          ) : null}
+          <Modal
+            title="Are you sure you want to delete your profile?"
+            visible={props.showDelete}
+            onOk={e => console.log(e)}
+            onCancel={() => props.setShowDelete(false)}
+          >
+            <Alert
+              message="By selecting Ok your profile will be deleted"
+              type="warning"
+              showIcon
+            />
+          </Modal>
+        </Form.Item>
       </Form>
-      {isRegistered ? (
-        <Button
-          type="primary"
-          htmlType="button"
-          style={{ margin: '0 8px 10px 138px' }}
-          size="small"
-          onclick={props.toggleDeleteModal}
-          danger
-        >
-          Delete Profile
-        </Button>
-      ) : null}
     </div>
   );
 };
