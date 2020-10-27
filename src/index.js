@@ -17,6 +17,8 @@ import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
+import { GroomerProfilePage } from './components/pages/GroomerProfile';
+import NavBar from './components/navigation/navigation';
 
 ReactDOM.render(
   <Router>
@@ -39,8 +41,8 @@ function App() {
   };
 
   return (
-    
     <Security {...config} onAuthRequired={authHandler}>
+      <NavBar />
       <Switch>
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
@@ -51,8 +53,9 @@ function App() {
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/example-list" component={ExampleListPage} />
-        
-        <SecureRoute path="/profile-list" component={ProfileListPage} /><Route component={NotFoundPage} />
+        <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
+        <SecureRoute path="/profile-list" component={ProfileListPage} />
+        <Route component={NotFoundPage} />
       </Switch>
     </Security>
   );
