@@ -4,7 +4,7 @@ export const SearchResults = props => {
   console.log('this is props', props);
   return (
     <>
-      <h1>{props.given_name}</h1>
+      <h1>Hello, {props.business_name}</h1>
     </>
   );
 };

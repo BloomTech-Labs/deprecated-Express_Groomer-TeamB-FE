@@ -6,9 +6,9 @@ import Axios from 'axios';
 const { Search } = Input;
 
 const Searching = () => {
-  const [allGroomers, setAllGroomers] = useState([]);
+  const [allGroomers, setAllGroomers] = useState();
   const [searchValue, setSearchValue] = useState('');
-  const [filteredGroomers, setFilteredGroomers] = useState([]);
+  const [filteredGroomers, setFilteredGroomers] = useState();
 
   useEffect(() => {
     Axios.get('http://localhost:8000/groomers')
@@ -28,7 +28,7 @@ const Searching = () => {
 
   const onSearch = () => {
     const result = allGroomers.filter(groomer =>
-      groomer.given_name.includes(searchValue)
+      groomer.business_name.includes(searchValue)
     );
     setFilteredGroomers(result);
 
@@ -43,7 +43,6 @@ const Searching = () => {
         onChange={handleChange}
         enterButton
         style={{ width: 500 }}
-        searchValue={searchValue}
       />
       <SearchResults filteredGroomers={filteredGroomers} />
     </div>
