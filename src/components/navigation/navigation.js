@@ -20,6 +20,9 @@ function NavBar() {
         <Link className="anchor" to="/ProfileList">
           ProfileList
         </Link>
+        <Link className="anchor" to="/Search">
+          Search
+        </Link>
       </nav>
     </div>
   );
