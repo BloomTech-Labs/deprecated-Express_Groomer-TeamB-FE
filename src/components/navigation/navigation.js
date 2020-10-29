@@ -7,10 +7,7 @@ import 'antd/dist/antd.css';
 function NavBar() {
   return (
     <div className="App-Nav">
-      <img
-        alt="Express Groomer Logo"
-        src="http://localhost:3000/express_groomer.jpg"
-      />
+      <img alt="Express Groomer Logo" src="express_groomer.png" />
       <nav className="nav-bar">
         <Link className="anchor" to="/">
           Home
