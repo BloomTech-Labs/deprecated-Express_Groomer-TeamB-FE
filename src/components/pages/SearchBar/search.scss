@@ -9,6 +9,9 @@ $secondaryColor: #d9ab8e; // complementary color
   width: 100%;
   height: 100%;
 
+  .search-input {
+    margin-top: 5%;
+  }
   .card-container {
     display: flex;
     justify-content: center;

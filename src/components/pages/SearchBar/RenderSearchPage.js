@@ -41,10 +41,12 @@ const Searching = () => {
     <div className="search-page-container">
       <div clasName="search-bar-container">
         <Search
+          className="search-input"
           value={searchValue}
           onSearch={onSearch}
           onChange={handleChange}
           enterButton
+          placeholder="Search by city"
           style={{ width: 500 }}
         />
       </div>
