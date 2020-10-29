@@ -8,13 +8,14 @@ const { Search } = Input;
 const Searching = () => {
   const [allGroomers, setAllGroomers] = useState();
   const [searchValue, setSearchValue] = useState('');
-  const [filteredGroomers, setFilteredGroomers] = useState();
+  const [filteredGroomers, setFilteredGroomers] = useState([]);
 
   useEffect(() => {
     Axios.get('http://localhost:8000/groomers')
       .then(res => {
-        console.log('this is res.data', res.data);
+        console.log('this is res.data', res.data); // sending back an array of objects
         setAllGroomers(res.data);
+        console.log('this is in the useEffect', allGroomers);
       })
       .catch(err => {
         console.log('Error', err);
@@ -28,7 +29,7 @@ const Searching = () => {
 
   const onSearch = () => {
     const result = allGroomers.filter(groomer =>
-      groomer.business_name.includes(searchValue)
+      groomer.city.toLowerCase().includes(searchValue)
     );
     setFilteredGroomers(result);
 
@@ -44,7 +45,12 @@ const Searching = () => {
         enterButton
         style={{ width: 500 }}
       />
-      <SearchResults filteredGroomers={filteredGroomers} />
+      {/* <SearchResults filteredGroomers={filteredGroomers} /> */}
+      <div>
+        {filteredGroomers.map((groomer, index) => {
+          return <SearchResults key={index} groomer={groomer} />;
+        })}
+      </div>
     </div>
   );
 };
