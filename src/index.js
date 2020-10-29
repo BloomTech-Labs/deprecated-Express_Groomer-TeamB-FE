@@ -43,25 +43,23 @@ function App() {
   };
 
   return (
-    <Store.Provider>
-      <Security {...config} onAuthRequired={authHandler}>
-        <NavBar />
-        <Switch>
-          <Route path="/login" component={LoginPage} />
-          <Route path="/implicit/callback" component={LoginCallback} />
-          <Route path="/search" component={Searching} />
-          {/* any of the routes you need secured should be registered as SecureRoutes */}
-          <SecureRoute
-            path="/"
-            exact
-            component={() => <HomePage LoadingComponent={LoadingComponent} />}
-          />
-          <SecureRoute path="/example-list" component={ExampleListPage} />
-          <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
-          <SecureRoute path="/profile-list" component={ProfileListPage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Security>
-    </Store.Provider>
+    <Security {...config} onAuthRequired={authHandler}>
+      <NavBar />
+      <Switch>
+        <Route path="/login" component={LoginPage} />
+        <Route path="/implicit/callback" component={LoginCallback} />
+        <Route path="/search" component={Searching} />
+        {/* any of the routes you need secured should be registered as SecureRoutes */}
+        <SecureRoute
+          path="/"
+          exact
+          component={() => <HomePage LoadingComponent={LoadingComponent} />}
+        />
+        <SecureRoute path="/example-list" component={ExampleListPage} />
+        <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
+        <SecureRoute path="/profile-list" component={ProfileListPage} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </Security>
   );
 }

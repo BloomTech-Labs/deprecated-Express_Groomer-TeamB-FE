@@ -1,11 +1,9 @@
 import React from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import 'antd/dist/antd.css';
 import { Card } from 'antd';
 
 export const SearchResults = props => {
-  const history = useHistory();
-
   console.log('this is props', props);
 
   // const id = props.match.params.id;
