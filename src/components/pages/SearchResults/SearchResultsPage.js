@@ -6,8 +6,6 @@ import { Card } from 'antd';
 export const SearchResults = props => {
   console.log('this is props', props);
 
-  // const id = props.match.params.id;
-
   return (
     <div className="site-card-border-less-wrapper">
       <Card
