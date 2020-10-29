@@ -1,13 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './nav.css';
+import './nav.scss';
 import 'antd/dist/antd.css';
 
 function NavBar() {
   return (
     <div className="App-Nav">
-      <img alt="Express Groomer Logo" src="express_groomer.png" />
+      <div className="img-container">
+        <img
+          alt="Express Groomer Logo"
+          src="./images/express_groomer.jpg"
+          width="150px"
+          height="150px"
+        />
+      </div>
+
       <nav className="nav-bar">
         <Link className="anchor" to="/">
           Home
