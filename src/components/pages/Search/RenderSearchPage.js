@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SearchResults } from '../SearchResults/SearchResultsPage';
+import { SearchResults } from '../SearchResults/SearchResultsCard';
 import 'antd/dist/antd.css';
 import './search.scss';
 import { Input } from 'antd';
