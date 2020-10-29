@@ -1,0 +1,24 @@
+$primaryColor: #8eb1d9; //primary color
+$secondaryColor: #d9ab8e; // complementary color
+
+.search-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  .card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 88%;
+    margin: 2%;
+  }
+
+  .site-card-border-less-wrapper {
+    margin: 5%;
+  }
+}
