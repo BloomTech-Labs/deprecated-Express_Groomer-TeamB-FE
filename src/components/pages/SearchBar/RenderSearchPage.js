@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SearchResults } from '../SearchResults/SearchResultsPage';
 import 'antd/dist/antd.css';
+import './search.scss';
 import { Input } from 'antd';
 import Axios from 'axios';
 const { Search } = Input;
@@ -15,7 +16,7 @@ const Searching = () => {
       .then(res => {
         console.log('this is res.data', res.data); // sending back an array of objects
         setAllGroomers(res.data);
-        console.log('this is in the useEffect', allGroomers);
+        // console.log('this is in the useEffect', allGroomers);
       })
       .catch(err => {
         console.log('Error', err);
@@ -29,7 +30,7 @@ const Searching = () => {
 
   const onSearch = () => {
     const result = allGroomers.filter(groomer =>
-      groomer.city.toLowerCase().includes(searchValue)
+      groomer.city.includes(searchValue)
     );
     setFilteredGroomers(result);
 
@@ -37,16 +38,17 @@ const Searching = () => {
   };
 
   return (
-    <div>
-      <Search
-        value={searchValue}
-        onSearch={onSearch}
-        onChange={handleChange}
-        enterButton
-        style={{ width: 500 }}
-      />
-      {/* <SearchResults filteredGroomers={filteredGroomers} /> */}
-      <div>
+    <div className="search-page-container">
+      <div clasName="search-bar-container">
+        <Search
+          value={searchValue}
+          onSearch={onSearch}
+          onChange={handleChange}
+          enterButton
+          style={{ width: 500 }}
+        />
+      </div>
+      <div className="card-container">
         {filteredGroomers.map((groomer, index) => {
           return <SearchResults key={index} groomer={groomer} />;
         })}
