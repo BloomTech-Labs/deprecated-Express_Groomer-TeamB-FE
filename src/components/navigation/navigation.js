@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './nav.scss';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.less';
 
 function NavBar() {
   return (

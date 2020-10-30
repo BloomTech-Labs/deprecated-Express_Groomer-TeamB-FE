@@ -16,11 +16,10 @@ import { HomePage } from './components/pages/Home';
 import { ProfileListPage } from './components/pages/ProfileList';
 import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
-import Store from './state/contexts/index';
 import { LoadingComponent } from './components/common';
 import { GroomerProfilePage } from './components/pages/GroomerProfile';
 import NavBar from './components/navigation/navigation';
-import Searching from './components/pages/SearchBar/RenderSearchPage';
+import Searching from './components/pages/Search/RenderSearchPage';
 
 ReactDOM.render(
   <Router>
