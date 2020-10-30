@@ -14,9 +14,7 @@ const Searching = () => {
   useEffect(() => {
     Axios.get('http://localhost:8000/groomers')
       .then(res => {
-        console.log('this is res.data', res.data); // sending back an array of objects
         setAllGroomers(res.data);
-        // console.log('this is in the useEffect', allGroomers);
       })
       .catch(err => {
         console.log('Error', err);
@@ -25,7 +23,6 @@ const Searching = () => {
 
   const handleChange = event => {
     setSearchValue(event.target.value);
-    console.log('this is in handleChange', searchValue);
   };
 
   const onSearch = () => {
@@ -33,8 +30,6 @@ const Searching = () => {
       groomer.city.includes(searchValue)
     );
     setFilteredGroomers(result);
-
-    console.log('This is at the end of onSearch', filteredGroomers);
   };
 
   return (

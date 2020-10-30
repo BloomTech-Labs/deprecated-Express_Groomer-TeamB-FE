@@ -4,8 +4,6 @@ import 'antd/dist/antd.css';
 import { Card } from 'antd';
 
 export const SearchResults = props => {
-  console.log('this is props', props);
-
   return (
     <div className="site-card-border-less-wrapper">
       <Card
