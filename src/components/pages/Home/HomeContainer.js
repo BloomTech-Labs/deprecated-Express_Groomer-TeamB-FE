@@ -2,12 +2,14 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 
 import RenderHomePage from './RenderHomePage';
+import { getUserID } from '../../../api/index';
 
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
+  const [userRole, setUserRole] = useState('');
 
   useEffect(() => {
     let isSubscribed = true;
@@ -20,13 +22,21 @@ function HomeContainer({ LoadingComponent }) {
         if (isSubscribed) {
           setUserInfo(info);
         }
+
+        return getUserID(
+          `http://localhost:8000/profiles/${info.sub}`,
+          authState
+        );
+      })
+      .then(res => {
+        setUserRole(res.role);
       })
       .catch(err => {
         isSubscribed = false;
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
-  }, [memoAuthService]);
+  }, [memoAuthService, authState]);
 
   return (
     <>
