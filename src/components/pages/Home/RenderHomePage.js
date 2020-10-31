@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../../common';
-// componet testing remove before push do not commit
-import { ProfileFormPO } from '../../ProfileFormPO';
 
 function RenderHomePage(props) {
   const { userInfo, authService } = props;
@@ -30,8 +28,6 @@ function RenderHomePage(props) {
           />
         </p>
       </div>
-      {/* component testing remove before push do not commit  */}
-      <ProfileFormPO userInfo={userInfo} />
     </div>
   );
 }
