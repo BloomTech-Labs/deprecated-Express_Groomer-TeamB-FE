@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Button, Alert, Modal } from 'antd';
+import { Form, Input, Button, Alert, Modal, Layout } from 'antd';
 import 'antd/dist/antd.css';
 
 const RenderFormPO = props => {
@@ -12,10 +12,17 @@ const RenderFormPO = props => {
   }, [user_info, form]);
 
   return (
-    <div>
+    <Layout.Content
+      style={{
+        border: '1px solid black',
+        width: '500px',
+        padding: '20px 10px',
+        margin: '10px auto',
+      }}
+    >
       <Form
-        labelCol={{ offset: 4, span: 8 }}
-        wrapperCol={{ offset: 4, span: 8 }}
+        labelCol={{ offset: 4, span: 15 }}
+        wrapperCol={{ offset: 4, span: 15 }}
         form={form}
         layout="vertical"
         name="PoProfile"
@@ -24,6 +31,10 @@ const RenderFormPO = props => {
         onFinishFailed={onFailed}
         size="small"
       >
+        <Form.Item>
+          <p>Please fill out your profile information</p>
+        </Form.Item>
+
         <Form.Item
           label="First Name"
           name="given_name"
@@ -115,7 +126,10 @@ const RenderFormPO = props => {
           <Modal
             title="Are you sure you want to delete your profile?"
             visible={props.showDelete}
-            onOk={e => console.log(e)}
+            onOk={() => {
+              props.deleteProfile();
+              props.setShowDelete(false);
+            }}
             onCancel={() => props.setShowDelete(false)}
           >
             <Alert
@@ -126,7 +140,7 @@ const RenderFormPO = props => {
           </Modal>
         </Form.Item>
       </Form>
-    </div>
+    </Layout.Content>
   );
 };
 
