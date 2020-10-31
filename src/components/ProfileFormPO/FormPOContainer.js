@@ -1,35 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import RenderFormPO from './RenderFormPO';
 import axios from 'axios';
 
-//I'm going to move alot of this logic into the profile page
-//but needed it to test the form outside its container
+//This form needs some info passed down as props
+//info from customers if available
+//an isRefistered bool to determine if a user has already registered as a customer
+//userInfo.sub from okta (the users id)
 const FormPOContainer = props => {
-  //inital info from customers table
-  const [info, setInfo] = useState({});
-  //var to check if user is registered in customers table
-  //used to decide if we want to create or upadte a profile
-  const [isRegistered, setIsRegistered] = useState(false);
+  const { info, isRegistered, userInfo } = props;
+
   //for result message on submiting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
   //for delete modal
   const [showDelete, setShowDelete] = useState(false);
-
-  //useEffect to call customers table and check for data
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8000/customers/${props.userInfo.sub}`)
-      .then(res => {
-        // console.log("cust data", res.data);
-        if (res.data) {
-          setInfo(res.data);
-          setIsRegistered(true);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [props.userInfo.sub]);
+  const history = useHistory();
 
   const onFinish = values => {
     //add in user id to values from fields
@@ -45,7 +30,6 @@ const FormPOContainer = props => {
       axios
         .post(`http://localhost:8000/customers/`, values)
         .then(res => {
-          //console.log("create", res);
           setResultInfo({ message: res.data.message, type: 'success' });
         })
         .catch(err => {
@@ -56,7 +40,6 @@ const FormPOContainer = props => {
       axios
         .put(`http://localhost:8000/customers/${props.userInfo.sub}`, values)
         .then(res => {
-          console.log('create', res);
           setResultInfo({ message: res.data.message, type: 'success' });
         })
         .catch(err => {
@@ -70,6 +53,18 @@ const FormPOContainer = props => {
     console.log(errorInfo);
   };
 
+  const deleteProfile = () => {
+    axios
+      .delete(`http://localhost:8000/customers//${userInfo.sub}`)
+      .then(res => {
+        history.push('/login');
+      })
+      .catch(err => {
+        console.log(err);
+        setResultInfo({ message: err.message, type: 'error' });
+      });
+  };
+
   return (
     <RenderFormPO
       onFinish={onFinish}
@@ -79,7 +74,7 @@ const FormPOContainer = props => {
       resultInfo={resultInfo}
       showDelete={showDelete}
       setShowDelete={setShowDelete}
-      email={props.email}
+      deleteProfile={deleteProfile}
     />
   );
 };
