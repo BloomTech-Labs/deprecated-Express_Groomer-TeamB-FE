@@ -1,12 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './nav.css';
-import 'antd/dist/antd.css';
+import './nav.scss';
+import 'antd/dist/antd.less';
 
 function NavBar() {
   return (
     <div className="App-Nav">
+      <div className="img-container">
+        <img
+          alt="Express Groomer Logo"
+          src="./images/express_groomer.jpg"
+          width="150px"
+          height="150px"
+        />
+      </div>
+
       <nav className="nav-bar">
         <Link className="anchor" to="/">
           Home
@@ -19,6 +28,9 @@ function NavBar() {
         </Link>
         <Link className="anchor" to="/ProfileList">
           ProfileList
+        </Link>
+        <Link className="anchor" to="/Search">
+          Search
         </Link>
       </nav>
     </div>
