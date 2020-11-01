@@ -1,27 +1,21 @@
-import React, { PropTypes } from 'react';
-import './index.css';
-import ProfileArea from '../../common/ProfileArea';
-import 'antd/dist/antd.css';
-import { Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import React from 'react';
+import { Button } from '../../common';
 
 function GroomerProfilePage(props) {
+  const { userInfo, authService } = props;
+
   return (
-    <div className="container">
-      <div className="avatar ">
-        <Avatar size={64} icon={<UserOutlined />} />
+    <div>
+      <h1>Hi {userInfo.name} Welcome to Express Groomer</h1>
+      <div>
+        <p>
+          <Button
+            handleClick={() => authService.logout()}
+            buttonText="Logout"
+          />
+        </p>
       </div>
-      <div className="profile">
-        <ProfileArea
-          username="Mike"
-          name="Michael Jeter"
-          address="Euclid Ohio"
-        />
-      </div>
-      <div></div>
     </div>
   );
 }
-
-GroomerProfilePage.propTypes = {};
 export default GroomerProfilePage;
