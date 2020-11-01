@@ -19,7 +19,7 @@ const FormPOContainer = props => {
   const onFinish = values => {
     //add in user id to values from fields
     values = {
-      user_id: props.userInfo.sub,
+      user_id: userInfo.sub,
       ...values,
     };
 
@@ -33,7 +33,6 @@ const FormPOContainer = props => {
           setResultInfo({ message: res.data.message, type: 'success' });
         })
         .catch(err => {
-          console.log(err);
           setResultInfo({ message: err.message, type: 'error' });
         });
     } else {
@@ -43,24 +42,22 @@ const FormPOContainer = props => {
           setResultInfo({ message: res.data.message, type: 'success' });
         })
         .catch(err => {
-          console.log(err);
           setResultInfo({ message: err.message, type: 'error' });
         });
     }
   };
 
   const onFailed = errorInfo => {
-    console.log(errorInfo);
+    setResultInfo({ message: errorInfo, type: 'error' });
   };
 
   const deleteProfile = () => {
     axios
-      .delete(`http://localhost:8000/customers//${userInfo.sub}`)
+      .delete(`http://localhost:8000/customers/${userInfo.sub}`)
       .then(res => {
         history.push('/login');
       })
       .catch(err => {
-        console.log(err);
         setResultInfo({ message: err.message, type: 'error' });
       });
   };
