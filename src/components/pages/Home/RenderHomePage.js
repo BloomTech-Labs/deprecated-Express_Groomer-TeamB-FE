@@ -22,9 +22,6 @@ function RenderHomePage(props) {
           <Link to="/datavis">Data Visualizations Example</Link>
         </p>
         <p>
-          <Link to="/groomer-profile">Groomer Profile Example</Link>
-        </p>
-        <p>
           <Button
             handleClick={() => authService.logout()}
             buttonText="Logout"
