@@ -1,1 +1,1 @@
-export { default as CustomerProfilePage } from './CustProContainer';
+export { default as CustomerProfilePage } from './CustProContaner';
