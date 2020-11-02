@@ -9,10 +9,10 @@ const data = [
   'Los Angeles battles huge wildfires.',
 ];
 
-export default function Services() {
+export default function Block() {
   return (
     <div>
-      <Divider orientation="left">Services</Divider>
+      <Divider orientation="left">About</Divider>
       <List
         header={<div>Header</div>}
         footer={<div>Footer</div>}
