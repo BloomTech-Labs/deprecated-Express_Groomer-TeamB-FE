@@ -1,29 +1,55 @@
-import React from 'react';
+import axios from '../../axios';
+import React, { Component } from 'react';
 import { List, Typography, Divider } from 'antd';
 
-const data = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
-];
+export default class Services extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      services: [],
+    };
+  }
+  getUsersData() {
+    axios
+      .get(`/services`, {})
+      .then(res => {
+        const data = res.data;
+        console.log(data);
+        const services = data.map(gs => (
+          <div>
+            <h2>
+              {gs.service_name}: {gs.services_price}
+            </h2>
+          </div>
+        ));
 
-export default function Services() {
-  return (
-    <div>
-      <Divider orientation="left">Services</Divider>
-      <List
-        header={<div>Header</div>}
-        footer={<div>Footer</div>}
-        bordered
-        dataSource={data}
-        renderItem={item => (
-          <List.Item>
-            <Typography.Text mark>[ITEM]</Typography.Text> {item}
-          </List.Item>
-        )}
-      />
-    </div>
-  );
+        this.setState({
+          services,
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+  componentDidMount() {
+    this.getUsersData();
+  }
+  render() {
+    return (
+      <div>
+        <Divider orientation="left">Services</Divider>
+        <List
+          header={<div></div>}
+          footer={<div></div>}
+          bordered
+          dataSource={this.state.services}
+          renderItem={item => (
+            <List.Item>
+              <Typography.Text mark></Typography.Text> {item}
+            </List.Item>
+          )}
+        />
+      </div>
+    );
+  }
 }
