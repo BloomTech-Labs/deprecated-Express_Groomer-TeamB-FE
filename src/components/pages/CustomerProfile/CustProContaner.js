@@ -1,13 +1,19 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import RenderCustPro from './RenderCustPro';
 import { useOktaAuth } from '@okta/okta-react';
+import axios from 'axios';
 
 const CustProContainer = () => {
   //grabbing user info from okta for test purposes
   //all info could/should be grabbed by state if possible
   const { authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
-  const [memoAuthService] = useMemo(() => [authService], []);
+  const [userInfo, setUserInfo] = useState({});
+  const [memoAuthService] = useMemo(() => [authService], [authService]);
+
+  const [custInfo, setCustInfo] = useState({});
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [showForm, setShowForm] = useState(false);
+  const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -28,7 +34,35 @@ const CustProContainer = () => {
     return () => (isSubscribed = false);
   }, [memoAuthService]);
 
-  return <RenderCustPro userInfo={userInfo} />;
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/customers/${userInfo.sub}`)
+      .then(res => {
+        if (res.data) {
+          setCustInfo(res.data);
+          setIsRegistered(true);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [userInfo, updated]);
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
+  return (
+    <RenderCustPro
+      userInfo={userInfo}
+      isRegistered={isRegistered}
+      custInfo={custInfo}
+      showForm={showForm}
+      toggleForm={toggleForm}
+      updated={updated}
+      setUpdated={setUpdated}
+    />
+  );
 };
 
 export default CustProContainer;
