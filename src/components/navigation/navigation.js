@@ -11,8 +11,8 @@ function NavBar() {
         <img
           alt="Express Groomer Logo"
           src="./images/express_groomer.jpg"
-          width="150px"
-          height="150px"
+          width="200px"
+          height="85px"
         />
       </div>
 
