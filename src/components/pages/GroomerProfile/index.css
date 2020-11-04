@@ -6,7 +6,8 @@
 .top-container {
     display: flex;
     justify-content: space-around;
-    padding: 10px;
+    padding: 50px;
+    margin-bottom: 2%;
 
     
 }
@@ -14,6 +15,7 @@
 .middle-container {
     display: flex;
     justify-content: space-around;
+    margin-bottom: 2%;
 }
 
 .bottom-container {

@@ -14,13 +14,13 @@ export default function Block() {
     <div>
       <Divider orientation="left">About</Divider>
       <List
-        header={<div>Header</div>}
-        footer={<div>Footer</div>}
+        header={<div></div>}
+        footer={<div></div>}
         bordered
         dataSource={data}
         renderItem={item => (
           <List.Item>
-            <Typography.Text mark>[ITEM]</Typography.Text> {item}
+            <Typography.Text mark></Typography.Text> {item}
           </List.Item>
         )}
       />
