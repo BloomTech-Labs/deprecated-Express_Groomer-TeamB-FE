@@ -20,6 +20,7 @@ import { LoadingComponent } from './components/common';
 import { GroomerProfilePage } from './components/pages/GroomerProfile';
 import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
+import Authcontext from './state/contexts/index';
 
 ReactDOM.render(
   <Router>

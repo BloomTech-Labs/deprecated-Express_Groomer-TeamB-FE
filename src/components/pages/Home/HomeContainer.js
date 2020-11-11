@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-
-import RenderHomePage from './RenderHomePage';
+import GroomerProfilePage from '../GroomerProfile/GroomerProfilePage';
+import RenderSearchPage from '../Search/RenderSearchPage';
 import { getUserID } from '../../../api/index';
 
 function HomeContainer({ LoadingComponent }) {
@@ -38,16 +38,53 @@ function HomeContainer({ LoadingComponent }) {
     return () => (isSubscribed = false);
   }, [memoAuthService, authState]);
 
-  return (
-    <>
-      {authState.isAuthenticated && !userInfo && (
-        <LoadingComponent message="Fetching user profile..." />
-      )}
-      {authState.isAuthenticated && userInfo && (
-        <RenderHomePage userInfo={userInfo} authService={authService} />
-      )}
-    </>
-  );
+  console.log('this is in conditional', userRole);
+  if (userRole === 'groomer') {
+    return (
+      <div>
+        {authState.isAuthenticated && !userInfo && (
+          <LoadingComponent message="Fetching user profile..." />
+        )}
+        {authState.isAuthenticated && userInfo && (
+          <GroomerProfilePage userInfo={userInfo} authService={authService} />
+        )}
+      </div>
+    );
+  } else if (userRole === 'customer') {
+    return (
+      <div>
+        {authState.isAuthenticated && !userInfo && (
+          <LoadingComponent message="Fetching user profile..." />
+        )}
+        {authState.isAuthenticated && userInfo && (
+          <RenderSearchPage userInfo={userInfo} authService={authService} />
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        {authState.isAuthenticated && !userInfo && (
+          <LoadingComponent message="Fetching user profile..." />
+        )}
+        {authState.isAuthenticated && userInfo && (
+          <RenderSearchPage userInfo={userInfo} authService={authService} />
+        )}
+      </div>
+    );
+  }
 }
+
+//   return (
+//     <>
+//         {authState.isAuthenticated && !userInfo && (
+//           <LoadingComponent message="Fetching user profile..." />
+//         )}
+//         {authState.isAuthenticated && userInfo && (
+//           <GroomerProfilePage userInfo={userInfo} authService={authService} />
+//         )}
+//     </>
+//   );
+// }
 
 export default HomeContainer;
