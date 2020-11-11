@@ -39,7 +39,6 @@ function HomeContainer({ LoadingComponent }) {
     return () => (isSubscribed = false);
   }, [memoAuthService, authState]);
 
-  console.log('this is in conditional', userRole);
   if (userRole === 'groomer') {
     return (
       <div>
