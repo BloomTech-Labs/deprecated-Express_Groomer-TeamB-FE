@@ -20,7 +20,7 @@ import { LoadingComponent } from './components/common';
 import { GroomerProfilePage } from './components/pages/GroomerProfile';
 import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
-import Authcontext from './state/contexts/index';
+import { CustomerProfilePage } from './components/pages/CustomerProfile';
 
 ReactDOM.render(
   <Router>
@@ -58,6 +58,7 @@ function App() {
         <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
+        <SecureRoute path="/customer-profile" component={CustomerProfilePage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
