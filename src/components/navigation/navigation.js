@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserID } from '../../api/index';
 import { Link } from 'react-router-dom';
+import { Button } from '../common';
 import './nav.scss';
 import 'antd/dist/antd.less';
 
@@ -50,17 +51,15 @@ function NavBar() {
 
         <nav className="nav-bar">
           <Link className="anchor" to="/">
-            Home
-          </Link>
-          <Link className="anchor" to="/">
-            GroomerLand
-          </Link>
-          <Link className="anchor" to="/ProfileList">
-            ProfileList
+            Dashboard
           </Link>
           <Link className="anchor" to="/Search">
             Search
           </Link>
+          <Button
+            handleClick={() => authService.logout()}
+            buttonText="Logout"
+          />
         </nav>
       </div>
     );
@@ -80,15 +79,16 @@ function NavBar() {
           <Link className="anchor" to="/">
             Home
           </Link>
-          <Link className="anchor" to="/">
-            CustomerLand
-          </Link>
-          <Link className="anchor" to="/ProfileList">
-            ProfileList
-          </Link>
           <Link className="anchor" to="/Search">
             Search
           </Link>
+          <Link className="anchor" to="/Pets">
+            Pets
+          </Link>
+          <Button
+            handleClick={() => authService.logout()}
+            buttonText="Logout"
+          />
         </nav>
       </div>
     );
@@ -108,12 +108,6 @@ function NavBar() {
         <nav className="nav-bar">
           <Link className="anchor" to="/">
             Home
-          </Link>
-          <Link className="anchor" to="/">
-            DefaultLand
-          </Link>
-          <Link className="anchor" to="/ProfileList">
-            ProfileList
           </Link>
           <Link className="anchor" to="/Search">
             Search

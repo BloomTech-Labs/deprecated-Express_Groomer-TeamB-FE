@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import GroomerProfilePage from '../GroomerProfile/GroomerProfilePage';
 import RenderSearchPage from '../Search/RenderSearchPage';
+import CustomerProfilePage from '../CustomerProfile/CustProContaner';
 import { getUserID } from '../../../api/index';
 
 function HomeContainer({ LoadingComponent }) {
@@ -57,7 +58,7 @@ function HomeContainer({ LoadingComponent }) {
           <LoadingComponent message="Fetching user profile..." />
         )}
         {authState.isAuthenticated && userInfo && (
-          <RenderSearchPage userInfo={userInfo} authService={authService} />
+          <CustomerProfilePage userInfo={userInfo} authService={authService} />
         )}
       </div>
     );
