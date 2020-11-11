@@ -75,16 +75,4 @@ function HomeContainer({ LoadingComponent }) {
   }
 }
 
-//   return (
-//     <>
-//         {authState.isAuthenticated && !userInfo && (
-//           <LoadingComponent message="Fetching user profile..." />
-//         )}
-//         {authState.isAuthenticated && userInfo && (
-//           <GroomerProfilePage userInfo={userInfo} authService={authService} />
-//         )}
-//     </>
-//   );
-// }
-
 export default HomeContainer;
