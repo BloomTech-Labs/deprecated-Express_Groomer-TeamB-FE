@@ -1,0 +1,27 @@
+
+.avatar{
+    width: 75px;
+    margin: 20px auto;
+}
+
+.customer-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.heading{
+    font-size: 20px;
+}
+
+.customer-info-box{
+    display: flex;
+
+    .panel{
+        width: 50%;
+        margin: 0px 10px;
+
+        .panel-info{
+            padding: 0px 25px;
+        }
+    }
+}

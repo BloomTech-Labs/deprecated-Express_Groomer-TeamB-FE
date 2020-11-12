@@ -17,7 +17,10 @@ const RenderFormPO = props => {
         border: '1px solid black',
         width: '500px',
         padding: '20px 10px',
-        margin: '10px auto',
+        background: 'lightgray',
+        position: 'absolute',
+        left: '25%',
+        zIndex: '2',
       }}
     >
       <Form
