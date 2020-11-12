@@ -1,30 +1,30 @@
 import axios from '../../axios';
 import React, { Component } from 'react';
-import { List, Typography, Divider } from 'antd';
+import { List, Typography } from 'antd';
 
 export default class Services extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      services: [],
+      groomer_services: [],
     };
   }
   getUsersData() {
     axios
-      .get(`/services`, {})
+      .get(`/groomer_services`, {})
       .then(res => {
         const data = res.data;
         console.log(data);
-        const services = data.map(gs => (
+        const groomer_services = data.map(gs => (
           <div>
-            <h2>
+            <p>
               {gs.service_name}: {gs.services_price}
-            </h2>
+            </p>
           </div>
         ));
 
         this.setState({
-          services,
+          groomer_services,
         });
       })
       .catch(error => {
@@ -37,12 +37,8 @@ export default class Services extends Component {
   render() {
     return (
       <div>
-        <Divider orientation="left">Services</Divider>
         <List
-          header={<div></div>}
-          footer={<div></div>}
-          bordered
-          dataSource={this.state.services}
+          dataSource={this.state.groomer_services}
           renderItem={item => (
             <List.Item>
               <Typography.Text mark></Typography.Text> {item}
