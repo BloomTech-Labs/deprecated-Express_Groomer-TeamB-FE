@@ -1,6 +1,6 @@
 // This is the contextAPI store house
 import { createContext } from 'react';
 
-const Store = createContext();
+const AuthContext = createContext(undefined);
 
-export default Store;
+export default AuthContext;

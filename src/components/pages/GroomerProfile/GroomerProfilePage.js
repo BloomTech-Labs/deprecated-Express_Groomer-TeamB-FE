@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import './index.css';
 import ProfileArea from '../../common/ProfileArea';
 
@@ -10,5 +10,4 @@ function GroomerProfilePage(props) {
   );
 }
 
-GroomerProfilePage.propTypes = {};
 export default GroomerProfilePage;
