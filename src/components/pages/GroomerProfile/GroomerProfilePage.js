@@ -10,5 +10,4 @@ function GroomerProfilePage(props) {
   );
 }
 
-GroomerProfilePage.propTypes = {};
 export default GroomerProfilePage;
