@@ -34,7 +34,7 @@ const Searching = () => {
 
   return (
     <div className="search-page-container">
-      <div clasName="search-bar-container">
+      <div className="search-bar-container">
         <Search
           className="search-input"
           value={searchValue}
