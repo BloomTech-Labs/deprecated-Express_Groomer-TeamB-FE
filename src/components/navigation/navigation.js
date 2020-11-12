@@ -8,6 +8,7 @@ import 'antd/dist/antd.less';
 
 function NavBar() {
   const { authState, authService } = useOktaAuth();
+  // eslint-disable-next-line no-unused-vars
   const [userInfo, setUserInfo] = useState(null);
   const [memoAuthService] = useMemo(() => [authService], [authService]);
   const [userRole, setUserRole] = useState('');
