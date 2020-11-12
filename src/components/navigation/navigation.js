@@ -105,14 +105,7 @@ function NavBar() {
           />
         </div>
 
-        <nav className="nav-bar">
-          <Link className="anchor" to="/">
-            Home
-          </Link>
-          <Link className="anchor" to="/Search">
-            Search
-          </Link>
-        </nav>
+        <div className="nav-bar"></div>
       </div>
     );
   }
