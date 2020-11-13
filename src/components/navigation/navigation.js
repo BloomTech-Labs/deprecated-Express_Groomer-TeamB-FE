@@ -24,7 +24,7 @@ function NavBar() {
           console.log('Thi is in navBar useEffect for info.role', info.sub);
         }
         return getUserID(
-          `http://localhost:8000/profiles/${info.sub}`,
+          `https:/labspt12-express-groomer-b-api.herokuapp.com/profiles/${info.sub}`,
           authState
         );
       })
