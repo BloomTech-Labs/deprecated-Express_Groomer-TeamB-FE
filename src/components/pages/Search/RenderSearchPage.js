@@ -27,7 +27,7 @@ const Searching = () => {
 
   const onSearch = () => {
     const result = allGroomers.filter(groomer =>
-      groomer.city.includes(searchValue)
+      groomer.city.toLowerCase().includes(searchValue.toLowerCase())
     );
     setFilteredGroomers(result);
   };
