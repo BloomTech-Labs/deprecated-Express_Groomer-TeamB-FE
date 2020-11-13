@@ -51,6 +51,8 @@ function App() {
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/search" component={Searching} />
         <Route path="/pets" component={RenderPets} />
+        <Route path="/groomers/:id" component={GroomerProfilePage} />
+
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
