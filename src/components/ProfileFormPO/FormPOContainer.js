@@ -28,7 +28,7 @@ const FormPOContainer = props => {
     console.log('form values', values);
     if (isRegistered === false) {
       axios
-        .post(`http://localhost:8000/customers/`, values)
+        .post(`${process.env.REACT_APP_API_URI}/customers/`, values)
         .then(res => {
           setResultInfo({
             message: `${res.data.message} You will be redirected shortly`,
@@ -43,7 +43,10 @@ const FormPOContainer = props => {
         });
     } else {
       axios
-        .put(`http://localhost:8000/customers/${props.userInfo.sub}`, values)
+        .put(
+          `${process.env.REACT_APP_API_URI}/customers/${props.userInfo.sub}`,
+          values
+        )
         .then(res => {
           setResultInfo({ message: res.data.message, type: 'success' });
         })
@@ -60,7 +63,7 @@ const FormPOContainer = props => {
 
   const deleteProfile = () => {
     axios
-      .delete(`http://localhost:8000/customers/${userInfo.sub}`)
+      .delete(`${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`)
       .then(res => {
         history.push('/login');
       })
