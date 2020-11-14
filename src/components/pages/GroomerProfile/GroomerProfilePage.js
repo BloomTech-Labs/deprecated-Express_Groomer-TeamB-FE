@@ -1,4 +1,4 @@
-import React from 'react
+import React from 'react';
 import { ProfileFormPO } from '../../ProfileFormPO';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
