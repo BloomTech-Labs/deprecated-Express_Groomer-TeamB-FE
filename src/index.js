@@ -20,6 +20,8 @@ import { LoadingComponent } from './components/common';
 import { GroomerProfilePage } from './components/pages/GroomerProfile';
 import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
+import { CustomerProfilePage } from './components/pages/CustomerProfile';
+import RenderPets from './components/pages/Pets/RenderPets';
 
 ReactDOM.render(
   <Router>
@@ -48,6 +50,7 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/search" component={Searching} />
+        <Route path="/pets" component={RenderPets} />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
@@ -57,6 +60,7 @@ function App() {
         <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
         <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
+        <SecureRoute path="/customer-profile" component={CustomerProfilePage} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

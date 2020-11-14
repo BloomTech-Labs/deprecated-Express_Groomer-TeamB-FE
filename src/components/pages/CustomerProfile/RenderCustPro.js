@@ -3,11 +3,9 @@ import { ProfileFormPO } from '../../ProfileFormPO';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import './groomer.css';
-import Services from '../../common/ServicesArea';
+import './customer.scss';
 
-
-const GroomerProfilePage = props => {
+const RenderCustPro = props => {
   const {
     userInfo,
     isRegistered,
@@ -43,12 +41,10 @@ const GroomerProfilePage = props => {
 
         <div className="customer-header">
           <p className="heading">
-            {' '}
-            {custInfo.given_name
-              ? custInfo.given_name
-              : userInfo.given_name}{' '}
+            Hello{' '}
+            {custInfo.given_name ? custInfo.given_name : userInfo.given_name}{' '}
+            Welcome to Express Groomer
           </p>
-
           <Button type="primary" onClick={() => toggleForm()}>
             {showForm ? 'Close Form' : 'Update Profile'}
           </Button>
@@ -103,18 +99,10 @@ const GroomerProfilePage = props => {
               </p>
             </div>
           </div>
-          <div className="panel">
-            <Divider style={{ borderColor: 'lightblue' }}>Services</Divider>
-            <div className="panel-info">
-              <p>
-                <Services />
-              </p>
-            </div>
-          </div>
         </div>
       </Layout.Content>
     </div>
   );
 };
 
-export default GroomerProfilePage;
+export default RenderCustPro;
