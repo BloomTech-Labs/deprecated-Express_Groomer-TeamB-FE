@@ -1,1 +1,1 @@
-export { default as GroomerProfilePage } from './GroomerProfilePage';
+export { default as GroomerProfilePage } from './GroomerProfileContainer';
