@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react
 import { ProfileFormPO } from '../../ProfileFormPO';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -6,6 +6,7 @@ import 'antd/dist/antd.css';
 import './groomer.css';
 import Services from '../../common/ServicesArea';
 import HalfRating from '../../common/ratings';
+
 
 const GroomerProfilePage = props => {
   const {
