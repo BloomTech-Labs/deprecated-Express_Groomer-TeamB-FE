@@ -12,7 +12,7 @@ const Searching = () => {
   const [filteredGroomers, setFilteredGroomers] = useState([]);
 
   useEffect(() => {
-    Axios.get('http://localhost:8000/groomers')
+    Axios.get(`${process.env.REACT_APP_API_URI}/groomers`)
       .then(res => {
         setAllGroomers(res.data);
       })
@@ -27,7 +27,7 @@ const Searching = () => {
 
   const onSearch = () => {
     const result = allGroomers.filter(groomer =>
-      groomer.city.includes(searchValue)
+      groomer.city.toLowerCase().includes(searchValue.toLowerCase())
     );
     setFilteredGroomers(result);
   };

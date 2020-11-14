@@ -36,7 +36,7 @@ const CustProContainer = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/customers/${userInfo.sub}`)
+      .get(`${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`)
       .then(res => {
         if (res.data) {
           setCustInfo(res.data);

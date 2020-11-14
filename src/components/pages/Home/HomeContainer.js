@@ -25,7 +25,7 @@ function HomeContainer({ LoadingComponent }) {
         }
 
         return getUserID(
-          `http://localhost:8000/profiles/${info.sub}`,
+          `${process.env.REACT_APP_API_URI}/profiles/${info.sub}`,
           authState
         );
       })
