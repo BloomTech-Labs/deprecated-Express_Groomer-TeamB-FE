@@ -60,8 +60,8 @@ function App() {
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
-        <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
+        <SecureRoute path="/example-list" component={ExampleListPage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute path="/customer-profile" component={CustomerProfilePage} />
         <Route component={NotFoundPage} />
