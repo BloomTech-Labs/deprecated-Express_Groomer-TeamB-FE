@@ -21,7 +21,6 @@ function NavBar() {
       .then(info => {
         if (isSubscribed) {
           setUserInfo(info);
-          console.log('Thi is in navBar useEffect for info.role', info.sub);
         }
         return getUserID(
           `https:/labspt12-express-groomer-b-api.herokuapp.com/profiles/${info.sub}`,
