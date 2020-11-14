@@ -5,7 +5,6 @@ import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './groomer.css';
 import Services from '../../common/ServicesArea';
-import HalfRating from '../../common/ratings';
 
 const GroomerProfilePage = props => {
   const {
@@ -48,7 +47,7 @@ const GroomerProfilePage = props => {
               ? custInfo.given_name
               : userInfo.given_name}{' '}
           </p>
-          <HalfRating />
+
           <Button type="primary" onClick={() => toggleForm()}>
             {showForm ? 'Close Form' : 'Update Profile'}
           </Button>
