@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import RenderCustPro from './RenderCustPro';
 import { useOktaAuth } from '@okta/okta-react';
 import axios from 'axios';
+import GroomerProfilePage from './GroomerProfilePage';
 
-const CustProContainer = () => {
+const GroomerProfileContainer = () => {
   //grabbing user info from okta for test purposes
   //all info could/should be grabbed by state if possible
   const { authService } = useOktaAuth();
@@ -36,7 +36,7 @@ const CustProContainer = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`)
+      .get(`http://localhost:8000/groomer/${userInfo.sub}`)
       .then(res => {
         if (res.data) {
           setCustInfo(res.data);
@@ -53,16 +53,18 @@ const CustProContainer = () => {
   };
 
   return (
-    <RenderCustPro
-      userInfo={userInfo}
-      isRegistered={isRegistered}
-      custInfo={custInfo}
-      showForm={showForm}
-      toggleForm={toggleForm}
-      updated={updated}
-      setUpdated={setUpdated}
-    />
+    <div>
+      <GroomerProfilePage
+        userInfo={userInfo}
+        isRegistered={isRegistered}
+        custInfo={custInfo}
+        showForm={showForm}
+        toggleForm={toggleForm}
+        updated={updated}
+        setUpdated={setUpdated}
+      />
+    </div>
   );
 };
 
-export default CustProContainer;
+export default GroomerProfileContainer;
