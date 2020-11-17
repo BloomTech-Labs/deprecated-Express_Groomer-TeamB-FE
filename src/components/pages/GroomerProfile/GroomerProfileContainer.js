@@ -13,7 +13,6 @@ const GroomerProfileContainer = () => {
   const [custInfo, setCustInfo] = useState({});
   const [isRegistered, setIsRegistered] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -36,7 +35,7 @@ const GroomerProfileContainer = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/groomer/${userInfo.sub}`)
+      .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
       .then(res => {
         if (res.data) {
           setCustInfo(res.data);
@@ -46,7 +45,7 @@ const GroomerProfileContainer = () => {
       .catch(err => {
         console.log(err);
       });
-  }, [userInfo, updated]);
+  }, [userInfo]);
 
   const toggleForm = () => {
     setShowForm(!showForm);
@@ -59,9 +58,8 @@ const GroomerProfileContainer = () => {
         isRegistered={isRegistered}
         custInfo={custInfo}
         showForm={showForm}
+        setShowForm={setShowForm}
         toggleForm={toggleForm}
-        updated={updated}
-        setUpdated={setUpdated}
       />
     </div>
   );
