@@ -49,8 +49,6 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/search" component={Searching} />
-        {/* groomerprofilepage front-facing */}
-        <Route path="/groomers/:id" component={GroomerProfilePage} />
 
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
