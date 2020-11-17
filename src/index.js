@@ -49,15 +49,14 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/search" component={Searching} />
-
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
-        <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
         <SecureRoute path="/example-list" component={ExampleListPage} />
+        <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
         <SecureRoute path="/profile-list" component={ProfileListPage} />
         <SecureRoute path="/customer-profile" component={CustomerProfilePage} />
         <Route component={NotFoundPage} />

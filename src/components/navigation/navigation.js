@@ -23,7 +23,7 @@ function NavBar() {
           setUserInfo(info);
         }
         return getUserID(
-          `https:/labspt12-express-groomer-b-api.herokuapp.com/profiles/${info.sub}`,
+          `${process.env.REACT_APP_API_URI}/profiles/${info.sub}`,
           authState
         );
       })

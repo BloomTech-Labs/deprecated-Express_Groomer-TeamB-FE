@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import GroomerProfilePage from '../GroomerProfile/GroomerProfilePage';
+import { GroomerProfilePage } from '../GroomerProfile';
 import RenderSearchPage from '../Search/RenderSearchPage';
 import CustomerProfilePage from '../CustomerProfile/CustProContaner';
 import { getUserID } from '../../../api/index';
