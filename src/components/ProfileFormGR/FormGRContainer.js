@@ -3,11 +3,6 @@ import { useHistory } from 'react-router-dom';
 import RenderFormGR from './RenderFormGR';
 import axios from 'axios';
 
-//place this component at the top of the groomer page
-//to conditionaly render on a button click
-//will need to pass render function down and add a way
-//to close the form.
-
 const FormGRContainer = props => {
   const { userInfo, isRegistered, groomerInfo, setShowForm } = props;
 
@@ -37,26 +32,8 @@ const FormGRContainer = props => {
   const [serviceToAdd, setServiceToAdd] = useState('');
   const [priceToAdd, setPriceToAdd] = useState(0);
 
-  //props to abstract out to groomer profile
-  //const [groomerInfo, setGroomerInfo] = useState([]);
-  //const [isRegistered, setIsRegistered] = useState(false);
-
   useEffect(() => {
-    //abstract out if possible
-    //grabbing groomer info if there is some and setting isRegistered if so
     if (userInfo) {
-      //   axios
-      //     .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
-      //     .then(res => {
-      //       if (res.data) {
-      //         setGroomerInfo(res.data);
-      //         setIsRegistered(true);
-      //       }
-      //     })
-      //     .catch(err => {
-      //       console.log(err);
-      //     });
-
       axios
         .get(
           `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}`
