@@ -9,7 +9,7 @@ import axios from 'axios';
 //to close the form.
 
 const FormGRContainer = props => {
-  const { userInfo } = props;
+  const { userInfo, isRegistered, groomerInfo, setShowForm } = props;
 
   //for result message on submiting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
@@ -38,24 +38,24 @@ const FormGRContainer = props => {
   const [priceToAdd, setPriceToAdd] = useState(0);
 
   //props to abstract out to groomer profile
-  const [groomerInfo, setGroomerInfo] = useState([]);
-  const [isRegistered, setIsRegistered] = useState(false);
+  //const [groomerInfo, setGroomerInfo] = useState([]);
+  //const [isRegistered, setIsRegistered] = useState(false);
 
   useEffect(() => {
     //abstract out if possible
     //grabbing groomer info if there is some and setting isRegistered if so
     if (userInfo) {
-      axios
-        .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
-        .then(res => {
-          if (res.data) {
-            setGroomerInfo(res.data);
-            setIsRegistered(true);
-          }
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      //   axios
+      //     .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
+      //     .then(res => {
+      //       if (res.data) {
+      //         setGroomerInfo(res.data);
+      //         setIsRegistered(true);
+      //       }
+      //     })
+      //     .catch(err => {
+      //       console.log(err);
+      //     });
 
       axios
         .get(
@@ -283,6 +283,7 @@ const FormGRContainer = props => {
       addService={addService}
       services={services}
       grServices={grServices}
+      setShowForm={setShowForm}
     />
   );
 };
