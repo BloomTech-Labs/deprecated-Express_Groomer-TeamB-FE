@@ -29,7 +29,7 @@ const RenderFormGR = props => {
     addService,
     services,
     grServices,
-    exitForm,
+    setShowForm,
   } = props;
   const { Option } = Select;
   //sets up initial values from customers table when rendered
@@ -63,7 +63,7 @@ const RenderFormGR = props => {
           size="small"
         >
           <div className="close-btn">
-            <Button onClick={exitForm}>x</Button>
+            <Button onClick={() => setShowForm(false)}>x</Button>
           </div>
 
           <div className="form-top">
