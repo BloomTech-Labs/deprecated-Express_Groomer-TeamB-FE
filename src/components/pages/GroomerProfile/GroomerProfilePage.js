@@ -1,11 +1,10 @@
 import React from 'react';
-import { ProfileFormPO } from '../../ProfileFormPO';
+import { ProfileFormGR } from '../../ProfileFormGR';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './groomer.css';
 import Services from '../../common/ServicesArea';
-
 
 const GroomerProfilePage = props => {
   const {
@@ -14,19 +13,17 @@ const GroomerProfilePage = props => {
     custInfo,
     showForm,
     toggleForm,
-    updated,
-    setUpdated,
+    setShowForm,
   } = props;
-  console.log(custInfo, userInfo);
+
   return (
     <div>
       {showForm ? (
-        <ProfileFormPO
-          info={custInfo}
+        <ProfileFormGR
+          groomerInfo={custInfo}
           isRegistered={isRegistered}
           userInfo={userInfo}
-          updated={updated}
-          setUpdated={setUpdated}
+          setShowForm={setShowForm}
         />
       ) : null}
       <Layout.Content
