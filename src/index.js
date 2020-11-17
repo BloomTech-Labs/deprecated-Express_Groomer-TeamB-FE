@@ -21,6 +21,8 @@ import { GroomerProfilePage } from './components/pages/GroomerProfile';
 import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
 import { CustomerProfilePage } from './components/pages/CustomerProfile';
+import RenderPets from './components/pages/Pets/RenderPets';
+import RenderPetAdditionForm from './components/pages/Pets/CreatePet';
 
 ReactDOM.render(
   <Router>
@@ -45,6 +47,7 @@ function App() {
   return (
     <Security {...config} onAuthRequired={authHandler}>
       <NavBar />
+      {/* <RenderPetAdditionForm /> */}
       <Switch>
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
