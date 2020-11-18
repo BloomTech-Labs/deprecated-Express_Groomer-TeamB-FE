@@ -21,8 +21,7 @@ import { GroomerProfilePage } from './components/pages/GroomerProfile';
 import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
 import { CustomerProfilePage } from './components/pages/CustomerProfile';
-import RenderPets from './components/pages/Pets/RenderPets';
-import RenderPetAdditionForm from './components/pages/Pets/CreatePet';
+import GroomerSearchResults from './components/pages/SearchResults/GroomerSearchResults';
 
 ReactDOM.render(
   <Router>
@@ -52,6 +51,11 @@ function App() {
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/search" component={Searching} />
+        <Route path="/groomers/:id" component={GroomerProfilePage} />
+        <Route
+          path="/groomer-search-results/:id"
+          component={GroomerSearchResults}
+        />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
           path="/"

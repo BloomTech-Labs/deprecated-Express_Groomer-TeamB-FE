@@ -8,7 +8,11 @@ export const SearchResults = props => {
     <div className="site-card-border-less-wrapper">
       <Card
         title={props.groomer.business_name}
-        extra={<Link to={`/groomers/${props.groomer.id}`}>Go</Link>}
+        extra={
+          <Link to={`/groomer-search-results/${props.groomer.user_id}`}>
+            Go
+          </Link>
+        }
         style={{ width: 400 }}
       >
         <h3>

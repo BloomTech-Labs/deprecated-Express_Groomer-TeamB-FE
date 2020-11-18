@@ -1,5 +1,5 @@
 import React from 'react';
-import './groomer-nav.css';
+import './groomer-nav.scss';
 import 'antd/dist/antd.css';
 import { Link } from 'react-router-dom';
 
