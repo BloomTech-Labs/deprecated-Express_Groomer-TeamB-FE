@@ -35,7 +35,7 @@ const GroomerProfileContainer = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
+      .get(`${process.env.REACT_APP_API_URI}/groomer/${userInfo.sub}`)
       .then(res => {
         if (res.data) {
           setCustInfo(res.data);

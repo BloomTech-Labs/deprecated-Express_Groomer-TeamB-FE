@@ -21,7 +21,6 @@ function NavBar() {
       .then(info => {
         if (isSubscribed) {
           setUserInfo(info);
-          console.log('Thi is in navBar useEffect for info.role', info.sub);
         }
         return getUserID(
           `${process.env.REACT_APP_API_URI}/profiles/${info.sub}`,
@@ -83,9 +82,6 @@ function NavBar() {
           <Link className="anchor" to="/Search">
             Search
           </Link>
-          <Link className="anchor" to="/Pets">
-            Pets
-          </Link>
           <Button
             handleClick={() => authService.logout()}
             buttonText="Logout"
@@ -106,7 +102,12 @@ function NavBar() {
           />
         </div>
 
-        <div className="nav-bar"></div>
+        <div className="nav-bar">
+          <Button
+            handleClick={() => authService.logout()}
+            buttonText="Logout"
+          />
+        </div>
       </div>
     );
   }

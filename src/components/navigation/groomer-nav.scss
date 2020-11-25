@@ -23,7 +23,7 @@
   z-index: 2; /* do not alter. Only works on positioned, and this shows where it is at on the z axis compared to those with lesser z-index*/
   transition: right 0.5s ease; /* transitional effect, slow popout.*/
   border: 1px solid black;
-  background: gray;
+  background: #d9ab8e;
 }
 
 .container:hover .pop-out {
