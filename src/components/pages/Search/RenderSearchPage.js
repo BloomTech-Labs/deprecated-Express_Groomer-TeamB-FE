@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { SearchResults } from '../SearchResults/SearchResultsCard';
-import 'antd/dist/antd.css';
+import '../ProfileFormGR/node_modules/antd/dist/antd.css';
 import './search.scss';
 import { Input } from 'antd';
-import Axios from 'axios';
+import axios from 'axios';
 const { Search } = Input;
 
 const Searching = () => {
@@ -12,7 +12,8 @@ const Searching = () => {
   const [filteredGroomers, setFilteredGroomers] = useState([]);
 
   useEffect(() => {
-    Axios.get(`${process.env.REACT_APP_API_URI}/groomers`)
+    axios
+      .get(`${process.env.REACT_APP_API_URI}/groomers`)
       .then(res => {
         setAllGroomers(res.data);
       })
