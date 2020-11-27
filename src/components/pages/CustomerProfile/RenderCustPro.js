@@ -1,8 +1,8 @@
 import React from 'react';
-import { ProfileFormPO } from '../../ProfileFormPO';
+import { ProfileFormPO } from '../ProfileFormPO';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
+import '../ProfileFormGR/node_modules/antd/dist/antd.css';
 import './customer.scss';
 
 const RenderCustPro = props => {

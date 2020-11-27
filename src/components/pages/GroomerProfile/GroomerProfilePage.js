@@ -1,10 +1,10 @@
 import React from 'react';
-import { ProfileFormGR } from '../../ProfileFormGR';
+import { ProfileFormGR } from '../ProfileFormGR';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import 'antd/dist/antd.css';
+import '../ProfileFormGR/node_modules/antd/dist/antd.css';
 import './groomer.css';
-import Services from '../../common/ServicesArea';
+import Services from './ServicesArea';
 
 const GroomerProfilePage = props => {
   const {

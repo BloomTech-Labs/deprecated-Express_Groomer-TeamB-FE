@@ -1,4 +1,4 @@
-import axios from '../../axios';
+import axios from 'axios';
 import React, { Component } from 'react';
 import { List, Typography } from 'antd';
 
@@ -11,7 +11,7 @@ export default class Services extends Component {
   }
   getUsersData() {
     axios
-      .get(`/groomer_services`, {})
+      .get(`${process.env.REACT_APP_API_URI}/groomer_services`, {})
       .then(res => {
         const data = res.data;
         console.log(data);

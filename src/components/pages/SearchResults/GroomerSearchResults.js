@@ -3,7 +3,7 @@ import { Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../GroomerProfile/groomer.css';
-import Services from '../../common/ServicesArea';
+import Services from '../GroomerProfile/ServicesArea';
 import Axios from 'axios';
 
 const GroomerSearchResults = props => {

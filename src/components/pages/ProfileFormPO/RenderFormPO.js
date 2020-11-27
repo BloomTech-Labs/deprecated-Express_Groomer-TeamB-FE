@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Form, Input, Button, Alert, Modal, Layout } from 'antd';
-import 'antd/dist/antd.css';
+import '../pages/ProfileFormGR/node_modules/antd/dist/antd.css';
 
 const RenderFormPO = props => {
   const { onFinish, onFailed, user_info, isRegistered, resultInfo } = props;
