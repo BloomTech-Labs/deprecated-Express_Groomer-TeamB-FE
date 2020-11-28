@@ -10,7 +10,7 @@ const GroomerProfileContainer = () => {
   const [userInfo, setUserInfo] = useState({});
   const [memoAuthService] = useMemo(() => [authService], [authService]);
 
-  const [custInfo, setCustInfo] = useState({});
+  const [groomerInfo, setGroomerInfo] = useState({});
   const [isRegistered, setIsRegistered] = useState(false);
   const [showForm, setShowForm] = useState(false);
 
@@ -38,7 +38,7 @@ const GroomerProfileContainer = () => {
       .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
       .then(res => {
         if (res.data) {
-          setCustInfo(res.data);
+          setGroomerInfo(res.data);
           setIsRegistered(true);
         }
       })
@@ -56,7 +56,7 @@ const GroomerProfileContainer = () => {
       <GroomerProfilePage
         userInfo={userInfo}
         isRegistered={isRegistered}
-        custInfo={custInfo}
+        groomerInfo={groomerInfo}
         showForm={showForm}
         setShowForm={setShowForm}
         toggleForm={toggleForm}

@@ -10,7 +10,7 @@ const GroomerProfilePage = props => {
   const {
     userInfo,
     isRegistered,
-    custInfo,
+    groomerInfo,
     showForm,
     toggleForm,
     setShowForm,
@@ -20,7 +20,7 @@ const GroomerProfilePage = props => {
     <div>
       {showForm ? (
         <ProfileFormGR
-          groomerInfo={custInfo}
+          groomerInfo={groomerInfo}
           isRegistered={isRegistered}
           userInfo={userInfo}
           setShowForm={setShowForm}
@@ -41,8 +41,8 @@ const GroomerProfilePage = props => {
         <div className="customer-header">
           <p className="heading">
             {' '}
-            {custInfo.given_name
-              ? custInfo.given_name
+            {groomerInfo.given_name
+              ? groomerInfo.given_name
               : userInfo.given_name}{' '}
           </p>
 
@@ -58,21 +58,21 @@ const GroomerProfilePage = props => {
             <div className="panel-info">
               <p>
                 First Name:{' '}
-                {custInfo.given_name
-                  ? custInfo.given_name
+                {groomerInfo.given_name
+                  ? groomerInfo.given_name
                   : userInfo.given_name}
               </p>
               <p>
                 Last Name:{' '}
-                {custInfo.family_name
-                  ? custInfo.family_name
+                {groomerInfo.family_name
+                  ? groomerInfo.family_name
                   : userInfo.family_name}
               </p>
               <p>Email: {userInfo.email}</p>
               <p>
                 Phone Number:{' '}
-                {custInfo.phone_number
-                  ? custInfo.phone_number
+                {groomerInfo.phone_number
+                  ? groomerInfo.phone_number
                   : 'Update your profile'}
               </p>
             </div>
@@ -82,21 +82,29 @@ const GroomerProfilePage = props => {
             <div className="panel-info">
               <p>
                 Address:{' '}
-                {custInfo.address ? custInfo.address : 'Update your profile'}
+                {groomerInfo.address
+                  ? groomerInfo.address
+                  : 'Update your profile'}
               </p>
               <p>
-                City: {custInfo.city ? custInfo.city : 'Update your profile'}
+                City:{' '}
+                {groomerInfo.city ? groomerInfo.city : 'Update your profile'}
               </p>
               <p>
-                State: {custInfo.state ? custInfo.state : 'Update your profile'}
+                State:{' '}
+                {groomerInfo.state ? groomerInfo.state : 'Update your profile'}
               </p>
               <p>
                 Zip Code:{' '}
-                {custInfo.zip_code ? custInfo.zip_code : 'Update your profile'}
+                {groomerInfo.zip_code
+                  ? groomerInfo.zip_code
+                  : 'Update your profile'}
               </p>
               <p>
                 Country:{' '}
-                {custInfo.country ? custInfo.country : 'Update your profile'}
+                {groomerInfo.country
+                  ? groomerInfo.country
+                  : 'Update your profile'}
               </p>
             </div>
           </div>
