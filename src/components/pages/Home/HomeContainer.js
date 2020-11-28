@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { GroomerProfilePage } from '../GroomerProfile';
-import RenderSearchPage from '../Search/RenderSearchPage';
 import CustomerProfilePage from '../CustomerProfile/CustProContaner';
 import { getUserID } from '../../../api/index';
+import { LoginPage } from '../Login';
 
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
@@ -63,14 +63,7 @@ function HomeContainer({ LoadingComponent }) {
     );
   } else {
     return (
-      <div>
-        {authState.isAuthenticated && !userInfo && (
-          <LoadingComponent message="Fetching user profile..." />
-        )}
-        {authState.isAuthenticated && userInfo && (
-          <RenderSearchPage userInfo={userInfo} authService={authService} />
-        )}
-      </div>
+      <div>{!authState.isAuthenticated && !userInfo && <LoginPage />}</div>
     );
   }
 }
