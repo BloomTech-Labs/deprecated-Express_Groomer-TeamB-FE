@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SearchResults } from '../SearchResults/SearchResultsCard';
-import '../ProfileFormGR/node_modules/antd/dist/antd.css';
+import 'antd/dist/antd.css';
 import './search.scss';
 import { Input } from 'antd';
 import axios from 'axios';

@@ -2,7 +2,7 @@ import React from 'react';
 import { ProfileFormPO } from '../ProfileFormPO';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import '../ProfileFormGR/node_modules/antd/dist/antd.css';
+import 'antd/dist/antd.css';
 import './customer.scss';
 
 const RenderCustPro = props => {

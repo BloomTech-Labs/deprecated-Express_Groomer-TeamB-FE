@@ -2,7 +2,7 @@ import React from 'react';
 import { ProfileFormGR } from '../ProfileFormGR';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import '../ProfileFormGR/node_modules/antd/dist/antd.css';
+import 'antd/dist/antd.css';
 import './groomer.css';
 import Services from './ServicesArea';
 
