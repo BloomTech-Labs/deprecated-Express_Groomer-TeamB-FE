@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../ProfileFormGR/node_modules/antd/dist/antd.css';
+import 'antd/dist/antd.css';
 import { Card } from 'antd';
 
 export const SearchResults = props => {

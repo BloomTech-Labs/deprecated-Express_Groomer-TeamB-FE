@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserID } from '../../api/index';
 import { Link } from 'react-router-dom';
-import { Button } from '../common';
+import { Button } from 'antd';
 import './nav.scss';
 import 'antd/dist/antd.less';
 
@@ -56,10 +56,9 @@ function NavBar() {
           <Link className="anchor" to="/Search">
             Search
           </Link>
-          <Button
-            handleClick={() => authService.logout()}
-            buttonText="Logout"
-          />
+          <Button type="primary" onClick={() => authService.logout()}>
+            Logout
+          </Button>
         </nav>
       </div>
     );
@@ -82,10 +81,9 @@ function NavBar() {
           <Link className="anchor" to="/Search">
             Search
           </Link>
-          <Button
-            handleClick={() => authService.logout()}
-            buttonText="Logout"
-          />
+          <Button type="primary" onClick={() => authService.logout()}>
+            Logout
+          </Button>
         </nav>
       </div>
     );
@@ -103,10 +101,9 @@ function NavBar() {
         </div>
 
         <div className="nav-bar">
-          <Button
-            handleClick={() => authService.logout()}
-            buttonText="Logout"
-          />
+          <Button type="primary" onClick={() => authService.logout()}>
+            Logout
+          </Button>
         </div>
       </div>
     );

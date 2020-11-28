@@ -17,12 +17,6 @@ function GroomerHoverNav() {
           <Link className="anchor" to="/Login">
             Login
           </Link>
-          <Link className="anchor" to="/ExampleList">
-            Examples
-          </Link>
-          <Link className="anchor" to="/ProfileList">
-            ProfileList
-          </Link>
         </div>
       </div>
     </div>
