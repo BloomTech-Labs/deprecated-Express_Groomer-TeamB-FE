@@ -100,11 +100,7 @@ function NavBar() {
           />
         </div>
 
-        <div className="nav-bar">
-          <Button type="primary" onClick={() => authService.logout()}>
-            Logout
-          </Button>
-        </div>
+        <div className="nav-bar">{/* no nav */}</div>
       </div>
     );
   }
