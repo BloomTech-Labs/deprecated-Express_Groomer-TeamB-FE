@@ -49,4 +49,71 @@ const getProfileData = authState => {
   }
 };
 
-export { sleep, getExampleData, getProfileData, getUserID };
+//GROOMER PROFILE FORM FUNCTIONS
+const postGroomerInfo = (
+  url,
+  authState,
+  infoValues,
+  setResultInfo,
+  history
+) => {
+  const headers = getAuthHeader(authState);
+  if (!url) {
+    throw new Error('No URL provided');
+  }
+  return axios
+    .post(url, infoValues, { headers })
+    .then(res => {
+      setResultInfo({
+        message: `${res.data.message} You will be redirected shortly`,
+        type: 'success',
+      });
+      setTimeout(() => {
+        history.go(0);
+      }, 4000);
+    })
+    .catch(err => {
+      setResultInfo({ message: err.message, type: 'error' });
+    });
+};
+
+const putGroomerInfo = (url, authState, infoValues, setResultInfo) => {
+  const headers = getAuthHeader(authState);
+  if (!url) {
+    throw new Error('No URL provided');
+  }
+  return axios
+    .put(url, infoValues, { headers })
+    .then(res => {
+      setResultInfo({ message: res.data.message, type: 'success' });
+    })
+    .catch(err => {
+      setResultInfo({ message: err.message, type: 'error' });
+    });
+};
+// TODO finish this
+const postGroomerServices = (url, authState, serviceValues, setResultInfo) => {
+  console.log('serviceValues', serviceValues);
+  const headers = getAuthHeader(authState);
+  if (!url) {
+    throw new Error('No URL provided');
+  }
+  return axios
+    .post(url, serviceValues, { headers })
+    .then(res => {
+      setResultInfo({ message: res.data.message, type: 'success' });
+    })
+    .catch(err => {
+      setResultInfo({ message: err.message, type: 'error' });
+    });
+};
+
+export {
+  sleep,
+  getExampleData,
+  getProfileData,
+  getUserID,
+  postGroomerInfo,
+  putGroomerInfo,
+  postGroomerServices,
+};
