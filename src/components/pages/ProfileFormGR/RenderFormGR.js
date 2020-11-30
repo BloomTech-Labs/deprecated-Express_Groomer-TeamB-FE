@@ -206,7 +206,8 @@ const RenderFormGR = props => {
 
                   <Form.Item wrapperCol={{ offset: 2, span: 5 }}>
                     <Input
-                      placeholder="price"
+                      type="number"
+                      placeholder="Price"
                       onChange={value => changePrice(value)}
                     />
                   </Form.Item>
