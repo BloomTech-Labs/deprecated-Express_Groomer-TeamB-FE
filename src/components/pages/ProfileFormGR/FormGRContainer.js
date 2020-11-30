@@ -15,8 +15,8 @@ import { useOktaAuth } from '@okta/okta-react';
 const FormGRContainer = props => {
   const { userInfo, isRegistered, groomerInfo, setShowForm } = props;
 
-  //for result message on submiting form
   const { authState } = useOktaAuth();
+  //for result message on submiting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
   //for delete modal
   const [showDelete, setShowDelete] = useState(false);

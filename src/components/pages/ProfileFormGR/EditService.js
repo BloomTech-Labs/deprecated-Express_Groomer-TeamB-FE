@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Input, Modal, Alert } from 'antd';
-import axios from 'axios';
+import { useOktaAuth } from '@okta/okta-react';
+import { editGroomerServices, deleteService } from '../../../api/index.js';
 import 'antd/dist/antd.css';
 import './form.scss';
 
 const EditService = props => {
   const { service, userInfo } = props;
+  const { authState } = useOktaAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [newValue, setNewValue] = useState(0);
   const [showDelModal, setShowDelModal] = useState(false);
@@ -21,31 +23,26 @@ const EditService = props => {
       services_price: newValue,
     };
 
-    axios
-      .put(
-        `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}?service=${service.id}`,
-        price
-      )
-      .then(res => {
-        setIsEditing(!isEditing);
-      })
-      .catch(err => {
-        setIsError(true);
-      });
+    editGroomerServices(
+      authState,
+      userInfo,
+      service,
+      price,
+      setIsEditing,
+      isEditing,
+      setIsError
+    );
   };
 
-  const deleteService = () => {
-    axios
-      .delete(
-        `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}?service=${service.id}`
-      )
-      .then(res => {
-        setIsDeleted(true);
-        setShowDelModal(false);
-      })
-      .catch(err => {
-        setIsError(true);
-      });
+  const deleteGroomerService = () => {
+    deleteService(
+      authState,
+      userInfo,
+      service,
+      setIsDeleted,
+      setShowDelModal,
+      setIsError
+    );
   };
 
   return (
@@ -94,7 +91,7 @@ const EditService = props => {
         title="Are you sure you want to delete your profile?"
         visible={showDelModal}
         onOk={() => {
-          deleteService();
+          deleteGroomerService();
         }}
         onCancel={() => {
           setShowDelModal(false);

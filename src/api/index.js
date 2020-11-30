@@ -133,6 +133,54 @@ const postGroomerServices = (url, authState, serviceValues, setStateVar) => {
     });
 };
 
+const editGroomerServices = (
+  authState,
+  userInfo,
+  service,
+  price,
+  setIsEditing,
+  isEditing,
+  setIsError
+) => {
+  const headers = getAuthHeader(authState);
+
+  return axios
+    .put(
+      `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}?service=${service.id}`,
+      price,
+      { headers }
+    )
+    .then(res => {
+      setIsEditing(!isEditing);
+    })
+    .catch(err => {
+      setIsError(true);
+    });
+};
+const deleteService = (
+  authState,
+  userInfo,
+  service,
+  setIsDeleted,
+  setShowDelModal,
+  setIsError
+) => {
+  const headers = getAuthHeader(authState);
+
+  axios
+    .delete(
+      `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}?service=${service.id}`,
+      { headers }
+    )
+    .then(res => {
+      setIsDeleted(true);
+      setShowDelModal(false);
+    })
+    .catch(err => {
+      setIsError(true);
+    });
+};
+
 const deleteProfile = (authState, userType, userInfo, history, setStateVar) => {
   const headers = getAuthHeader(authState);
 
@@ -158,5 +206,7 @@ export {
   postGroomerInfo,
   putGroomerInfo,
   postGroomerServices,
+  editGroomerServices,
+  deleteService,
   deleteProfile,
 };
