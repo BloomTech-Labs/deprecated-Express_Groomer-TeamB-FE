@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import RenderFormGR from './RenderFormGR';
-import axios from 'axios';
+//all axios call functions
 import {
   getGroomerServicesByID,
+  getGroomerServices,
   postGroomerInfo,
   putGroomerInfo,
   postGroomerServices,
+  deleteProfile,
 } from '../../../api/index.js';
 import { useOktaAuth } from '@okta/okta-react';
 
@@ -44,14 +46,7 @@ const FormGRContainer = props => {
     if (userInfo) {
       getGroomerServicesByID(userInfo, setGrServices);
     }
-    axios
-      .get(`${process.env.REACT_APP_API_URI}/services`)
-      .then(res => {
-        setServices(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    getGroomerServices(setServices);
   }, [userInfo]);
 
   useEffect(() => {
@@ -90,15 +85,8 @@ const FormGRContainer = props => {
     }
   };
 
-  const deleteProfile = () => {
-    axios
-      .delete(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
-      .then(res => {
-        history.push('/login');
-      })
-      .catch(err => {
-        setResultInfo({ message: err.message, type: 'error' });
-      });
+  const deleteGroomerProfile = () => {
+    deleteProfile(authState, 'groomers', userInfo, history, setResultInfo);
   };
 
   //updating open hours by day
@@ -232,7 +220,7 @@ const FormGRContainer = props => {
       resultInfo={resultInfo}
       showDelete={showDelete}
       setShowDelete={setShowDelete}
-      deleteProfile={deleteProfile}
+      deleteGroomerProfile={deleteGroomerProfile}
       updateOpenHours={updateOpenHours}
       updateCloseHours={updateCloseHours}
       hoursOfOpp={hoursOfOpp}
