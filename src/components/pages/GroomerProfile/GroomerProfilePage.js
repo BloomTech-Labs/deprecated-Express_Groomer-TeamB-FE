@@ -111,7 +111,7 @@ const GroomerProfilePage = props => {
           <div className="panel">
             <Divider style={{ borderColor: 'lightblue' }}>Services</Divider>
             <div className="panel-info">
-              <Services />
+              <Services userInfo={userInfo} />
             </div>
           </div>
         </div>
