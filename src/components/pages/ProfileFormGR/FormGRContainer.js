@@ -2,11 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import RenderFormGR from './RenderFormGR';
 import axios from 'axios';
+import {
+  postGroomerInfo,
+  putGroomerInfo,
+  postGroomerServices,
+} from '../../../api/index.js';
+import { useOktaAuth } from '@okta/okta-react';
 
 const FormGRContainer = props => {
   const { userInfo, isRegistered, groomerInfo, setShowForm } = props;
 
   //for result message on submiting form
+  const { authState } = useOktaAuth();
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
   //for delete modal
   const [showDelete, setShowDelete] = useState(false);
@@ -72,35 +79,23 @@ const FormGRContainer = props => {
       ...values,
     };
 
-    //checking isRegistered and calling the api to either create or update
-
+    //checking isRegistered and calling the API to either create or update
+    //API calls are abstracted out into the API/index file as functions and called here
     if (isRegistered === false) {
-      axios
-        .post(`${process.env.REACT_APP_API_URI}/groomers/`, infoValues)
-        .then(res => {
-          setResultInfo({
-            message: `${res.data.message} You will be redirected shortly`,
-            type: 'success',
-          });
-          setTimeout(() => {
-            history.go(0);
-          }, 4000);
-        })
-        .catch(err => {
-          setResultInfo({ message: err.message, type: 'error' });
-        });
+      postGroomerInfo(
+        `${process.env.REACT_APP_API_URI}/groomers/`,
+        authState,
+        infoValues,
+        setResultInfo,
+        history
+      );
     } else {
-      axios
-        .put(
-          `${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`,
-          infoValues
-        )
-        .then(res => {
-          setResultInfo({ message: res.data.message, type: 'success' });
-        })
-        .catch(err => {
-          setResultInfo({ message: err.message, type: 'error' });
-        });
+      putGroomerInfo(
+        `${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`,
+        authState,
+        infoValues,
+        setResultInfo
+      );
     }
   };
 
@@ -229,17 +224,12 @@ const FormGRContainer = props => {
       services_id: serviceToAdd,
       services_price: priceToAdd,
     };
-    axios
-      .post(`${process.env.REACT_APP_API_URI}/groomer_services/`, serviceValues)
-      .then(res => {
-        setResultInfo({
-          message: `${res.data.message}`,
-          type: 'success',
-        });
-      })
-      .catch(err => {
-        setResultInfo({ message: err.message, type: 'error' });
-      });
+    postGroomerServices(
+      `${process.env.REACT_APP_API_URI}/groomer_services/`,
+      authState,
+      serviceValues,
+      setResultInfo
+    );
   };
 
   return (
