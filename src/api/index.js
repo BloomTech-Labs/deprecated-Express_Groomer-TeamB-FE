@@ -1,17 +1,30 @@
 import axios from 'axios';
 
 // we will define a bunch of API calls here.
-const apiUrl = `${process.env.REACT_APP_API_URI}/profiles`;
+const apiUrl = `${process.env.REACT_APP_API_URI}`;
 
 const sleep = time =>
   new Promise(resolve => {
     setTimeout(resolve, time);
   });
 
+//example of non-auth API call function
 const getExampleData = () => {
   return axios
     .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
     .then(response => response.data);
+};
+
+//resusable GET functions (auth not required)
+const getGroomerServicesByID = (userInfo, setStateVar) => {
+  return axios
+    .get(`${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}`)
+    .then(res => {
+      setStateVar(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 const getAuthHeader = authState => {
@@ -22,8 +35,10 @@ const getAuthHeader = authState => {
 };
 
 const apiAuthGet = authHeader => {
-  return axios.get(apiUrl, { headers: authHeader });
+  return axios.get(`${apiUrl}/profiles`, { headers: authHeader });
 };
+
+//Various GET (auth) API calls
 
 const getProfileData = authState => {
   try {
@@ -110,6 +125,7 @@ const postGroomerServices = (url, authState, serviceValues, setResultInfo) => {
 
 export {
   sleep,
+  getGroomerServicesByID,
   getExampleData,
   getProfileData,
   getUserID,
