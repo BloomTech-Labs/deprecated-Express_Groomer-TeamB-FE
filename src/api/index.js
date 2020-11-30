@@ -21,19 +21,6 @@ const getAuthHeader = authState => {
   return { Authorization: `Bearer ${authState.idToken}` };
 };
 
-const getUserID = (url, authState) => {
-  // here's another way you can compose together your API calls.
-  // Note the use of GetAuthHeader here is a little different than in the getProfileData call.
-  const headers = getAuthHeader(authState);
-  if (!url) {
-    throw new Error('No URL provided');
-  }
-  return axios
-    .get(url, { headers })
-    .then(res => res.data)
-    .catch(err => err);
-};
-
 const apiAuthGet = authHeader => {
   return axios.get(apiUrl, { headers: authHeader });
 };
@@ -47,6 +34,19 @@ const getProfileData = authState => {
       return [];
     });
   }
+};
+
+const getUserID = (url, authState) => {
+  // here's another way you can compose together your API calls.
+  // Note the use of GetAuthHeader here is a little different than in the getProfileData call.
+  const headers = getAuthHeader(authState);
+  if (!url) {
+    throw new Error('No URL provided');
+  }
+  return axios
+    .get(url, { headers })
+    .then(res => res.data)
+    .catch(err => err);
 };
 
 //GROOMER PROFILE FORM FUNCTIONS
