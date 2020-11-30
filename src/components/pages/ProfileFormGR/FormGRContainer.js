@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import RenderFormGR from './RenderFormGR';
 import axios from 'axios';
 import {
+  getGroomerServicesByID,
   postGroomerInfo,
   putGroomerInfo,
   postGroomerServices,
@@ -41,18 +42,8 @@ const FormGRContainer = props => {
 
   useEffect(() => {
     if (userInfo) {
-      axios
-        .get(
-          `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}`
-        )
-        .then(res => {
-          setGrServices(res.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      getGroomerServicesByID(userInfo, setGrServices);
     }
-
     axios
       .get(`${process.env.REACT_APP_API_URI}/services`)
       .then(res => {
