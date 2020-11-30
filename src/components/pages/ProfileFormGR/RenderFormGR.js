@@ -18,6 +18,7 @@ const RenderFormGR = props => {
   const {
     onFinish,
     onFailed,
+    userInfo,
     groomerInfo,
     isRegistered,
     resultInfo,
@@ -30,6 +31,7 @@ const RenderFormGR = props => {
     services,
     grServices,
     setShowForm,
+    deleteGroomerProfile,
   } = props;
   const { Option } = Select;
   //sets up initial values from customers table when rendered
@@ -227,10 +229,7 @@ const RenderFormGR = props => {
                           {service.service_name}{' '}
                         </Divider>
 
-                        <EditService
-                          service={service}
-                          userInfo={props.userInfo}
-                        />
+                        <EditService service={service} userInfo={userInfo} />
                       </div>
                     ))
                   : null}
@@ -253,7 +252,7 @@ const RenderFormGR = props => {
             title="Are you sure you want to delete your profile?"
             visible={props.showDelete}
             onOk={() => {
-              props.deleteProfile();
+              deleteGroomerProfile();
               props.setShowDelete(false);
             }}
             onCancel={() => props.setShowDelete(false)}

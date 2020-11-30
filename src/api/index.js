@@ -27,6 +27,17 @@ const getGroomerServicesByID = (userInfo, setStateVar) => {
     });
 };
 
+const getGroomerServices = setStateVar => {
+  return axios
+    .get(`${process.env.REACT_APP_API_URI}/groomer_services`)
+    .then(res => {
+      setStateVar(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
     throw new Error('Not authenticated');
@@ -106,9 +117,8 @@ const putGroomerInfo = (url, authState, infoValues, setResultInfo) => {
       setResultInfo({ message: err.message, type: 'error' });
     });
 };
-// TODO finish this
-const postGroomerServices = (url, authState, serviceValues, setResultInfo) => {
-  console.log('serviceValues', serviceValues);
+
+const postGroomerServices = (url, authState, serviceValues, setStateVar) => {
   const headers = getAuthHeader(authState);
   if (!url) {
     throw new Error('No URL provided');
@@ -116,20 +126,37 @@ const postGroomerServices = (url, authState, serviceValues, setResultInfo) => {
   return axios
     .post(url, serviceValues, { headers })
     .then(res => {
-      setResultInfo({ message: res.data.message, type: 'success' });
+      setStateVar({ message: res.data.message, type: 'success' });
     })
     .catch(err => {
-      setResultInfo({ message: err.message, type: 'error' });
+      setStateVar({ message: err.message, type: 'error' });
+    });
+};
+
+const deleteProfile = (authState, userType, userInfo, history, setStateVar) => {
+  const headers = getAuthHeader(authState);
+
+  axios
+    .delete(`${process.env.REACT_APP_API_URI}/${userType}/${userInfo.sub}`, {
+      headers,
+    })
+    .then(res => {
+      history.push('/login');
+    })
+    .catch(err => {
+      setStateVar({ message: err.message, type: 'error' });
     });
 };
 
 export {
   sleep,
   getGroomerServicesByID,
+  getGroomerServices,
   getExampleData,
   getProfileData,
   getUserID,
   postGroomerInfo,
   putGroomerInfo,
   postGroomerServices,
+  deleteProfile,
 };
