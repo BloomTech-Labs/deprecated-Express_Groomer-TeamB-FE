@@ -86,6 +86,7 @@ const getProfileData = authState => {
   }
 };
 
+//used to obtain okta user id to set role
 const getUserID = (url, authState) => {
   // here's another way you can compose together your API calls.
   // Note the use of GetAuthHeader here is a little different than in the getProfileData call.

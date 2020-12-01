@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import RenderFormPO from './RenderFormPO';
 import axios from 'axios';
+//all axios call functions
+import { deleteProfile } from '../../../api/index.js';
+import { useOktaAuth } from '@okta/okta-react';
 
 //This form needs some info passed down as props
 //info from customers if available
@@ -10,6 +13,7 @@ import axios from 'axios';
 const FormPOContainer = props => {
   const { info, isRegistered, userInfo, updated, setUpdated } = props;
 
+  const { authState } = useOktaAuth();
   //for result message on submiting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
   //for delete modal
@@ -44,7 +48,7 @@ const FormPOContainer = props => {
     } else {
       axios
         .put(
-          `${process.env.REACT_APP_API_URI}/customers/${props.userInfo.sub}`,
+          `${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`,
           values
         )
         .then(res => {
@@ -61,15 +65,9 @@ const FormPOContainer = props => {
     setResultInfo({ message: 'Error: Please try again', type: 'error' });
   };
 
-  const deleteProfile = () => {
-    axios
-      .delete(`${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`)
-      .then(res => {
-        history.push('/login');
-      })
-      .catch(err => {
-        setResultInfo({ message: err.message, type: 'error' });
-      });
+  const deleteCustomerProfile = () => {
+    //API call function
+    deleteProfile(authState, 'customers', userInfo, history, setResultInfo);
   };
 
   return (
@@ -81,7 +79,7 @@ const FormPOContainer = props => {
       resultInfo={resultInfo}
       showDelete={showDelete}
       setShowDelete={setShowDelete}
-      deleteProfile={deleteProfile}
+      deleteCustomerProfile={deleteCustomerProfile}
     />
   );
 };
