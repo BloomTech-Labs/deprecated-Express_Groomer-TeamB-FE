@@ -130,7 +130,7 @@ const RenderFormPO = props => {
             title="Are you sure you want to delete your profile?"
             visible={props.showDelete}
             onOk={() => {
-              props.deleteProfile();
+              props.deleteCustomerProfile();
               props.setShowDelete(false);
             }}
             onCancel={() => props.setShowDelete(false)}
