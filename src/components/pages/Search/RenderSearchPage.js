@@ -3,7 +3,8 @@ import { SearchResults } from '../SearchResults/SearchResultsCard';
 import 'antd/dist/antd.css';
 import './search.scss';
 import { Input } from 'antd';
-import axios from 'axios';
+import { getGroomers } from '../../../api/index.js';
+
 const { Search } = Input;
 
 const Searching = () => {
@@ -11,15 +12,9 @@ const Searching = () => {
   const [searchValue, setSearchValue] = useState('');
   const [filteredGroomers, setFilteredGroomers] = useState([]);
 
+  //API Call
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URI}/groomers`)
-      .then(res => {
-        setAllGroomers(res.data);
-      })
-      .catch(err => {
-        console.log('Error', err);
-      });
+    getGroomers(setAllGroomers);
   }, []);
 
   const handleChange = event => {
