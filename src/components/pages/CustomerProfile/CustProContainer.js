@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import RenderCustPro from './RenderCustPro';
 import { useOktaAuth } from '@okta/okta-react';
-import axios from 'axios';
+import { getCustomerByID } from '../../../api/index.js';
 
 const CustProContainer = () => {
   //grabbing user info from okta for test purposes
   //all info could/should be grabbed by state if possible
-  const { authService } = useOktaAuth();
+  const { authService, authState } = useOktaAuth();
   const [userInfo, setUserInfo] = useState({});
   const [memoAuthService] = useMemo(() => [authService], [authService]);
 
@@ -34,19 +34,10 @@ const CustProContainer = () => {
     return () => (isSubscribed = false);
   }, [memoAuthService]);
 
+  //API call to get customer info
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`)
-      .then(res => {
-        if (res.data) {
-          setCustInfo(res.data);
-          setIsRegistered(true);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [userInfo, updated]);
+    getCustomerByID(authState, userInfo, setCustInfo, setIsRegistered);
+  }, [userInfo, authState, updated]);
 
   const toggleForm = () => {
     setShowForm(!showForm);

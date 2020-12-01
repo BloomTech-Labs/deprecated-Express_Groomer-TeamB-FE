@@ -15,7 +15,7 @@ const RenderCustPro = props => {
     updated,
     setUpdated,
   } = props;
-  console.log(custInfo, userInfo);
+
   return (
     <div>
       {showForm ? (
