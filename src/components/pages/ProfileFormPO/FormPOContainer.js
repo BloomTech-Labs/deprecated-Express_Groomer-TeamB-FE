@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import RenderFormPO from './RenderFormPO';
-import axios from 'axios';
 //all axios call functions
-import { deleteProfile } from '../../../api/index.js';
+import {
+  deleteProfile,
+  postUserInfo,
+  putUserInfo,
+} from '../../../api/index.js';
 import { useOktaAuth } from '@okta/okta-react';
 
 //This form needs some info passed down as props
@@ -28,35 +31,21 @@ const FormPOContainer = props => {
     };
 
     //checking isRegistered and calling the api to either create or update
-
-    console.log('form values', values);
     if (isRegistered === false) {
-      axios
-        .post(`${process.env.REACT_APP_API_URI}/customers/`, infoValues)
-        .then(res => {
-          setResultInfo({
-            message: `${res.data.message} You will be redirected shortly`,
-            type: 'success',
-          });
-          setTimeout(() => {
-            history.go(0);
-          }, 4000);
-        })
-        .catch(err => {
-          setResultInfo({ message: err.message, type: 'error' });
-        });
+      postUserInfo(
+        `${process.env.REACT_APP_API_URI}/customers`,
+        authState,
+        infoValues,
+        setResultInfo,
+        history
+      );
     } else {
-      axios
-        .put(
-          `${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`,
-          values
-        )
-        .then(res => {
-          setResultInfo({ message: res.data.message, type: 'success' });
-        })
-        .catch(err => {
-          setResultInfo({ message: err.message, type: 'error' });
-        });
+      putUserInfo(
+        `${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`,
+        authState,
+        infoValues,
+        setResultInfo
+      );
     }
     setUpdated(!updated);
   };
