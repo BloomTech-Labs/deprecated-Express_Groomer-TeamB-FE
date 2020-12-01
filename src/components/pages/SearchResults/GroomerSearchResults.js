@@ -4,23 +4,14 @@ import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../GroomerProfile/groomer.css';
 import Services from '../GroomerProfile/ServicesArea';
-import Axios from 'axios';
+import { getGroomerByID } from '../../../api/index.js';
 
 const GroomerSearchResults = props => {
-  console.log('this is props', props);
-
   const [groomer, setGroomer] = useState();
   const pathway = props.match.params.id;
 
   useEffect(() => {
-    Axios.get(`${process.env.REACT_APP_API_URI}/groomers/${pathway}`)
-      .then(res => {
-        setGroomer(res.data);
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    getGroomerByID(pathway, setGroomer);
   }, [pathway]);
 
   if (groomer) {
@@ -66,9 +57,7 @@ const GroomerSearchResults = props => {
             <div className="panel">
               <Divider style={{ borderColor: 'lightblue' }}>Services</Divider>
               <div className="panel-info">
-                <p>
-                  <Services />
-                </p>
+                <Services />
               </div>
             </div>
           </div>

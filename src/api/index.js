@@ -38,6 +38,19 @@ const getGroomerServices = setStateVar => {
     });
 };
 
+const getGroomerByID = (pathway, setGroomer) => {
+  return axios
+    .get(`${process.env.REACT_APP_API_URI}/groomers/${pathway}`)
+    .then(res => {
+      setGroomer(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+//AUTH
+
 const getAuthHeader = authState => {
   if (!authState.isAuthenticated) {
     throw new Error('Not authenticated');
@@ -167,7 +180,7 @@ const deleteService = (
 ) => {
   const headers = getAuthHeader(authState);
 
-  axios
+  return axios
     .delete(
       `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}?service=${service.id}`,
       { headers }
@@ -184,7 +197,7 @@ const deleteService = (
 const deleteProfile = (authState, userType, userInfo, history, setStateVar) => {
   const headers = getAuthHeader(authState);
 
-  axios
+  return axios
     .delete(`${process.env.REACT_APP_API_URI}/${userType}/${userInfo.sub}`, {
       headers,
     })
@@ -200,6 +213,7 @@ export {
   sleep,
   getGroomerServicesByID,
   getGroomerServices,
+  getGroomerByID,
   getExampleData,
   getProfileData,
   getUserID,
