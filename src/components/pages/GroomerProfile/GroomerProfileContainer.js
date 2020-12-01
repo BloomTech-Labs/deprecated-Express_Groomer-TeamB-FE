@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import axios from 'axios';
 import GroomerProfilePage from './GroomerProfilePage';
+import { getLoggedInGroomer } from '../../../api/index.js';
 
 const GroomerProfileContainer = () => {
   //grabbing user info from okta for test purposes
@@ -33,18 +33,9 @@ const GroomerProfileContainer = () => {
     return () => (isSubscribed = false);
   }, [memoAuthService]);
 
+  //getGroomer API call
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
-      .then(res => {
-        if (res.data) {
-          setGroomerInfo(res.data);
-          setIsRegistered(true);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    getLoggedInGroomer(userInfo, setGroomerInfo, setIsRegistered);
   }, [userInfo]);
 
   const toggleForm = () => {

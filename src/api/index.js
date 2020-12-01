@@ -60,6 +60,20 @@ const getGroomerByID = (pathway, setGroomer) => {
     });
 };
 
+const getLoggedInGroomer = (userInfo, setGroomerInfo, setIsRegistered) => {
+  return axios
+    .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
+    .then(res => {
+      if (res.data) {
+        setGroomerInfo(res.data);
+        setIsRegistered(true);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 //AUTH
 
 const getAuthHeader = authState => {
@@ -98,6 +112,25 @@ const getUserID = (url, authState) => {
     .get(url, { headers })
     .then(res => res.data)
     .catch(err => err);
+};
+
+//CUSTOMER/PET OWNER GET CALLS
+const getCustomerByID = (authState, userInfo, setCustInfo, setIsRegistered) => {
+  const headers = getAuthHeader(authState);
+
+  return axios
+    .get(`${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`, {
+      headers,
+    })
+    .then(res => {
+      if (res.data) {
+        setCustInfo(res.data);
+        setIsRegistered(true);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 //GROOMER PROFILE FORM FUNCTIONS
@@ -223,9 +256,11 @@ export {
   getGroomerServices,
   getGroomers,
   getGroomerByID,
+  getLoggedInGroomer,
   getExampleData,
   getProfileData,
   getUserID,
+  getCustomerByID,
   postUserInfo,
   putUserInfo,
   postGroomerServices,
