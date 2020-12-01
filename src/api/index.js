@@ -138,6 +138,22 @@ const putUserInfo = (url, authState, infoValues, setResultInfo) => {
     });
 };
 
+const deleteProfile = (authState, userType, userInfo, history, setStateVar) => {
+  const headers = getAuthHeader(authState);
+
+  return axios
+    .delete(`${process.env.REACT_APP_API_URI}/${userType}/${userInfo.sub}`, {
+      headers,
+    })
+    .then(res => {
+      history.push('/login');
+    })
+    .catch(err => {
+      setStateVar({ message: err.message, type: 'error' });
+    });
+};
+
+//GROOMER SERVICE SPECIFIC FUNCTIONS
 const postGroomerServices = (url, authState, serviceValues, setStateVar) => {
   const headers = getAuthHeader(authState);
   if (!url) {
@@ -198,21 +214,6 @@ const deleteService = (
     })
     .catch(err => {
       setIsError(true);
-    });
-};
-
-const deleteProfile = (authState, userType, userInfo, history, setStateVar) => {
-  const headers = getAuthHeader(authState);
-
-  return axios
-    .delete(`${process.env.REACT_APP_API_URI}/${userType}/${userInfo.sub}`, {
-      headers,
-    })
-    .then(res => {
-      history.push('/login');
-    })
-    .catch(err => {
-      setStateVar({ message: err.message, type: 'error' });
     });
 };
 
