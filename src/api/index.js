@@ -101,13 +101,8 @@ const getUserID = (url, authState) => {
 };
 
 //GROOMER PROFILE FORM FUNCTIONS
-const postGroomerInfo = (
-  url,
-  authState,
-  infoValues,
-  setResultInfo,
-  history
-) => {
+//User can be groomer or pet owner
+const postUserInfo = (url, authState, infoValues, setResultInfo, history) => {
   const headers = getAuthHeader(authState);
   if (!url) {
     throw new Error('No URL provided');
@@ -128,7 +123,7 @@ const postGroomerInfo = (
     });
 };
 
-const putGroomerInfo = (url, authState, infoValues, setResultInfo) => {
+const putUserInfo = (url, authState, infoValues, setResultInfo) => {
   const headers = getAuthHeader(authState);
   if (!url) {
     throw new Error('No URL provided');
@@ -230,8 +225,8 @@ export {
   getExampleData,
   getProfileData,
   getUserID,
-  postGroomerInfo,
-  putGroomerInfo,
+  postUserInfo,
+  putUserInfo,
   postGroomerServices,
   editGroomerServices,
   deleteService,

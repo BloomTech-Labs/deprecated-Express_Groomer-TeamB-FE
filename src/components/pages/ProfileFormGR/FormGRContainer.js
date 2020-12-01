@@ -5,8 +5,8 @@ import RenderFormGR from './RenderFormGR';
 import {
   getGroomerServicesByID,
   getGroomerServices,
-  postGroomerInfo,
-  putGroomerInfo,
+  postUserInfo,
+  putUserInfo,
   postGroomerServices,
   deleteProfile,
 } from '../../../api/index.js';
@@ -68,7 +68,7 @@ const FormGRContainer = props => {
     //checking isRegistered and calling the API to either create or update
     //API calls are abstracted out into the API/index file as functions and called here
     if (isRegistered === false) {
-      postGroomerInfo(
+      postUserInfo(
         `${process.env.REACT_APP_API_URI}/groomers/`,
         authState,
         infoValues,
@@ -76,7 +76,7 @@ const FormGRContainer = props => {
         history
       );
     } else {
-      putGroomerInfo(
+      putUserInfo(
         `${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`,
         authState,
         infoValues,

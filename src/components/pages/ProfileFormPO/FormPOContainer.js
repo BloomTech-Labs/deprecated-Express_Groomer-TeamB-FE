@@ -22,7 +22,7 @@ const FormPOContainer = props => {
 
   const onFinish = values => {
     //add in user id to values from fields
-    values = {
+    const infoValues = {
       user_id: userInfo.sub,
       ...values,
     };
@@ -32,7 +32,7 @@ const FormPOContainer = props => {
     console.log('form values', values);
     if (isRegistered === false) {
       axios
-        .post(`${process.env.REACT_APP_API_URI}/customers/`, values)
+        .post(`${process.env.REACT_APP_API_URI}/customers/`, infoValues)
         .then(res => {
           setResultInfo({
             message: `${res.data.message} You will be redirected shortly`,
