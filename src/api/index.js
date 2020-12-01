@@ -38,6 +38,17 @@ const getGroomerServices = setStateVar => {
     });
 };
 
+const getGroomers = setStateVar => {
+  return axios
+    .get(`${process.env.REACT_APP_API_URI}/groomers`)
+    .then(res => {
+      setStateVar(res.data);
+    })
+    .catch(err => {
+      console.log('Error', err);
+    });
+};
+
 const getGroomerByID = (pathway, setGroomer) => {
   return axios
     .get(`${process.env.REACT_APP_API_URI}/groomers/${pathway}`)
@@ -213,6 +224,7 @@ export {
   sleep,
   getGroomerServicesByID,
   getGroomerServices,
+  getGroomers,
   getGroomerByID,
   getExampleData,
   getProfileData,
