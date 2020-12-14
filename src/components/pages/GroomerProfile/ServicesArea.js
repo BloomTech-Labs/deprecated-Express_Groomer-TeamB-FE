@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { List } from 'antd';
-import { getGroomerServicesByID } from '../../../api/index.js';
+import { getGroomerServicesByID } from '../../../api';
+// context imports
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
 
 const Services = props => {
   const { userInfo } = props;
-
-  const [groomerServices, setGroomerServices] = useState([]);
+  // context state
+  const { groomerServices, setGroomerServices } = useContext(GroomersContext);
 
   useEffect(() => {
     if (userInfo) {
