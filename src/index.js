@@ -6,7 +6,7 @@ import {
   useHistory,
   Switch,
 } from 'react-router-dom';
-
+import { RootProvider } from './state/contexts/RootContext';
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 
@@ -22,11 +22,13 @@ import { CustomerProfilePage } from './components/pages/CustomerProfile';
 import GroomerSearchResults from './components/pages/SearchResults/GroomerSearchResults';
 
 ReactDOM.render(
-  <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Router>,
+  <RootProvider>
+    <Router>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Router>
+  </RootProvider>,
   document.getElementById('root')
 );
 

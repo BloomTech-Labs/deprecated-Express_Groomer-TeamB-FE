@@ -1,17 +1,21 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserID } from '../../api/index';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import './nav.scss';
 import 'antd/dist/antd.less';
+// context imports
+import { UsersContext } from '../../state/contexts/UsersContext';
 
 function NavBar() {
   const { authState, authService } = useOktaAuth();
   // eslint-disable-next-line no-unused-vars
   const [userInfo, setUserInfo] = useState(null);
   const [memoAuthService] = useMemo(() => [authService], [authService]);
-  const [userRole, setUserRole] = useState('');
+  // const [userRole, setUserRole] = useState('');
+  // context state
+  const { userRole, setUserRole } = useContext(UsersContext);
 
   useEffect(() => {
     let isSubscribed = true;
