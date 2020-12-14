@@ -1,19 +1,23 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useContext } from 'react';
 import RenderCustPro from './RenderCustPro';
 import { useOktaAuth } from '@okta/okta-react';
-import { getCustomerByID } from '../../../api/index.js';
+// context imports
+import { UsersContext } from '../../../state/contexts/UsersContext';
+import { CustomersContext } from '../../../state/contexts/CustomersContext';
+import { APIContext } from '../../../state/contexts/APIContext';
+import { FormContext } from '../../../state/contexts/FormContext';
 
 const CustProContainer = () => {
   //grabbing user info from okta for test purposes
   //all info could/should be grabbed by state if possible
   const { authService, authState } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState({});
   const [memoAuthService] = useMemo(() => [authService], [authService]);
 
-  const [custInfo, setCustInfo] = useState({});
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [showForm, setShowForm] = useState(false);
-  const [updated, setUpdated] = useState(false);
+  // context state
+  const { userInfo, setUserInfo } = useContext(UsersContext);
+  const { custInfo, updated, setUpdated } = useContext(CustomersContext);
+  const { showForm, setShowForm } = useContext(FormContext);
+  const { getCustomerByID } = useContext(APIContext);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -36,7 +40,7 @@ const CustProContainer = () => {
 
   //API call to get customer info
   useEffect(() => {
-    getCustomerByID(authState, userInfo, setCustInfo, setIsRegistered);
+    getCustomerByID(authState);
   }, [userInfo, authState, updated]);
 
   const toggleForm = () => {
@@ -45,8 +49,6 @@ const CustProContainer = () => {
 
   return (
     <RenderCustPro
-      userInfo={userInfo}
-      isRegistered={isRegistered}
       custInfo={custInfo}
       showForm={showForm}
       toggleForm={toggleForm}

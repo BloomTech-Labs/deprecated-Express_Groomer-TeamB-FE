@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import HoursSelector from './HoursSelector';
 import EditService from './EditService';
 import {
@@ -13,15 +13,14 @@ import {
 } from 'antd';
 import 'antd/dist/antd.css';
 import './form.scss';
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
+import { UsersContext } from '../../../state/contexts/UsersContext';
+import { FormContext } from '../../../state/contexts/FormContext';
 
-const RenderFormGR = props => {
+const RenderFormGR = () => {
+  // context state
+  const { isRegistered } = useContext(UsersContext);
   const {
-    onFinish,
-    onFailed,
-    userInfo,
-    groomerInfo,
-    isRegistered,
-    resultInfo,
     updateOpenHours,
     updateCloseHours,
     hoursOfOpp,
@@ -30,12 +29,22 @@ const RenderFormGR = props => {
     addService,
     services,
     grServices,
-    setShowForm,
     deleteGroomerProfile,
-  } = props;
+    groomerInfo,
+  } = useContext(GroomersContext);
+  const {
+    onFailed,
+    onFinish,
+    setShowForm,
+    resultInfo,
+    showDelete,
+    setShowDelete,
+  } = useContext(FormContext);
   const { Option } = Select;
+
   //sets up initial values from customers table when rendered
   const [form] = Form.useForm();
+
   useEffect(() => {
     form.resetFields();
   }, [groomerInfo, form]);
@@ -175,7 +184,7 @@ const RenderFormGR = props => {
                 {isRegistered ? (
                   <Button
                     type="primary"
-                    onClick={() => props.setShowDelete(true)}
+                    onClick={() => setShowDelete(true)}
                     danger
                   >
                     Delete Profile
@@ -229,7 +238,7 @@ const RenderFormGR = props => {
                           {service.service_name}{' '}
                         </Divider>
 
-                        <EditService service={service} userInfo={userInfo} />
+                        <EditService service={service} />
                       </div>
                     ))
                   : null}
@@ -250,12 +259,12 @@ const RenderFormGR = props => {
 
           <Modal
             title="Are you sure you want to delete your profile?"
-            visible={props.showDelete}
+            visible={showDelete}
             onOk={() => {
               deleteGroomerProfile();
-              props.setShowDelete(false);
+              setShowDelete(false);
             }}
-            onCancel={() => props.setShowDelete(false)}
+            onCancel={() => setShowDelete(false)}
           >
             <Alert
               message="By selecting Ok your profile will be deleted"

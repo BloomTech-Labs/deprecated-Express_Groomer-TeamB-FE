@@ -1,16 +1,21 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { GroomerProfilePage } from '../GroomerProfile';
 import CustomerProfilePage from '../CustomerProfile/CustProContainer';
-import { getUserID } from '../../../api/index';
 import { LoginPage } from '../Login';
+// context imports
+import { APIContext } from '../../../state/contexts/APIContext';
+import { UsersContext } from '../../../state/contexts/UsersContext';
 
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
   // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
-  const [userRole, setUserRole] = useState('');
+  // context state
+  const { userInfo, setUserInfo, userRole, setUserRole } = useContext(
+    UsersContext
+  );
+  const { getUserID } = useContext(APIContext);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -46,7 +51,7 @@ function HomeContainer({ LoadingComponent }) {
           <LoadingComponent message="Fetching user profile..." />
         )}
         {authState.isAuthenticated && userInfo && (
-          <GroomerProfilePage userInfo={userInfo} authService={authService} />
+          <GroomerProfilePage authService={authService} />
         )}
       </div>
     );
@@ -57,7 +62,7 @@ function HomeContainer({ LoadingComponent }) {
           <LoadingComponent message="Fetching user profile..." />
         )}
         {authState.isAuthenticated && userInfo && (
-          <CustomerProfilePage userInfo={userInfo} authService={authService} />
+          <CustomerProfilePage authService={authService} />
         )}
       </div>
     );

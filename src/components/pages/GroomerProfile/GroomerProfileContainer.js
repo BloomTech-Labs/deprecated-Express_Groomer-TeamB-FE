@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useContext } from 'react';
+import React, { useEffect, useMemo, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import GroomerProfilePage from './GroomerProfilePage';
 // context imports
@@ -11,7 +11,6 @@ const GroomerProfileContainer = () => {
   const { authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], [authService]);
 
-  const [showForm, setShowForm] = useState(false);
   // context state
   const { userInfo, setUserInfo } = useContext(UsersContext);
   const { getLoggedInGroomer } = useContext(APIContext);
@@ -41,17 +40,9 @@ const GroomerProfileContainer = () => {
     getLoggedInGroomer();
   }, [userInfo]);
 
-  const toggleForm = () => {
-    setShowForm(!showForm);
-  };
-
   return (
     <div>
-      <GroomerProfilePage
-        showForm={showForm}
-        setShowForm={setShowForm}
-        toggleForm={toggleForm}
-      />
+      <GroomerProfilePage />
     </div>
   );
 };
