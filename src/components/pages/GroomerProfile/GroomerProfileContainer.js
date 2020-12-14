@@ -3,7 +3,6 @@ import { useOktaAuth } from '@okta/okta-react';
 import GroomerProfilePage from './GroomerProfilePage';
 // context imports
 import { UsersContext } from '../../../state/contexts/UsersContext';
-import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 
 const GroomerProfileContainer = () => {

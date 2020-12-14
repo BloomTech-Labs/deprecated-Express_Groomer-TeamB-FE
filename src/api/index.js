@@ -49,31 +49,6 @@ const getGroomers = setStateVar => {
     });
 };
 
-const getGroomerByID = (pathway, setGroomer) => {
-  return axios
-    .get(`${process.env.REACT_APP_API_URI}/groomers/${pathway}`)
-    .then(res => {
-      setGroomer(res.data);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
-
-const getLoggedInGroomer = (userInfo, setGroomerInfo, setIsRegistered) => {
-  return axios
-    .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
-    .then(res => {
-      if (res.data) {
-        setGroomerInfo(res.data);
-        setIsRegistered(true);
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
-
 //AUTH
 
 const getAuthHeader = authState => {
@@ -255,8 +230,6 @@ export {
   getGroomerServicesByID,
   getGroomerServices,
   getGroomers,
-  getGroomerByID,
-  getLoggedInGroomer,
   getExampleData,
   getProfileData,
   getUserID,
