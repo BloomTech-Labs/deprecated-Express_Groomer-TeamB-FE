@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { List } from 'antd';
 // context imports
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 import { UsersContext } from '../../../state/contexts/UsersContext';
 
-const Services = props => {
+const Services = () => {
   // context state
   const { userInfo } = useContext(UsersContext);
   const { groomerServices } = useContext(GroomersContext);

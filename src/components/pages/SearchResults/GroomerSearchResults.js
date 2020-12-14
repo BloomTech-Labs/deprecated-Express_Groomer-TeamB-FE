@@ -1,19 +1,20 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../GroomerProfile/groomer.css';
 import Services from '../GroomerProfile/ServicesArea';
-import { getGroomerByID } from '../../../api';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
+import { APIContext } from '../../../state/contexts/APIContext';
 
 const GroomerSearchResults = props => {
   const pathway = props.match.params.id;
   // context state
-  const { groomer, setGroomer } = useContext(GroomersContext);
+  const { groomer } = useContext(GroomersContext);
+  const { getGroomerByID } = useContext(APIContext);
 
   useEffect(() => {
-    getGroomerByID(pathway, setGroomer);
+    getGroomerByID(pathway);
   }, [pathway]);
 
   if (groomer) {

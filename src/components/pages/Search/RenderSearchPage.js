@@ -3,25 +3,23 @@ import { SearchResults } from '../SearchResults/SearchResultsCard';
 import 'antd/dist/antd.css';
 import './search.scss';
 import { Input } from 'antd';
-import { getGroomers } from '../../../api';
 // context imports
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
+import { APIContext } from '../../../state/contexts/APIContext';
 
 const { Search } = Input;
 
 const Searching = () => {
   const [searchValue, setSearchValue] = useState('');
   //context state
-  const {
-    allGroomers,
-    setAllGroomers,
-    filteredGroomers,
-    setFilteredGroomers,
-  } = useContext(GroomersContext);
+  const { allGroomers, filteredGroomers, setFilteredGroomers } = useContext(
+    GroomersContext
+  );
+  const { getGroomers } = useContext(APIContext);
 
   //API Call
   useEffect(() => {
-    getGroomers(setAllGroomers);
+    getGroomers();
   }, []);
 
   const handleChange = event => {

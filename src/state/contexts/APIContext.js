@@ -8,7 +8,12 @@ export const APIContext = createContext({});
 
 const APIProvider = ({ children }) => {
   const { userInfo, setIsRegistered } = useContext(UsersContext);
-  const { setGroomerInfo, setGroomerServices } = useContext(GroomersContext);
+  const {
+    setGroomerInfo,
+    setGroomerServices,
+    setGroomer,
+    setAllGroomers,
+  } = useContext(GroomersContext);
 
   // we will define a bunch of API calls here.
   const apiUrl = `${process.env.REACT_APP_API_URI}`;
@@ -48,18 +53,18 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  const getGroomers = setStateVar => {
+  const getGroomers = () => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomers`)
       .then(res => {
-        setStateVar(res.data);
+        setAllGroomers(res.data);
       })
       .catch(err => {
         console.log('Error', err);
       });
   };
 
-  const getGroomerByID = (pathway, setGroomer) => {
+  const getGroomerByID = pathway => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomers/${pathway}`)
       .then(res => {
