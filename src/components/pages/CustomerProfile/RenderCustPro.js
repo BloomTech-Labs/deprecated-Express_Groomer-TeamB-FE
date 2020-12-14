@@ -1,20 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ProfileFormPO } from '../ProfileFormPO';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './customer.scss';
+import { UsersContext } from '../../../state/contexts/UsersContext';
+import { CustomersContext } from '../../../state/contexts/CustomersContext';
 
 const RenderCustPro = props => {
-  const {
-    userInfo,
-    isRegistered,
-    custInfo,
-    showForm,
-    toggleForm,
-    updated,
-    setUpdated,
-  } = props;
+  const { showForm, toggleForm, updated, setUpdated } = props;
+  // context state
+  const { userInfo, isRegistered } = useContext(UsersContext);
+  const { custInfo } = useContext(CustomersContext);
 
   return (
     <div>

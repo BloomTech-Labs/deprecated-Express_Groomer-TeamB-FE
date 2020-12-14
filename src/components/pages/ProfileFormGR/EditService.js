@@ -1,18 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Button, Input, Modal, Alert } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
-import { editGroomerServices, deleteService } from '../../../api/index.js';
 import 'antd/dist/antd.css';
 import './form.scss';
+// context imports
+import { FormContext } from '../../../state/contexts/FormContext';
+import { APIContext } from '../../../state/contexts/APIContext';
 
 const EditService = props => {
-  const { service, userInfo } = props;
+  const { service } = props;
   const { authState } = useOktaAuth();
-  const [isEditing, setIsEditing] = useState(false);
-  const [newValue, setNewValue] = useState(0);
-  const [showDelModal, setShowDelModal] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false);
-  const [isError, setIsError] = useState(false);
+  // context state
+  const {
+    isEditing,
+    isDeleted,
+    isError,
+    setIsEditing,
+    newValue,
+    showDelModal,
+    setNewValue,
+    setShowDelModal,
+  } = useContext(FormContext);
+  const { editGroomerServices, deleteService } = useContext(APIContext);
 
   useEffect(() => {
     setNewValue(service.services_price);
@@ -23,26 +32,11 @@ const EditService = props => {
       services_price: newValue,
     };
 
-    editGroomerServices(
-      authState,
-      userInfo,
-      service,
-      price,
-      setIsEditing,
-      isEditing,
-      setIsError
-    );
+    editGroomerServices(authState, price);
   };
 
   const deleteGroomerService = () => {
-    deleteService(
-      authState,
-      userInfo,
-      service,
-      setIsDeleted,
-      setShowDelModal,
-      setIsError
-    );
+    deleteService(authState, service);
   };
 
   return (

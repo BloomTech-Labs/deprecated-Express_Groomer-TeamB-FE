@@ -1,19 +1,32 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext } from 'react';
 import axios from 'axios';
 // context imports
 import { UsersContext } from './UsersContext';
 import { GroomersContext } from './GroomersContext';
+import { CustomersContext } from './CustomersContext';
+import { FormContext } from './FormContext';
 
 export const APIContext = createContext({});
 
 const APIProvider = ({ children }) => {
   const { userInfo, setIsRegistered } = useContext(UsersContext);
+  const { setCustInfo } = useContext(CustomersContext);
+
   const {
     setGroomerInfo,
     setGroomerServices,
     setGroomer,
     setAllGroomers,
+    setServices,
+    service,
   } = useContext(GroomersContext);
+  const {
+    setIsEditing,
+    isEditing,
+    setIsDeleted,
+    setShowDelModal,
+    setIsError,
+  } = useContext(FormContext);
 
   // we will define a bunch of API calls here.
   const apiUrl = `${process.env.REACT_APP_API_URI}`;
@@ -42,11 +55,11 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  const getGroomerServices = setStateVar => {
+  const getGroomerServices = () => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomer_services`)
       .then(res => {
-        setStateVar(res.data);
+        setServices(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -132,12 +145,7 @@ const APIProvider = ({ children }) => {
   };
 
   //CUSTOMER/PET OWNER GET CALLS
-  const getCustomerByID = (
-    authState,
-    userInfo,
-    setCustInfo,
-    setIsRegistered
-  ) => {
+  const getCustomerByID = authState => {
     const headers = getAuthHeader(authState);
 
     return axios
@@ -230,15 +238,7 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  const editGroomerServices = (
-    authState,
-    userInfo,
-    service,
-    price,
-    setIsEditing,
-    isEditing,
-    setIsError
-  ) => {
+  const editGroomerServices = (authState, price) => {
     const headers = getAuthHeader(authState);
 
     return axios
@@ -254,14 +254,7 @@ const APIProvider = ({ children }) => {
         setIsError(true);
       });
   };
-  const deleteService = (
-    authState,
-    userInfo,
-    service,
-    setIsDeleted,
-    setShowDelModal,
-    setIsError
-  ) => {
+  const deleteService = (authState, service) => {
     const headers = getAuthHeader(authState);
 
     return axios

@@ -8,24 +8,17 @@ import Services from './ServicesArea';
 // context imports
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
+import { FormContext } from '../../../state/contexts/FormContext';
 
-const GroomerProfilePage = props => {
-  const { showForm, toggleForm, setShowForm } = props;
-
+const GroomerProfilePage = () => {
   // context state
-  const { userInfo, isRegistered } = useContext(UsersContext);
+  const { userInfo } = useContext(UsersContext);
   const { groomerInfo } = useContext(GroomersContext);
+  const { showForm, toggleForm } = useContext(FormContext);
 
   return (
     <div>
-      {showForm ? (
-        <ProfileFormGR
-          groomerInfo={groomerInfo}
-          isRegistered={isRegistered}
-          userInfo={userInfo}
-          setShowForm={setShowForm}
-        />
-      ) : null}
+      {showForm ? <ProfileFormGR /> : null}
       <Layout.Content
         style={{
           background: 'white',
