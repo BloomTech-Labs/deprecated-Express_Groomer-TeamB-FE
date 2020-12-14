@@ -14,8 +14,7 @@ const GroomerProfileContainer = () => {
 
   const [showForm, setShowForm] = useState(false);
   // context state
-  const { userInfo, setUserInfo, isRegistered } = useContext(UsersContext);
-  const { groomerInfo } = useContext(GroomersContext);
+  const { userInfo, setUserInfo } = useContext(UsersContext);
   const { getLoggedInGroomer } = useContext(APIContext);
 
   useEffect(() => {
@@ -40,7 +39,7 @@ const GroomerProfileContainer = () => {
   //getGroomer API call
   // was unable to omit userInfo
   useEffect(() => {
-    getLoggedInGroomer(userInfo);
+    getLoggedInGroomer();
   }, [userInfo]);
 
   const toggleForm = () => {
