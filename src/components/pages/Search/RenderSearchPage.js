@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { SearchResults } from '../SearchResults/SearchResultsCard';
 import 'antd/dist/antd.css';
 import './search.scss';
 import { Input } from 'antd';
-import { getGroomers } from '../../../api/index.js';
+import { getGroomers } from '../../../api';
+// context imports
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
 
 const { Search } = Input;
 
 const Searching = () => {
-  const [allGroomers, setAllGroomers] = useState();
   const [searchValue, setSearchValue] = useState('');
-  const [filteredGroomers, setFilteredGroomers] = useState([]);
+  //context state
+  const {
+    allGroomers,
+    setAllGroomers,
+    filteredGroomers,
+    setFilteredGroomers,
+  } = useContext(GroomersContext);
 
   //API Call
   useEffect(() => {

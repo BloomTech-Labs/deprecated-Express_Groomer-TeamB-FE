@@ -1,4 +1,4 @@
-import React, { createContext, useState, Context } from 'react';
+import React, { createContext, useState } from 'react';
 
 export const CustomersContext = createContext({});
 
