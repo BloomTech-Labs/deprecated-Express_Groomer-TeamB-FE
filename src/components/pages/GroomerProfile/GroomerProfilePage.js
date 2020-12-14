@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ProfileFormGR } from '../ProfileFormGR';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './groomer.css';
 import Services from './ServicesArea';
+// context imports
+import { UsersContext } from '../../../state/contexts/UsersContext';
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
 
 const GroomerProfilePage = props => {
-  const {
-    userInfo,
-    isRegistered,
-    groomerInfo,
-    showForm,
-    toggleForm,
-    setShowForm,
-  } = props;
+  const { showForm, toggleForm, setShowForm } = props;
+
+  // context state
+  const { userInfo, isRegistered } = useContext(UsersContext);
+  const { groomerInfo } = useContext(GroomersContext);
 
   return (
     <div>

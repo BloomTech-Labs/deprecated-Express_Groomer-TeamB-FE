@@ -1,18 +1,22 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import GroomerProfilePage from './GroomerProfilePage';
-import { getLoggedInGroomer } from '../../../api/index.js';
+// context imports
+import { UsersContext } from '../../../state/contexts/UsersContext';
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
+import { APIContext } from '../../../state/contexts/APIContext';
 
 const GroomerProfileContainer = () => {
   //grabbing user info from okta for test purposes
   //all info could/should be grabbed by state if possible
   const { authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState({});
   const [memoAuthService] = useMemo(() => [authService], [authService]);
 
-  const [groomerInfo, setGroomerInfo] = useState({});
-  const [isRegistered, setIsRegistered] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  // context state
+  const { userInfo, setUserInfo, isRegistered } = useContext(UsersContext);
+  const { groomerInfo } = useContext(GroomersContext);
+  const { getLoggedInGroomer } = useContext(APIContext);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -34,8 +38,9 @@ const GroomerProfileContainer = () => {
   }, [memoAuthService]);
 
   //getGroomer API call
+  // was unable to omit userInfo
   useEffect(() => {
-    getLoggedInGroomer(userInfo, setGroomerInfo, setIsRegistered);
+    getLoggedInGroomer(userInfo);
   }, [userInfo]);
 
   const toggleForm = () => {
@@ -45,9 +50,6 @@ const GroomerProfileContainer = () => {
   return (
     <div>
       <GroomerProfilePage
-        userInfo={userInfo}
-        isRegistered={isRegistered}
-        groomerInfo={groomerInfo}
         showForm={showForm}
         setShowForm={setShowForm}
         toggleForm={toggleForm}
