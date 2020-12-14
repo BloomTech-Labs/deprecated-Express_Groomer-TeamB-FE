@@ -14,6 +14,8 @@ const UsersProvider = ({ children }) => {
         setUserRole,
         userInfo,
         setUserInfo,
+        isRegistered,
+        setIsRegistered,
       }}
     >
       {children}
