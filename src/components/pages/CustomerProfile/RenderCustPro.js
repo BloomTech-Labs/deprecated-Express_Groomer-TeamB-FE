@@ -11,21 +11,13 @@ import { FormContext } from '../../../state/contexts/FormContext';
 
 const RenderCustPro = () => {
   // context state
-  const { userInfo, isRegistered } = useContext(UsersContext);
-  const { custInfo, updated, setUpdated } = useContext(CustomersContext);
+  const { userInfo } = useContext(UsersContext);
+  const { custInfo } = useContext(CustomersContext);
   const { toggleForm, showForm } = useContext(FormContext);
 
   return (
     <div>
-      {showForm ? (
-        <ProfileFormPO
-          info={custInfo}
-          isRegistered={isRegistered}
-          userInfo={userInfo}
-          updated={updated}
-          setUpdated={setUpdated}
-        />
-      ) : null}
+      {showForm ? <ProfileFormPO /> : null}
       <Layout.Content
         style={{
           background: 'white',
