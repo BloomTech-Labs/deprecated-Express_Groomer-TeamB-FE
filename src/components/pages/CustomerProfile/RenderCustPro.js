@@ -4,14 +4,16 @@ import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './customer.scss';
+// context imports
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { CustomersContext } from '../../../state/contexts/CustomersContext';
+import { FormContext } from '../../../state/contexts/FormContext';
 
-const RenderCustPro = props => {
-  const { showForm, toggleForm, updated, setUpdated } = props;
+const RenderCustPro = () => {
   // context state
   const { userInfo, isRegistered } = useContext(UsersContext);
-  const { custInfo } = useContext(CustomersContext);
+  const { custInfo, updated, setUpdated } = useContext(CustomersContext);
+  const { toggleForm, showForm } = useContext(FormContext);
 
   return (
     <div>
