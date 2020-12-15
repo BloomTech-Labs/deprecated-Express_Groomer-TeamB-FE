@@ -15,8 +15,7 @@ const CustProContainer = () => {
 
   // context state
   const { userInfo, setUserInfo } = useContext(UsersContext);
-  const { custInfo, updated, setUpdated } = useContext(CustomersContext);
-  const { showForm, setShowForm } = useContext(FormContext);
+  const { updated } = useContext(CustomersContext);
   const { getCustomerByID } = useContext(APIContext);
 
   useEffect(() => {
@@ -43,19 +42,7 @@ const CustProContainer = () => {
     getCustomerByID(authState);
   }, [userInfo, authState, updated]);
 
-  const toggleForm = () => {
-    setShowForm(!showForm);
-  };
-
-  return (
-    <RenderCustPro
-      custInfo={custInfo}
-      showForm={showForm}
-      toggleForm={toggleForm}
-      updated={updated}
-      setUpdated={setUpdated}
-    />
-  );
+  return <RenderCustPro />;
 };
 
 export default CustProContainer;

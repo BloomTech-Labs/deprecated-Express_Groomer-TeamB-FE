@@ -1,5 +1,8 @@
 import React, { createContext, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import axios from 'axios';
+
 // context imports
 import { UsersContext } from './UsersContext';
 import { GroomersContext } from './GroomersContext';
@@ -9,6 +12,7 @@ import { FormContext } from './FormContext';
 export const APIContext = createContext({});
 
 const APIProvider = ({ children }) => {
+  const history = useHistory();
   const { userInfo, setIsRegistered } = useContext(UsersContext);
   const { setCustInfo } = useContext(CustomersContext);
 
@@ -26,6 +30,7 @@ const APIProvider = ({ children }) => {
     setIsDeleted,
     setShowDelModal,
     setIsError,
+    setResultInfo,
   } = useContext(FormContext);
 
   // we will define a bunch of API calls here.
@@ -165,7 +170,7 @@ const APIProvider = ({ children }) => {
 
   //GROOMER PROFILE FORM FUNCTIONS
   //User can be groomer or pet owner
-  const postUserInfo = (url, authState, infoValues, setResultInfo, history) => {
+  const postUserInfo = (url, authState, infoValues) => {
     const headers = getAuthHeader(authState);
     if (!url) {
       throw new Error('No URL provided');
@@ -186,7 +191,7 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  const putUserInfo = (url, authState, infoValues, setResultInfo) => {
+  const putUserInfo = (url, authState, infoValues) => {
     const headers = getAuthHeader(authState);
     if (!url) {
       throw new Error('No URL provided');

@@ -7,14 +7,14 @@ import FormContext from './FormContext';
 
 export const RootProvider = ({ children }) => {
   return (
-    <FormContext>
-      <UsersContext>
-        <GroomersProvider>
-          <CustomersProvider>
+    <UsersContext>
+      <GroomersProvider>
+        <CustomersProvider>
+          <FormContext>
             <APIContext>{children}</APIContext>
-          </CustomersProvider>
-        </GroomersProvider>
-      </UsersContext>
-    </FormContext>
+          </FormContext>
+        </CustomersProvider>
+      </GroomersProvider>
+    </UsersContext>
   );
 };

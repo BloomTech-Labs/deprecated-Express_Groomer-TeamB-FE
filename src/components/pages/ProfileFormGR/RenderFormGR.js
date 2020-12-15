@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import HoursSelector from './HoursSelector';
 import EditService from './EditService';
 import {
@@ -16,10 +17,15 @@ import './form.scss';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { FormContext } from '../../../state/contexts/FormContext';
+import { APIContext } from '../../../state/contexts/APIContext';
+import { useOktaAuth } from '@okta/okta-react';
 
 const RenderFormGR = () => {
+  const { authState } = useOktaAuth();
+
+  const history = useHistory();
   // context state
-  const { isRegistered } = useContext(UsersContext);
+  const { userInfo, isRegistered } = useContext(UsersContext);
   const {
     updateOpenHours,
     updateCloseHours,
@@ -31,15 +37,18 @@ const RenderFormGR = () => {
     grServices,
     deleteGroomerProfile,
     groomerInfo,
+    hours,
   } = useContext(GroomersContext);
   const {
     onFailed,
-    onFinish,
+
     setShowForm,
     resultInfo,
     showDelete,
     setShowDelete,
+    setResultInfo,
   } = useContext(FormContext);
+  const { postUserInfo, putUserInfo } = useContext(APIContext);
   const { Option } = Select;
 
   //sets up initial values from customers table when rendered
@@ -48,6 +57,32 @@ const RenderFormGR = () => {
   useEffect(() => {
     form.resetFields();
   }, [groomerInfo, form]);
+
+  const onFinish = values => {
+    const hoursString = JSON.stringify(hours);
+    //add in user id and hours
+    const infoValues = {
+      user_id: userInfo.sub,
+      hours: hoursString,
+      ...values,
+    };
+
+    //checking isRegistered and calling the API to either create or update
+    //API calls are abstracted out into the API/index file as functions and called here
+    if (isRegistered === false) {
+      postUserInfo(
+        `${process.env.REACT_APP_API_URI}/groomers/`,
+        authState,
+        infoValues
+      );
+    } else {
+      putUserInfo(
+        `${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`,
+        authState,
+        infoValues
+      );
+    }
+  };
 
   return (
     <div>
