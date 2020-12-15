@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { SearchResults } from '../SearchResults/SearchResultsCard';
 import 'antd/dist/antd.css';
 import './search.scss';
