@@ -6,15 +6,16 @@ import { Input } from 'antd';
 // context imports
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
+import { FormContext } from '../../../state/contexts/FormContext';
 
 const { Search } = Input;
 
 const Searching = () => {
-  const [searchValue, setSearchValue] = useState('');
   //context state
   const { allGroomers, filteredGroomers, setFilteredGroomers } = useContext(
     GroomersContext
   );
+  const { searchValue, setSearchValue } = useContext(FormContext);
   const { getGroomers } = useContext(APIContext);
 
   //API Call

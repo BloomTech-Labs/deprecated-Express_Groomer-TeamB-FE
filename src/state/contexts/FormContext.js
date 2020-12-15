@@ -9,6 +9,7 @@ const FormProvider = ({ children }) => {
   const [showDelModal, setShowDelModal] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
 
   //for result message on submitting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
@@ -44,6 +45,8 @@ const FormProvider = ({ children }) => {
         showDelModal,
         setNewValue,
         setShowDelModal,
+        searchValue,
+        setSearchValue,
         toggleForm,
         onFailed,
       }}
