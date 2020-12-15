@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import HoursSelector from './HoursSelector';
 import EditService from './EditService';
 import {
@@ -23,7 +22,6 @@ import { useOktaAuth } from '@okta/okta-react';
 const RenderFormGR = () => {
   const { authState } = useOktaAuth();
 
-  const history = useHistory();
   // context state
   const { userInfo, isRegistered } = useContext(UsersContext);
   const {
@@ -46,7 +44,6 @@ const RenderFormGR = () => {
     resultInfo,
     showDelete,
     setShowDelete,
-    setResultInfo,
   } = useContext(FormContext);
   const { postUserInfo, putUserInfo } = useContext(APIContext);
   const { Option } = Select;

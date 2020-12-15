@@ -25,7 +25,7 @@ const EditService = props => {
 
   useEffect(() => {
     setNewValue(service.services_price);
-  }, [service]);
+  }, [service, setNewValue]);
 
   const updateService = () => {
     const price = {

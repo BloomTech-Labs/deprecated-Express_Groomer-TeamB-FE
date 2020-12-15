@@ -1,18 +1,19 @@
 import React, { useEffect, useMemo, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import { getUserID } from '../../api/index';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import './nav.scss';
 import 'antd/dist/antd.less';
 // context imports
 import { UsersContext } from '../../state/contexts/UsersContext';
+import { APIContext } from '../../state/contexts/APIContext';
 
 function NavBar() {
   const { authState, authService } = useOktaAuth();
   const [memoAuthService] = useMemo(() => [authService], [authService]);
   // context state
   const { userRole, setUserRole, setUserInfo } = useContext(UsersContext);
+  const { getUserID } = useContext(APIContext);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -35,7 +36,7 @@ function NavBar() {
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
-  }, [memoAuthService, authState]);
+  }, [memoAuthService, authState, getUserID, setUserInfo, setUserRole]);
 
   if (userRole === 'groomer') {
     return (
