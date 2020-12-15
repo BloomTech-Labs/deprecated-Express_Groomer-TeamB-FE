@@ -5,7 +5,6 @@ import { useOktaAuth } from '@okta/okta-react';
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { CustomersContext } from '../../../state/contexts/CustomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
-import { FormContext } from '../../../state/contexts/FormContext';
 
 const CustProContainer = () => {
   //grabbing user info from okta for test purposes

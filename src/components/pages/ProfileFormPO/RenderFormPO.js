@@ -1,15 +1,55 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Form, Input, Button, Alert, Modal, Layout } from 'antd';
 import 'antd/dist/antd.css';
+// context imports
+import { UsersContext } from '../../../state/contexts/UsersContext';
+import { FormContext } from '../../../state/contexts/FormContext';
+import { CustomersContext } from '../../../state/contexts/CustomersContext';
+import { useOktaAuth } from '@okta/okta-react';
+import { APIContext } from '../../../state/contexts/APIContext';
 
-const RenderFormPO = props => {
-  const { onFinish, onFailed, user_info, isRegistered, resultInfo } = props;
+const RenderFormPO = () => {
+  const { authState } = useOktaAuth();
+
+  // context state
+  const { userInfo, isRegistered } = useContext(UsersContext);
+  const { custInfo, deleteCustomerProfile, updated, setUpdated } = useContext(
+    CustomersContext
+  );
+  const { resultInfo, onFailed, showDelete, setShowDelete } = useContext(
+    FormContext
+  );
+  const { postUserInfo, putUserInfo } = useContext(APIContext);
 
   //sets up initial values from customers table when rendered
   const [form] = Form.useForm();
   useEffect(() => {
     form.resetFields();
-  }, [user_info, form]);
+  }, [custInfo, form]);
+
+  const onFinish = values => {
+    //add in user id to values from fields
+    const infoValues = {
+      user_id: userInfo.sub,
+      ...values,
+    };
+
+    //checking isRegistered and calling the api to either create or update
+    if (isRegistered === false) {
+      postUserInfo(
+        `${process.env.REACT_APP_API_URI}/customers`,
+        authState,
+        infoValues
+      );
+    } else {
+      putUserInfo(
+        `${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`,
+        authState,
+        infoValues
+      );
+    }
+    setUpdated(!updated);
+  };
 
   return (
     <Layout.Content
@@ -29,7 +69,7 @@ const RenderFormPO = props => {
         form={form}
         layout="vertical"
         name="PoProfile"
-        initialValues={user_info}
+        initialValues={custInfo}
         onFinish={onFinish}
         onFinishFailed={onFailed}
         size="small"
@@ -42,7 +82,7 @@ const RenderFormPO = props => {
           label="First Name"
           name="given_name"
           rules={[{ required: true }]}
-          initialValue={user_info.given_name}
+          initialValue={custInfo.given_name}
         >
           <Input />
         </Form.Item>
@@ -51,7 +91,7 @@ const RenderFormPO = props => {
           label="Last Name"
           name="family_name"
           rules={[{ required: true }]}
-          initialValue={user_info.family_name}
+          initialValue={custInfo.family_name}
         >
           <Input />
         </Form.Item>
@@ -60,7 +100,7 @@ const RenderFormPO = props => {
           label="Phone Number"
           name="phone_number"
           rules={[{ required: true }]}
-          initialValue={user_info.phone_number}
+          initialValue={custInfo.phone_number}
           type="hidden"
         >
           <Input />
@@ -69,23 +109,23 @@ const RenderFormPO = props => {
         <Form.Item
           label="Address"
           name="address"
-          initialValue={user_info.address}
+          initialValue={custInfo.address}
         >
           <Input />
         </Form.Item>
 
-        <Form.Item label="City" name="city" initialValue={user_info.city}>
+        <Form.Item label="City" name="city" initialValue={custInfo.city}>
           <Input />
         </Form.Item>
 
-        <Form.Item label="State" name="state" initialValue={user_info.state}>
+        <Form.Item label="State" name="state" initialValue={custInfo.state}>
           <Input />
         </Form.Item>
 
         <Form.Item
           label="Zip Code"
           name="zip_code"
-          initialValue={user_info.zip_code}
+          initialValue={custInfo.zip_code}
         >
           <Input />
         </Form.Item>
@@ -93,7 +133,7 @@ const RenderFormPO = props => {
         <Form.Item
           label="Country"
           name="country"
-          initialValue={user_info.country}
+          initialValue={custInfo.country}
         >
           <Input />
         </Form.Item>
@@ -118,22 +158,18 @@ const RenderFormPO = props => {
         {/* Delete profile modal */}
         <Form.Item>
           {isRegistered ? (
-            <Button
-              type="primary"
-              onClick={() => props.setShowDelete(true)}
-              danger
-            >
+            <Button type="primary" onClick={() => setShowDelete(true)} danger>
               Delete Profile
             </Button>
           ) : null}
           <Modal
             title="Are you sure you want to delete your profile?"
-            visible={props.showDelete}
+            visible={showDelete}
             onOk={() => {
-              props.deleteCustomerProfile();
-              props.setShowDelete(false);
+              deleteCustomerProfile(authState);
+              setShowDelete(false);
             }}
-            onCancel={() => props.setShowDelete(false)}
+            onCancel={() => setShowDelete(false)}
           >
             <Alert
               message="By selecting Ok your profile will be deleted"
