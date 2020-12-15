@@ -32,13 +32,13 @@ const GroomerProfileContainer = () => {
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
-  }, [memoAuthService]);
+  }, [memoAuthService, setUserInfo]);
 
   //getGroomer API call
   // was unable to omit userInfo
   useEffect(() => {
     getLoggedInGroomer();
-  }, [userInfo]);
+  }, [userInfo, getLoggedInGroomer]);
 
   return (
     <div>

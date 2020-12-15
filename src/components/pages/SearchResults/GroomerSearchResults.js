@@ -15,7 +15,7 @@ const GroomerSearchResults = props => {
 
   useEffect(() => {
     getGroomerByID(pathway);
-  }, [pathway]);
+  }, [pathway, getGroomerByID]);
 
   if (groomer) {
     return (

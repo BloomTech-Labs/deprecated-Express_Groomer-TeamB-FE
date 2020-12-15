@@ -34,12 +34,12 @@ const CustProContainer = () => {
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
-  }, [memoAuthService]);
+  }, [memoAuthService, setUserInfo]);
 
   //API call to get customer info
   useEffect(() => {
     getCustomerByID(authState);
-  }, [userInfo, authState, updated]);
+  }, [userInfo, authState, updated, getCustomerByID]);
 
   return <RenderCustPro />;
 };

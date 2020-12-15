@@ -20,7 +20,7 @@ const Searching = () => {
   //API Call
   useEffect(() => {
     getGroomers();
-  }, []);
+  }, [getGroomers]);
 
   const handleChange = event => {
     setSearchValue(event.target.value);

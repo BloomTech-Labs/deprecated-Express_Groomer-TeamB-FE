@@ -15,7 +15,7 @@ const Services = () => {
     if (userInfo) {
       getGroomerServicesByID();
     }
-  }, [userInfo]);
+  }, [userInfo, getGroomerServicesByID]);
 
   return (
     <div>

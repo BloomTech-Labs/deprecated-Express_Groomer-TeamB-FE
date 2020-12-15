@@ -17,14 +17,14 @@ const FormGRContainer = () => {
       getGroomerServicesByID();
     }
     getGroomerServices();
-  }, [userInfo]);
+  }, [userInfo, getGroomerServices, getGroomerServicesByID]);
 
   useEffect(() => {
     if (groomerInfo.hours) {
       setHoursOfOpp(JSON.parse(groomerInfo.hours));
       setHours(JSON.parse(groomerInfo.hours));
     }
-  }, [groomerInfo.hours]);
+  }, [groomerInfo.hours, setHoursOfOpp, setHours]);
 
   return <RenderFormGR />;
 };
