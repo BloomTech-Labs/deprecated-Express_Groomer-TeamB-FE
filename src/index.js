@@ -9,7 +9,6 @@ import {
 
 import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
-
 import { NotFoundPage } from './components/pages/NotFound';
 import { HomePage } from './components/pages/Home';
 import { LoginPage } from './components/pages/Login';
@@ -20,12 +19,16 @@ import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
 import { CustomerProfilePage } from './components/pages/CustomerProfile';
 import GroomerSearchResults from './components/pages/SearchResults/GroomerSearchResults';
+// context import
+import { RootProvider } from './state/contexts/RootContext';
 
 ReactDOM.render(
   <Router>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <RootProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </RootProvider>
   </Router>,
   document.getElementById('root')
 );
