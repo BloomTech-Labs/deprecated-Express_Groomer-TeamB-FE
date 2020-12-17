@@ -9,7 +9,6 @@ import { UsersContext } from '../../../state/contexts/UsersContext';
 
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
-  // eslint-disable-next-line
   const [memoAuthService] = useMemo(() => [authService], []);
   // context state
   const { userInfo, setUserInfo, userRole, setUserRole } = useContext(
