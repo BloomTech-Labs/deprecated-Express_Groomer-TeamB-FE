@@ -24,6 +24,8 @@ function HomeContainer({ LoadingComponent }) {
       .then(info => {
         // if user is authenticated we can use the authService to snag some user info.
         // isSubscribed is a boolean toggle that we're using to clean up our useEffect.
+        console.log('test');
+
         if (isSubscribed) {
           setUserInfo(info);
         }
@@ -41,7 +43,9 @@ function HomeContainer({ LoadingComponent }) {
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
-  }, [memoAuthService, authState, setUserInfo, getUserID, setUserRole]);
+    // * The line below is needed to drop the warning in console
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [memoAuthService, authState]);
 
   if (userRole === 'groomer') {
     return (
