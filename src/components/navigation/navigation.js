@@ -57,9 +57,9 @@ function NavBar() {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <div class="express-logo">
-            <span class="groomer-one">Express</span>{' '}
-            <span class="groomer-two">Groomer</span>
+          <div className="express-logo">
+            <span className="groomer-one">Express</span>{' '}
+            <span className="groomer-two">Groomer</span>
           </div>
         </div>
 
@@ -83,9 +83,9 @@ function NavBar() {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <div class="express-logo">
-            <span class="groomer-one">Express</span>{' '}
-            <span class="groomer-two">Groomer</span>
+          <div className="express-logo">
+            <span className="groomer-one">Express</span>{' '}
+            <span className="groomer-two">Groomer</span>
           </div>
         </div>
 
@@ -107,9 +107,9 @@ function NavBar() {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <div class="express-logo">
-            <span class="groomer-one">Express</span>{' '}
-            <span class="groomer-two">Groomer</span>
+          <div className="express-logo">
+            <span className="groomer-one">Express</span>{' '}
+            <span className="groomer-two">Groomer</span>
           </div>
         </div>
 
