@@ -38,7 +38,9 @@ function NavBar() {
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
-  }, [memoAuthService, authState, getUserID, setUserInfo, setUserRole]);
+    // * The line below is needed to drop the warning in console
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [memoAuthService, authState]);
 
   if (userRole === 'groomer') {
     return (
