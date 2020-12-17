@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import { getUserID } from '../../api/index';
 import { Link } from 'react-router-dom';
 import './nav.scss';
 import 'antd/dist/antd.less';
 import styled from 'styled-components';
+
+// context imports
+import { UsersContext } from '../../state/contexts/UsersContext';
+import { APIContext } from '../../state/contexts/APIContext';
 
 const Button = styled.button`
   background-color: white;
@@ -24,10 +27,10 @@ const Button = styled.button`
 
 function NavBar() {
   const { authState, authService } = useOktaAuth();
-  // eslint-disable-next-line no-unused-vars
-  const [userInfo, setUserInfo] = useState(null);
   const [memoAuthService] = useMemo(() => [authService], [authService]);
-  const [userRole, setUserRole] = useState('');
+  // context state
+  const { userRole, setUserRole, setUserInfo } = useContext(UsersContext);
+  const { getUserID } = useContext(APIContext);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -51,6 +54,8 @@ function NavBar() {
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
+    // * The line below is needed to drop the warning in console
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [memoAuthService, authState]);
 
   if (userRole === 'groomer') {
