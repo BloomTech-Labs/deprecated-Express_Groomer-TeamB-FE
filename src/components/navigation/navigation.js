@@ -38,7 +38,7 @@ function NavBar() {
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
-  }, [memoAuthService, authState]);
+  }, [memoAuthService, authState, getUserID, setUserInfo, setUserRole]);
 
   if (userRole === 'groomer') {
     return (
