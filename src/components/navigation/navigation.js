@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserID } from '../../api/index';
 import { Link } from 'react-router-dom';
-// import { Button } from 'antd';
 import './nav.scss';
 import 'antd/dist/antd.less';
 import styled from 'styled-components';
