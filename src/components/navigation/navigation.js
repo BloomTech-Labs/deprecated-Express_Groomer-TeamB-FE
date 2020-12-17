@@ -2,9 +2,26 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { getUserID } from '../../api/index';
 import { Link } from 'react-router-dom';
-import { Button } from 'antd';
+// import { Button } from 'antd';
 import './nav.scss';
 import 'antd/dist/antd.less';
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background-color: white;
+  color: #1ea7fd;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  padding-top: 7.5px;
+  padding-bottom: 7.5px;
+  width: 170px;
+
+  :hover {
+    background-color: #1ea7fd;
+    color: white;
+  }
+`;
 
 function NavBar() {
   const { authState, authService } = useOktaAuth();
@@ -41,15 +58,16 @@ function NavBar() {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <img
-            alt="Express Groomer Logo"
-            src="./images/express_groomer.jpg"
-            width="200px"
-            height="85px"
-          />
+          <div class="express-logo">
+            <span class="groomer-one">Express</span>{' '}
+            <span class="groomer-two">Groomer</span>
+          </div>
         </div>
 
         <nav className="nav-bar">
+          <Link className="anchor" to="/">
+            Home
+          </Link>
           <Link className="anchor" to="/">
             Dashboard
           </Link>
@@ -66,12 +84,10 @@ function NavBar() {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <img
-            alt="Express Groomer Logo"
-            src="./images/express_groomer.jpg"
-            width="200px"
-            height="85px"
-          />
+          <div class="express-logo">
+            <span class="groomer-one">Express</span>{' '}
+            <span class="groomer-two">Groomer</span>
+          </div>
         </div>
 
         <nav className="nav-bar">
@@ -92,12 +108,10 @@ function NavBar() {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <img
-            alt="Express Groomer Logo"
-            src="./images/express_groomer.jpg"
-            width="200px"
-            height="85px"
-          />
+          <div class="express-logo">
+            <span class="groomer-one">Express</span>{' '}
+            <span class="groomer-two">Groomer</span>
+          </div>
         </div>
 
         <div className="nav-bar">{/* no nav */}</div>
