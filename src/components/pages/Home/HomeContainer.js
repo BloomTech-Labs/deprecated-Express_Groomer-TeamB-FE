@@ -9,7 +9,7 @@ import { UsersContext } from '../../../state/contexts/UsersContext';
 
 function HomeContainer({ LoadingComponent }) {
   const { authState, authService } = useOktaAuth();
-  const [memoAuthService] = useMemo(() => [authService], []);
+  const [memoAuthService] = useMemo(() => [authService], [authService]);
   // context state
   const { userInfo, setUserInfo, userRole, setUserRole } = useContext(
     UsersContext
