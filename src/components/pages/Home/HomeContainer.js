@@ -41,7 +41,7 @@ function HomeContainer({ LoadingComponent }) {
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
-  }, [memoAuthService, authState]);
+  }, [memoAuthService, authState, setUserInfo, getUserID, setUserRole]);
 
   if (userRole === 'groomer') {
     return (
