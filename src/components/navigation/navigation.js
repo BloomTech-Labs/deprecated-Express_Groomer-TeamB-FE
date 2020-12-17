@@ -10,7 +10,6 @@ import { APIContext } from '../../state/contexts/APIContext';
 
 function NavBar() {
   const { authState, authService } = useOktaAuth();
-  // eslint-disable-next-line no-unused-vars
   const [memoAuthService] = useMemo(() => [authService], [authService]);
   // context state
   const { userRole, setUserRole, setUserInfo } = useContext(UsersContext);
