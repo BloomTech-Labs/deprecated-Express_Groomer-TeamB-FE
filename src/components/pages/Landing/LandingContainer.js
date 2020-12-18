@@ -8,7 +8,7 @@ const Title = styled.div`
 const LandingContainer = () => {
   return (
     <div>
-      <h1>Landing Page</h1>
+      <Title>Landing Page</Title>
     </div>
   );
 };
