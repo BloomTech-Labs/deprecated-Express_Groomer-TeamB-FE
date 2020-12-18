@@ -12,6 +12,7 @@ import 'antd/dist/antd.less';
 import { NotFoundPage } from './components/pages/NotFound';
 import { HomePage } from './components/pages/Home';
 import { LoginPage } from './components/pages/Login';
+import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { GroomerProfilePage } from './components/pages/GroomerProfile';
@@ -49,6 +50,7 @@ function App() {
       <NavBar />
       {/* <RenderPetAdditionForm /> */}
       <Switch>
+        <Route path="/" exact component={LandingPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/search" component={Searching} />
@@ -59,7 +61,7 @@ function App() {
         />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
-          path="/"
+          path="/dashboard"
           exact
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
