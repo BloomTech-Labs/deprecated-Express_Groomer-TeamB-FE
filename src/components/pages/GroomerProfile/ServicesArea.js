@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { List } from 'antd';
-import { getGroomerServicesByID } from '../../../api/index.js';
+// context imports
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
+import { APIContext } from '../../../state/contexts/APIContext';
+import { UsersContext } from '../../../state/contexts/UsersContext';
 
-const Services = props => {
-  const { userInfo } = props;
-
-  const [groomerServices, setGroomerServices] = useState([]);
+const Services = () => {
+  // context state
+  const { userInfo } = useContext(UsersContext);
+  const { groomerServices } = useContext(GroomersContext);
+  const { getGroomerServicesByID } = useContext(APIContext);
 
   useEffect(() => {
     if (userInfo) {
-      getGroomerServicesByID(userInfo, setGroomerServices);
+      getGroomerServicesByID(userInfo);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo]);
 
   return (
