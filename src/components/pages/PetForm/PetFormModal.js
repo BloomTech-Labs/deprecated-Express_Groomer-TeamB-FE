@@ -24,7 +24,7 @@ const PetFormModal = () => {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        Open Form
+        Add Pet
       </Button>
       <Modal
         okButtonProps={{ form: 'pet-form', key: 'submit', htmlType: 'submit' }}
