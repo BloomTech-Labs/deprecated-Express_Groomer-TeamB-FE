@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import HoursSelector from './HoursSelector';
 import EditService from './EditService';
+import { useOktaAuth } from '@okta/okta-react';
 import {
   Form,
   Input,
@@ -13,15 +14,21 @@ import {
 } from 'antd';
 import 'antd/dist/antd.css';
 import './form.scss';
+// context imports
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
+import { UsersContext } from '../../../state/contexts/UsersContext';
+import { FormContext } from '../../../state/contexts/FormContext';
+import { APIContext } from '../../../state/contexts/APIContext';
 
-const RenderFormGR = props => {
+const RenderFormGR = () => {
+  const { authState } = useOktaAuth();
+  //sets up initial values from customers table when rendered
+  const [form] = Form.useForm();
+  const { Option } = Select;
+
+  // context state
+  const { userInfo, isRegistered } = useContext(UsersContext);
   const {
-    onFinish,
-    onFailed,
-    userInfo,
-    groomerInfo,
-    isRegistered,
-    resultInfo,
     updateOpenHours,
     updateCloseHours,
     hoursOfOpp,
@@ -30,15 +37,51 @@ const RenderFormGR = props => {
     addService,
     services,
     grServices,
-    setShowForm,
     deleteGroomerProfile,
-  } = props;
-  const { Option } = Select;
-  //sets up initial values from customers table when rendered
-  const [form] = Form.useForm();
+    groomerInfo,
+    hours,
+    setUpdated,
+    updated,
+  } = useContext(GroomersContext);
+  const {
+    onFailed,
+    setShowForm,
+    resultInfo,
+    showDelete,
+    setShowDelete,
+  } = useContext(FormContext);
+  const { postUserInfo, putUserInfo } = useContext(APIContext);
+
   useEffect(() => {
     form.resetFields();
   }, [groomerInfo, form]);
+
+  const onFinish = values => {
+    const hoursString = JSON.stringify(hours);
+    //add in user id and hours
+    const infoValues = {
+      user_id: userInfo.sub,
+      hours: hoursString,
+      ...values,
+    };
+
+    //checking isRegistered and calling the API to either create or update
+    //API calls are abstracted out into the API/index file as functions and called here
+    if (isRegistered === false) {
+      postUserInfo(
+        `${process.env.REACT_APP_API_URI}/groomers/`,
+        authState,
+        infoValues
+      );
+    } else {
+      putUserInfo(
+        `${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`,
+        authState,
+        infoValues
+      );
+      setUpdated(!updated);
+    }
+  };
 
   return (
     <div>
@@ -175,7 +218,7 @@ const RenderFormGR = props => {
                 {isRegistered ? (
                   <Button
                     type="primary"
-                    onClick={() => props.setShowDelete(true)}
+                    onClick={() => setShowDelete(true)}
                     danger
                   >
                     Delete Profile
@@ -250,12 +293,12 @@ const RenderFormGR = props => {
 
           <Modal
             title="Are you sure you want to delete your profile?"
-            visible={props.showDelete}
+            visible={showDelete}
             onOk={() => {
               deleteGroomerProfile();
-              props.setShowDelete(false);
+              setShowDelete(false);
             }}
-            onCancel={() => props.setShowDelete(false)}
+            onCancel={() => setShowDelete(false)}
           >
             <Alert
               message="By selecting Ok your profile will be deleted"

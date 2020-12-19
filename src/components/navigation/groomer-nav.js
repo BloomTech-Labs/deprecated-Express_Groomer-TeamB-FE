@@ -14,6 +14,9 @@ function GroomerHoverNav() {
           <Link className="anchor" to="/">
             Home
           </Link>
+          <Link className="anchor" to="/dashboard">
+            Dashboard
+          </Link>
           <Link className="anchor" to="/Login">
             Login
           </Link>

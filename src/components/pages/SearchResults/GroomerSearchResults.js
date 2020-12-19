@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../GroomerProfile/groomer.css';
 import Services from '../GroomerProfile/ServicesArea';
-import { getGroomerByID } from '../../../api/index.js';
+// context imports
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
+import { APIContext } from '../../../state/contexts/APIContext';
 
 const GroomerSearchResults = props => {
-  const [groomer, setGroomer] = useState();
   const pathway = props.match.params.id;
+  // context state
+  const { groomer } = useContext(GroomersContext);
+  const { getGroomerByID } = useContext(APIContext);
 
   useEffect(() => {
-    getGroomerByID(pathway, setGroomer);
+    getGroomerByID(pathway);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathway]);
 
   if (groomer) {

@@ -1,31 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ProfileFormGR } from '../ProfileFormGR';
 import { Button, Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './groomer.css';
 import Services from './ServicesArea';
+// context imports
+import { UsersContext } from '../../../state/contexts/UsersContext';
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
+import { FormContext } from '../../../state/contexts/FormContext';
 
-const GroomerProfilePage = props => {
-  const {
-    userInfo,
-    isRegistered,
-    groomerInfo,
-    showForm,
-    toggleForm,
-    setShowForm,
-  } = props;
+const GroomerProfilePage = () => {
+  // context state
+  const { userInfo } = useContext(UsersContext);
+  const { groomerInfo } = useContext(GroomersContext);
+  const { showForm, toggleForm } = useContext(FormContext);
 
   return (
     <div>
-      {showForm ? (
-        <ProfileFormGR
-          groomerInfo={groomerInfo}
-          isRegistered={isRegistered}
-          userInfo={userInfo}
-          setShowForm={setShowForm}
-        />
-      ) : null}
+      {showForm ? <ProfileFormGR /> : null}
       <Layout.Content
         style={{
           background: 'white',

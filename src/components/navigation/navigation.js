@@ -71,7 +71,7 @@ function NavBar() {
           <Link className="anchor" to="/">
             Home
           </Link>
-          <Link className="anchor" to="/">
+          <Link className="anchor" to="/dashboard">
             Dashboard
           </Link>
           <Link className="anchor" to="/Search">
@@ -100,6 +100,9 @@ function NavBar() {
           <Link className="anchor" to="/">
             Home
           </Link>
+          <Link className="anchor" to="/dashboard">
+            Dashboard
+          </Link>
           <Link className="anchor" to="/Search">
             Search
           </Link>
@@ -120,7 +123,14 @@ function NavBar() {
           </div>
         </div>
 
-        <div className="nav-bar">{/* no nav */}</div>
+        <div className="nav-bar">
+          <Link className="anchor" to="/">
+            Home
+          </Link>
+          <Link className="anchor" to="/login">
+            Login
+          </Link>
+        </div>
       </div>
     );
   }
