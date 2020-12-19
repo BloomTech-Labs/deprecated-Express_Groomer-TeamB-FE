@@ -10,11 +10,14 @@ const FormProvider = ({ children }) => {
   const [isDeleted, setIsDeleted] = useState(false);
   const [isError, setIsError] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const [modalState, setModalState] = React.useState('Form');
 
   //for result message on submitting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
   //for delete modal
   const [showDelete, setShowDelete] = useState(false);
+  // pet form modal state
+  const [visible, setVisible] = React.useState(false);
   // context state
 
   // functions
@@ -24,6 +27,19 @@ const FormProvider = ({ children }) => {
 
   const onFailed = errorInfo => {
     setResultInfo({ message: 'Error: Please try again', type: 'error' });
+  };
+
+  // this function will be used to handle pet form submit
+  const onPetFormSubmit = values => {
+    console.log('Success:', values);
+    setModalState('loading');
+    setTimeout(() => {
+      setVisible(false);
+    }, 2000);
+  };
+
+  const onPetFormFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
   };
 
   return (
@@ -47,6 +63,12 @@ const FormProvider = ({ children }) => {
         setShowDelModal,
         searchValue,
         setSearchValue,
+        modalState,
+        setModalState,
+        visible,
+        setVisible,
+        onPetFormFinishFailed,
+        onPetFormSubmit,
         toggleForm,
         onFailed,
       }}

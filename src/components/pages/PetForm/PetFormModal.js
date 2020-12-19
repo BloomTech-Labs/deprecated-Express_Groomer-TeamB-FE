@@ -1,29 +1,24 @@
-import React from 'react';
-import { Button, Modal, Row, Col, Spin, Form, Input, Checkbox } from 'antd';
+import React, { useContext } from 'react';
+import { Button, Modal, Row, Spin, Form, Input, Checkbox } from 'antd';
+import { FormContext } from '../../../state/contexts/FormContext';
 
 const PetFormModal = () => {
-  const [visible, setVisible] = React.useState(false);
-  const [modalState, setModalState] = React.useState('Form');
+  // context state
+  const {
+    modalState,
+    visible,
+    setVisible,
+    onPetFormSubmit,
+    onPetFormFinishFailed,
+  } = useContext(FormContext);
 
+  // modal specific functions
   const showModal = () => {
     setVisible(true);
   };
 
   const handleCancel = () => {
     setVisible(false);
-  };
-
-  // this function will be used to handle form submit
-  const onPetFormSubmit = values => {
-    console.log('Success:', values);
-    setModalState('loading');
-    setTimeout(() => {
-      setVisible(false);
-    }, 2000);
-  };
-
-  const onPetFormFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
   };
 
   return (
