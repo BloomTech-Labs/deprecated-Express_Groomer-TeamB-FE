@@ -9,7 +9,7 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 3.25rem;
+  font-size: 4.25rem;
   display: flex;
   justify-content: center;
   font-family: 'Poppins', sans-serif;
@@ -56,7 +56,7 @@ const IntroImage2 = styled.img`
   height: auto;
 `;
 
-const Intro = styled.div`
+const Section = styled.div`
   background-color: white;
   border-radius: 10px;
   border: none;
@@ -102,41 +102,160 @@ const BlueExpress = styled.span`
   margin-right: 5px;
 `;
 
+const Footer = styled.footer`
+  border-top: 10px solid #1ea7fd;
+  height: 265px;
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SocialContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  font-size: 2rem;
+`;
+
+const Logo = styled.div`
+  color: white;
+  font-size: 4em;
+  padding: 0.25em;
+  border-radius: 10px;
+  font-family: 'Leckerli One', cursive;
+`;
+
+const FooterTitles = styled.span`
+  margin-top: 30px;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: white;
+`;
+
+const FooterSect = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* margin-left: 20px;
+margin-right: 20px; */
+  color: white;
+  font-size: 1.1rem;
+`;
+const Copyright = styled.div`
+  font-size: 0.5 rem;
+  display: flex;
+  flex-direction: column-reverse row-reverse;
+  color: white;
+  position: absolute;
+  top: 200px;
+`;
+
+const GroomerImg = styled.img`
+  border-radius: 10px;
+  height: auto;
+  margin: auto;
+  width: 75%;
+`;
+
+const Spacing = styled.div`
+  margin-bottom: 5px;
+`;
+
 const LandingContainer = () => {
   return (
-    <Container>
-      <Intro>
-        <Title>
-          <BlueExpress>Express Groomer</BlueExpress>
-        </Title>
-        <CenterDiv>
-          <SectionOne>
-            <div>Grooming on your Schedule</div>
-            <SecondTitle>Get Clean, Faster</SecondTitle>
-            <MediumPara>
-              With Express Groomer you are your own boss. Whether you're a pet
-              owner looking for a squeaky clean pet or a Groomer looking to add
-              more clients to your business. Your Schedule: Your Rules.
-            </MediumPara>
-            <div>Changing the way you Groom.</div>
-            <SpacedDiv>
-              What are you waiting for? Create an Account Now:{' '}
-              <Button>Sign Up</Button>
-            </SpacedDiv>
-          </SectionOne>
-          <SectionTwo>
-            <IntroImage1
-              src={require('./images/golden-bath.jpg')}
-              alt="golden retriever"
-            ></IntroImage1>
-            <IntroImage2
-              src={require('./images/shortcoat-smile.jpg')}
-              alt="shortcoat dog"
-            ></IntroImage2>
-          </SectionTwo>
-        </CenterDiv>
-      </Intro>
-    </Container>
+    <div>
+      <Container>
+        <Section>
+          <Title>
+            <BlueExpress>Express Groomer</BlueExpress>
+          </Title>
+          <CenterDiv>
+            <SectionOne>
+              <div>Grooming on your Schedule</div>
+              <SecondTitle>Get Clean, Faster</SecondTitle>
+              <MediumPara>
+                With Express Groomer you are your own boss. Whether you're a pet
+                owner looking for a squeaky clean pet or a Groomer looking to
+                add more clients to your business. Your Schedule: Your Rules.
+              </MediumPara>
+              <div>Changing the way you Groom.</div>
+              <SpacedDiv>
+                What are you waiting for? Create an Account Now:{' '}
+                <Button>Sign Up</Button>
+              </SpacedDiv>
+            </SectionOne>
+            <SectionTwo>
+              <IntroImage1
+                src={require('./images/golden-bath.jpg')}
+                alt="golden retriever"
+              ></IntroImage1>
+              <IntroImage2
+                src={require('./images/shortcoat-smile.jpg')}
+                alt="shortcoat dog"
+              ></IntroImage2>
+            </SectionTwo>
+          </CenterDiv>
+        </Section>
+      </Container>
+
+      <Container>
+        <Section>
+          <CenterDiv>
+            <SectionOne>
+              <GroomerImg
+                src={require('./images/groomer.jpg')}
+                alt="groomer"
+              ></GroomerImg>
+            </SectionOne>
+
+            <SectionTwo>
+              <SecondTitle>We Love Groomers</SecondTitle>
+            </SectionTwo>
+          </CenterDiv>
+        </Section>
+      </Container>
+
+      <Container>
+        <Section>Section 3</Section>
+      </Container>
+
+      <Footer>
+        <LogoContainer>
+          <Logo>Express Groomer</Logo>
+          <SocialContainer>
+            <div className="fa fa-facebook"></div>
+            <div className="fa fa-twitter"></div>
+            <div className="fa fa-instagram"></div>
+            <div className="fa fa-youtube"></div>
+            <div className="fa fa-reddit"></div>
+          </SocialContainer>
+        </LogoContainer>
+
+        <FooterSect>
+          <FooterTitles>About</FooterTitles>
+          <Spacing>Overview</Spacing>
+          <Spacing>Press</Spacing>
+          <Spacing>Investors</Spacing>
+        </FooterSect>
+        <FooterSect>
+          <FooterTitles>Connect</FooterTitles>
+          <Spacing>FAQ</Spacing>
+          <Spacing>Help</Spacing>
+          <Spacing>Contact Us</Spacing>
+        </FooterSect>
+        <FooterSect>
+          <FooterTitles>Company</FooterTitles>
+          <Spacing>Terms</Spacing>
+          <Spacing>Privacy Policy</Spacing>
+          <Spacing>Careers</Spacing>
+        </FooterSect>
+        <Copyright>© Copyright - Express Groomer </Copyright>
+      </Footer>
+    </div>
   );
 };
 
