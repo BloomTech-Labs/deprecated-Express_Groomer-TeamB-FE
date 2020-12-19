@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { SearchResults } from '../SearchResults/SearchResultsCard';
+import NoResults from '../SearchResults/NoResults';
 import 'antd/dist/antd.css';
 import './search.scss';
 import { Input } from 'antd';
@@ -49,9 +50,13 @@ const Searching = () => {
         />
       </div>
       <div className="card-container">
-        {filteredGroomers.map((groomer, index) => {
-          return <SearchResults key={index} groomer={groomer} />;
-        })}
+        {filteredGroomers.length > 0 ? (
+          filteredGroomers.map((groomer, index) => {
+            return <SearchResults key={index} groomer={groomer} />;
+          })
+        ) : (
+          <NoResults />
+        )}
       </div>
     </div>
   );
