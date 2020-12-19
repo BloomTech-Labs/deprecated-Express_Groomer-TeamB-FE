@@ -1,7 +1,8 @@
 import React from 'react';
+import RenderPetForm from './RenderPetForm';
 
 const PetFormContainer = () => {
-  return <div></div>;
+  return <RenderPetForm />;
 };
 
 export default PetFormContainer;

@@ -20,6 +20,7 @@ import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
 import { CustomerProfilePage } from './components/pages/CustomerProfile';
 import GroomerSearchResults from './components/pages/SearchResults/GroomerSearchResults';
+import { PetForm } from './components/pages/PetForm';
 // context import
 import { RootProvider } from './state/contexts/RootContext';
 
@@ -67,6 +68,7 @@ function App() {
         />
         <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
         <SecureRoute path="/customer-profile" component={CustomerProfilePage} />
+        <SecureRoute path="/pet-form" component={PetForm} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
