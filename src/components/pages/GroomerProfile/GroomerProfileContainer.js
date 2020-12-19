@@ -4,6 +4,7 @@ import GroomerProfilePage from './GroomerProfilePage';
 // context imports
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
 
 const GroomerProfileContainer = () => {
   //grabbing user info from okta for test purposes
@@ -14,6 +15,7 @@ const GroomerProfileContainer = () => {
   // context state
   const { userInfo, setUserInfo } = useContext(UsersContext);
   const { getLoggedInGroomer } = useContext(APIContext);
+  const { updated } = useContext(GroomersContext);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -39,7 +41,7 @@ const GroomerProfileContainer = () => {
   useEffect(() => {
     getLoggedInGroomer(userInfo);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userInfo]);
+  }, [userInfo, updated]);
 
   return (
     <div>
