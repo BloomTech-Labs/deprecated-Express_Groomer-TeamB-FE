@@ -13,6 +13,8 @@ const GroomersProvider = ({ children }) => {
   const [allGroomers, setAllGroomers] = useState();
   const [filteredGroomers, setFilteredGroomers] = useState([]);
   const [groomerServices, setGroomerServices] = useState([]);
+  const [updated, setUpdated] = useState(false);
+
   // context state
   const { userInfo } = useContext(UsersContext);
   const { deleteProfile, postGroomerServices } = useContext(APIContext);
@@ -191,6 +193,8 @@ const GroomersProvider = ({ children }) => {
         serviceToAdd,
         setServiceToAdd,
         priceToAdd,
+        updated,
+        setUpdated,
         addService,
         changePrice,
         changeService,

@@ -40,6 +40,8 @@ const RenderFormGR = () => {
     deleteGroomerProfile,
     groomerInfo,
     hours,
+    setUpdated,
+    updated,
   } = useContext(GroomersContext);
   const {
     onFailed,
@@ -77,6 +79,7 @@ const RenderFormGR = () => {
         authState,
         infoValues
       );
+      setUpdated(!updated);
     }
   };
 
