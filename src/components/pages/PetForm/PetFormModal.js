@@ -9,24 +9,20 @@ const PetFormModal = () => {
     setVisible(true);
   };
 
+  const handleCancel = () => {
+    setVisible(false);
+  };
+
   // this function will be used to handle form submit
-  const handleOk = () => {
+  const onPetFormSubmit = values => {
+    console.log('Success:', values);
     setModalState('loading');
     setTimeout(() => {
       setVisible(false);
     }, 2000);
   };
 
-  const handleCancel = () => {
-    console.log('Clicked cancel button');
-    setVisible(false);
-  };
-
-  const onFinish = values => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = errorInfo => {
+  const onPetFormFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
 
@@ -36,9 +32,9 @@ const PetFormModal = () => {
         Open Form
       </Button>
       <Modal
+        okButtonProps={{ form: 'pet-form', key: 'submit', htmlType: 'submit' }}
         title="Pet Information"
         visible={visible}
-        onOk={handleOk}
         confirmLoading={modalState === 'loading'}
         onCancel={handleCancel}
       >
@@ -46,12 +42,14 @@ const PetFormModal = () => {
           // The form
           <>
             <Form
+              id={'pet-form'}
               name="basic"
               initialValues={{
-                remember: true,
+                shots_current: false,
+                spay_neuter: false,
               }}
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
+              onFinish={onPetFormSubmit}
+              onFinishFailed={onPetFormFinishFailed}
               layout={'vertical'}
             >
               <Form.Item
@@ -60,7 +58,7 @@ const PetFormModal = () => {
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your pets name!',
+                    message: 'Pet name is required',
                   },
                 ]}
               >
@@ -96,31 +94,28 @@ const PetFormModal = () => {
                 rules={[
                   {
                     required: false,
-                    message: 'Please input your username!',
                   },
                 ]}
               >
                 <Input />
               </Form.Item>
               <Form.Item
-                label="Temperment"
-                name="pet_temperment"
+                label="Temperament"
+                name="pet_temperament"
                 rules={[
                   {
                     required: false,
-                    message: 'Please input your username!',
                   },
                 ]}
               >
                 <Input />
               </Form.Item>
               <Form.Item
-                label="Special Requests"
+                label="Additional Notes"
                 name="special_requests"
                 rules={[
                   {
                     required: false,
-                    message: 'Please input your username!',
                   },
                 ]}
               >
@@ -130,13 +125,16 @@ const PetFormModal = () => {
                 label="Spayed / Neutered?"
                 name="spay_neuter"
                 checked="false"
+                valuePropName="checked"
               >
                 <Checkbox />
               </Form.Item>
+
               <Form.Item
                 label="Current on vaccines?"
                 name="shots_current"
                 checked="false"
+                valuePropName="checked"
               >
                 <Checkbox />
               </Form.Item>
