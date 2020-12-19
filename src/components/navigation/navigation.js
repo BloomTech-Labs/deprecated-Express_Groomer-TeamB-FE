@@ -94,6 +94,9 @@ function NavBar() {
         </div>
 
         <nav className="nav-bar">
+          <Link className="anchor" to="/customer-dashboard">
+            Dashboard
+          </Link>
           <Link className="anchor" to="/">
             Home
           </Link>
