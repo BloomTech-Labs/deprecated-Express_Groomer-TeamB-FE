@@ -63,7 +63,17 @@ const Section = styled.div`
   width: 85%;
   margin-top: 30px;
   height: 650px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+`;
+
+const Row = styled.div`
+  width: 33%;
+  padding: 20px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-left: 10px;
 `;
 
 const CenterDiv = styled.div`
@@ -145,8 +155,6 @@ const FooterTitles = styled.span`
 const FooterSect = styled.div`
   display: flex;
   flex-direction: column;
-  /* margin-left: 20px;
-margin-right: 20px; */
   color: white;
   font-size: 1.1rem;
 `;
@@ -174,6 +182,12 @@ const Caption = styled.div`
   margin: 15px;
   margin-left: 45px;
   margin-right: 45px;
+`;
+
+const Poodle = styled.img`
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
 `;
 
 const LandingContainer = () => {
@@ -215,6 +229,51 @@ const LandingContainer = () => {
 
       <Container>
         <Section>
+          <div>Something is going to go here.</div>
+          <CenterDiv>
+            <Row>
+              <SecondTitle>Why Wait?</SecondTitle>
+              <MediumPara>
+                Appointments at a National Chain Salon can take up to 3 hours.
+              </MediumPara>{' '}
+              <div>
+                {' '}
+                Most of that time spent waiting in a crate, surrounded by
+                unfamiliar pets and strange noises - then being handled by a
+                stranger. With Express Groomer the average appointment lasts
+                only 90 minutes - most of that time being spent 1 on 1 with a
+                Groomer who can become a familiar face.
+              </div>
+            </Row>
+
+            <Row>
+              <Poodle
+                src={require('./images/poodle.jpg')}
+                alt="poodle"
+              ></Poodle>
+            </Row>
+
+            <Row>
+              <SecondTitle>Sensitive Skin?</SecondTitle>
+              <MediumPara>
+                Commercial shampoos contain harsh sulfates that strip your pet's
+                coat of its delicate oils.
+              </MediumPara>
+              <div>
+                {' '}
+                Our Groomers only use shampoos from pre-approved list of
+                products containing natural, moisturizing ingredients that are
+                sure to leave your pet with a shiny soft coat. No harsh
+                chemicals needed!
+              </div>
+            </Row>
+          </CenterDiv>
+          <div>Something is going to go here.</div>
+        </Section>
+      </Container>
+
+      <Container>
+        <Section>
           <CenterDiv>
             <SectionOne>
               <GroomerImg
@@ -251,17 +310,13 @@ const LandingContainer = () => {
               <p>Earn a $500 bonus after your first 100 appointments</p>
               <SpacedDiv>
                 <MediumPara>
-                  Interested in Grooming but don't have a license? You may be
-                  eligible for our <Blue>Scholarship Program</Blue>
+                  Interested in Grooming but don't have experience? You may be
+                  eligible for our <Blue>New Trainee Program</Blue>
                 </MediumPara>
               </SpacedDiv>
             </SectionTwo>
           </CenterDiv>
         </Section>
-      </Container>
-
-      <Container>
-        <Section>Section 3</Section>
       </Container>
 
       <Footer>
