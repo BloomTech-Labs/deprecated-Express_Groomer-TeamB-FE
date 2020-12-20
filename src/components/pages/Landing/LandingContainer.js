@@ -214,6 +214,15 @@ const LandingContainer = () => {
 
             <SectionTwo>
               <SecondTitle>We Love Groomers</SecondTitle>
+              <MediumPara>
+                Whether you're looking to get extra income or start a Freelance
+                career, turn your passion for pets into extra income!
+              </MediumPara>
+              <div>
+                All of our Groomers are state certified and licensed, so you
+                know your pets are in good hands.
+              </div>
+              <p>Test</p>
             </SectionTwo>
           </CenterDiv>
         </Section>
