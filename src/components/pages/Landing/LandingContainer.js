@@ -88,6 +88,10 @@ const Button = styled.button`
   outline: none;
 `;
 
+const Blue = styled.span`
+  color: #1ea7fd;
+`;
+
 const SpacedDiv = styled.div`
   display: flex;
   justify-content: space-between;
@@ -165,6 +169,12 @@ const Spacing = styled.div`
   margin-bottom: 5px;
 `;
 
+const Caption = styled.div`
+  margin: 15px;
+  margin-left: 45px;
+  margin-right: 45px;
+`;
+
 const LandingContainer = () => {
   return (
     <div>
@@ -210,6 +220,10 @@ const LandingContainer = () => {
                 src={require('./images/groomer.jpg')}
                 alt="groomer"
               ></GroomerImg>
+              <Caption>
+                All of our Groomers are state certified and licensed, so you
+                know your pets are in good hands.
+              </Caption>
             </SectionOne>
 
             <SectionTwo>
@@ -218,11 +232,28 @@ const LandingContainer = () => {
                 Whether you're looking to get extra income or start a Freelance
                 career, turn your passion for pets into extra income!
               </MediumPara>
-              <div>
-                All of our Groomers are state certified and licensed, so you
-                know your pets are in good hands.
-              </div>
-              <p>Test</p>
+              <ul>
+                <li>Make your own hours</li>
+                <li>Schedule at your convience</li>
+                <li>Work as little or as much as you like</li>
+                <li>You decide which appointments to accept</li>
+                <li>
+                  Our client rating system lets you pick the clients right for
+                  you
+                </li>
+              </ul>
+              <p>
+                Becoming a Groomer with Express Groomer is Easy! Just upload a
+                copy of your Groomer's License and ID and one of our
+                representitives will reach out for a brief chat.
+              </p>
+              <p>Earn a $500 bonus after your first 100 appointments</p>
+              <SpacedDiv>
+                <MediumPara>
+                  Interested in Grooming but don't have a license? You may be
+                  eligible for our <Blue>Scholarship Program</Blue>
+                </MediumPara>
+              </SpacedDiv>
             </SectionTwo>
           </CenterDiv>
         </Section>
