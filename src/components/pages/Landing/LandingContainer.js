@@ -90,6 +90,7 @@ const Button = styled.button`
 
 const Blue = styled.span`
   color: #1ea7fd;
+  font-weight: 900;
 `;
 
 const SpacedDiv = styled.div`
