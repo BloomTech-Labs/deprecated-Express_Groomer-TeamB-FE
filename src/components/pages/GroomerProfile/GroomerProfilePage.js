@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { ProfileFormGR } from '../ProfileFormGR';
 import { Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
@@ -10,14 +10,12 @@ import { UsersContext } from '../../../state/contexts/UsersContext';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { FormContext } from '../../../state/contexts/FormContext';
 import RenderFormGR from '../ProfileFormGR/RenderFormGR';
-import { APIContext } from '../../../state/contexts/APIContext';
 
 const GroomerProfilePage = () => {
   // context state
   const { userInfo } = useContext(UsersContext);
-  const { groomerInfo, updated } = useContext(GroomersContext);
+  const { groomerInfo } = useContext(GroomersContext);
   const { showForm } = useContext(FormContext);
-  const { getLoggedInGroomer } = useContext(APIContext);
 
   return (
     <div>
