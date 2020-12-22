@@ -19,10 +19,6 @@ const GroomerProfilePage = () => {
   const { showForm } = useContext(FormContext);
   const { getLoggedInGroomer } = useContext(APIContext);
 
-  useEffect(() => {
-    getLoggedInGroomer();
-  }, [updated]);
-
   return (
     <div>
       {showForm ? <ProfileFormGR /> : null}
