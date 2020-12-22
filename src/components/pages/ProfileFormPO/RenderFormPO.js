@@ -104,10 +104,6 @@ const RenderFormPO = () => {
               onFinishFailed={onFailed}
               size="small"
             >
-              <Form.Item>
-                <p>Please fill out your profile information</p>
-              </Form.Item>
-
               <Form.Item
                 label="First Name"
                 name="given_name"
