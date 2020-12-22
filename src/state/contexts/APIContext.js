@@ -191,7 +191,7 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  const putUserInfo = (url, authState, infoValues) => {
+  const putUserInfo = async (url, authState, infoValues) => {
     const headers = getAuthHeader(authState);
     if (!url) {
       throw new Error('No URL provided');
@@ -200,6 +200,11 @@ const APIProvider = ({ children }) => {
       .put(url, infoValues, { headers })
       .then(res => {
         setResultInfo({ message: res.data.message, type: 'success' });
+      })
+      .then(() => {
+        setTimeout(() => {
+          setResultInfo({ message: null, type: null });
+        }, 3000);
       })
       .catch(err => {
         setResultInfo({ message: err.message, type: 'error' });
