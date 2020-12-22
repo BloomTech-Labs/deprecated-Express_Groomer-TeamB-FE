@@ -11,7 +11,7 @@ const FormProvider = ({ children }) => {
   const [isError, setIsError] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
-  const [visble, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   //for result message on submitting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
@@ -51,7 +51,7 @@ const FormProvider = ({ children }) => {
         setSearchValue,
         loading,
         setLoading,
-        visble,
+        visible,
         setVisible,
         toggleForm,
         onFailed,
