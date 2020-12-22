@@ -120,6 +120,8 @@ const RenderFormGR = () => {
 
   const handleCancel = () => {
     setVisible(false);
+    setEditHoursVisible(false);
+    setEditServicesVisible(false);
   };
 
   return (
@@ -133,7 +135,7 @@ const RenderFormGR = () => {
           key: 'submit',
           htmlType: 'submit',
         }}
-        title="Pet Information"
+        title="Groomer Information"
         visible={visible}
         confirmLoading={loading}
         onCancel={handleCancel}
@@ -310,57 +312,121 @@ const RenderFormGR = () => {
           </>
         )}
       </Modal>
-      {/* TODO create sepeate modals for hours and services forms*/}
-      {/*<div className="form-panel">*/}
-      {/*  <HoursSelector*/}
-      {/*    hoursOfOpp={hoursOfOpp}*/}
-      {/*    updateOpenHours={updateOpenHours}*/}
-      {/*    updateCloseHours={updateCloseHours}*/}
-      {/*  />*/}
+      <Button type="primary" onClick={showGroomerHoursModal}>
+        Update Hours
+      </Button>
+      <Modal
+        okButtonProps={{
+          form: 'groomer-hours-form',
+          key: 'submit',
+          htmlType: 'submit',
+        }}
+        title="Groomer Hours Information"
+        visible={editHoursVisible}
+        confirmLoading={loading}
+        onCancel={handleCancel}
+      >
+        {loading === false ? (
+          // The form
+          <>
+            <Form
+              id={'groomer-hours-form'}
+              labelCol={{ offset: 4, span: 15 }}
+              wrapperCol={{ offset: 4, span: 15 }}
+              form={form}
+              layout="vertical"
+              name="PoProfile"
+              initialValues={groomerInfo}
+              onFinish={onGroomerInfoSubmit}
+              onFinishFailed={onFailed}
+              size="small"
+            >
+              <HoursSelector
+                hoursOfOpp={hoursOfOpp}
+                updateOpenHours={updateOpenHours}
+                updateCloseHours={updateCloseHours}
+              />
+            </Form>
+          </>
+        ) : (
+          // Loading view for use when submitted
+          <>
+            <Row justify={'center'} align={'center'}>
+              <Spin tip="Loading..." size={'large'} />
+            </Row>
+          </>
+        )}
+      </Modal>
+      <Button type="primary" onClick={showGroomerServicesModal}>
+        Update Services
+      </Button>
+      <Modal
+        okButtonProps={{
+          form: 'groomer-services-form',
+          key: 'submit',
+          htmlType: 'submit',
+        }}
+        title="Groomer Services Information"
+        visible={editServicesVisible}
+        confirmLoading={loading}
+        onCancel={handleCancel}
+      >
+        {loading === false ? (
+          // The form
+          <>
+            <div className="services-container">
+              <p>Add a service</p>
+              <div>
+                <Form.Item wrapperCol={{ offset: 2, span: 16 }}>
+                  <Select onChange={changeService} placeholder="Services">
+                    {services.length > 0
+                      ? services.map((service, index) => (
+                          <Option key={index} value={service.id}>
+                            {service.service_name}
+                          </Option>
+                        ))
+                      : null}
+                  </Select>
+                </Form.Item>
 
-      {/*  <div className="services-container">*/}
-      {/*    <p>Add a service</p>*/}
-      {/*    <div>*/}
-      {/*      <Form.Item wrapperCol={{offset: 2, span: 16}}>*/}
-      {/*        <Select onChange={changeService} placeholder="Services">*/}
-      {/*          {services.length > 0*/}
-      {/*            ? services.map((service, index) => (*/}
-      {/*              <Option key={index} value={service.id}>*/}
-      {/*                {service.service_name}*/}
-      {/*              </Option>*/}
-      {/*            ))*/}
-      {/*            : null}*/}
-      {/*        </Select>*/}
-      {/*      </Form.Item>*/}
+                <Form.Item wrapperCol={{ offset: 2, span: 5 }}>
+                  <Input
+                    type="number"
+                    placeholder="Price"
+                    onChange={value => changePrice(value)}
+                  />
+                </Form.Item>
+              </div>
+              <Button type="primary" block="true" onClick={addService}>
+                Add A Service
+              </Button>
+            </div>
 
-      {/*      <Form.Item wrapperCol={{offset: 2, span: 5}}>*/}
-      {/*        <Input*/}
-      {/*          type="number"*/}
-      {/*          placeholder="Price"*/}
-      {/*          onChange={value => changePrice(value)}*/}
-      {/*        />*/}
-      {/*      </Form.Item>*/}
-      {/*    </div>*/}
-      {/*    <Button type="primary" block="true" onClick={addService}>*/}
-      {/*      Add A Service*/}
-      {/*    </Button>*/}
-      {/*  </div>*/}
+            <Form.Item>
+              {grServices.length > 0
+                ? grServices.map((service, index) => (
+                    <div key={index} className="services-list">
+                      <Divider
+                        style={{ borderColor: ' rgba(142, 177, 217, 1)' }}
+                      >
+                        {service.service_name}{' '}
+                      </Divider>
 
-      {/*  <Form.Item>*/}
-      {/*    {grServices.length > 0*/}
-      {/*      ? grServices.map((service, index) => (*/}
-      {/*        <div key={index} className="services-list">*/}
-      {/*          <Divider*/}
-      {/*            style={{borderColor: ' rgba(142, 177, 217, 1)'}}*/}
-      {/*          >*/}
-      {/*            {service.service_name}{' '}*/}
-      {/*          </Divider>*/}
-
-      {/*          <EditService service={service} userInfo={userInfo}/>*/}
-      {/*        </div>*/}
-      {/*      ))*/}
-      {/*      : null}*/}
-      {/*  </Form.Item>*/}
+                      <EditService service={service} userInfo={userInfo} />
+                    </div>
+                  ))
+                : null}
+            </Form.Item>
+          </>
+        ) : (
+          // Loading view for use when submitted
+          <>
+            <Row justify={'center'} align={'center'}>
+              <Spin tip="Loading..." size={'large'} />
+            </Row>
+          </>
+        )}
+      </Modal>
     </>
   );
 };
