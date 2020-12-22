@@ -134,7 +134,6 @@ const PetFormModal = () => {
               >
                 <Checkbox />
               </Form.Item>
-
               <Form.Item
                 label="Current on vaccines?"
                 name="shots_current"

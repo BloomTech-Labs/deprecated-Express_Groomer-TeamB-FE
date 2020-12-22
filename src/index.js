@@ -70,7 +70,6 @@ function App() {
         <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
         <SecureRoute path="/customer-dashboard" component={CustDash} />
         <SecureRoute path="/customer-profile" component={CustomerProfilePage} />
-        <SecureRoute path="/pet-form" component={PetForm} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>
