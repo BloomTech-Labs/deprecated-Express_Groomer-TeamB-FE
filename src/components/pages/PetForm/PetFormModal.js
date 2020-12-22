@@ -1,24 +1,41 @@
-import React, { useContext } from 'react';
-import { Button, Modal, Row, Spin, Form, Input, Checkbox } from 'antd';
+import React, { useContext, useState } from 'react';
+import { Button, Modal, Row, Spin, Form, Input, Checkbox, Radio } from 'antd';
 import { FormContext } from '../../../state/contexts/FormContext';
+import { APIContext } from '../../../state/contexts/APIContext';
+import { useOktaAuth } from '@okta/okta-react';
 
 const PetFormModal = () => {
+  const { authState } = useOktaAuth();
+
   // context state
   const {
-    modalState,
     visible,
     setVisible,
-    onPetFormSubmit,
+    loading,
+    setLoading,
     onPetFormFinishFailed,
+    value,
+    onRadioChange,
   } = useContext(FormContext);
+  const { addNewPet } = useContext(APIContext);
 
   // modal specific functions
   const showModal = () => {
+    setLoading(false);
     setVisible(true);
   };
 
   const handleCancel = () => {
     setVisible(false);
+  };
+
+  // this function will be used to handle pet form submit
+  const onPetFormSubmit = async values => {
+    setLoading(true);
+    await addNewPet(authState, values);
+    await setTimeout(() => {
+      setVisible(false);
+    }, 2000);
   };
 
   return (
@@ -30,10 +47,10 @@ const PetFormModal = () => {
         okButtonProps={{ form: 'pet-form', key: 'submit', htmlType: 'submit' }}
         title="Pet Information"
         visible={visible}
-        confirmLoading={modalState === 'loading'}
+        confirmLoading={loading}
         onCancel={handleCancel}
       >
-        {modalState === 'Form' ? (
+        {loading === false ? (
           // The form
           <>
             <Form
@@ -62,10 +79,11 @@ const PetFormModal = () => {
 
               <Form.Item
                 label="Breed"
-                name="breed"
+                name="pet_breed"
                 rules={[
                   {
-                    required: false,
+                    required: true,
+                    message: 'Pet breed is required',
                   },
                 ]}
               >
@@ -88,11 +106,15 @@ const PetFormModal = () => {
                 name="pet_gender"
                 rules={[
                   {
-                    required: false,
+                    required: true,
+                    message: 'Pet gender is required',
                   },
                 ]}
               >
-                <Input />
+                <Radio.Group onChange={onRadioChange} value={value}>
+                  <Radio value={'Male'}>Male</Radio>
+                  <Radio value={'Female'}>Female</Radio>
+                </Radio.Group>
               </Form.Item>
               <Form.Item
                 label="Temperament"

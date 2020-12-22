@@ -10,7 +10,13 @@ const FormProvider = ({ children }) => {
   const [isDeleted, setIsDeleted] = useState(false);
   const [isError, setIsError] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const [modalState, setModalState] = React.useState('Form');
+  const [loading, setLoading] = React.useState(false);
+  const [value, setValue] = React.useState(1);
+
+  const onRadioChange = e => {
+    console.log('radio checked', e.target.value);
+    setValue(e.target.value);
+  };
 
   //for result message on submitting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
@@ -27,15 +33,6 @@ const FormProvider = ({ children }) => {
 
   const onFailed = errorInfo => {
     setResultInfo({ message: 'Error: Please try again', type: 'error' });
-  };
-
-  // this function will be used to handle pet form submit
-  const onPetFormSubmit = values => {
-    console.log('Success:', values);
-    setModalState('loading');
-    setTimeout(() => {
-      setVisible(false);
-    }, 2000);
   };
 
   const onPetFormFinishFailed = errorInfo => {
@@ -63,12 +60,14 @@ const FormProvider = ({ children }) => {
         setShowDelModal,
         searchValue,
         setSearchValue,
-        modalState,
-        setModalState,
         visible,
         setVisible,
+        loading,
+        setLoading,
+        value,
+        setValue,
+        onRadioChange,
         onPetFormFinishFailed,
-        onPetFormSubmit,
         toggleForm,
         onFailed,
       }}
