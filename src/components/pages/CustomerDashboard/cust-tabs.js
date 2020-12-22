@@ -1,4 +1,4 @@
-import { Tabs, Col, Row } from 'antd';
+import { Tabs, Row } from 'antd';
 import React from 'react';
 import Overview from './overview';
 import CustomerProfilePage from '../CustomerProfile/CustProContainer';

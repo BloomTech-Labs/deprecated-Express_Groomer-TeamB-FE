@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Button, Modal, Row, Spin, Form, Input, Checkbox, Radio } from 'antd';
 import { FormContext } from '../../../state/contexts/FormContext';
 import { APIContext } from '../../../state/contexts/APIContext';

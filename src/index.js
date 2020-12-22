@@ -21,7 +21,6 @@ import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
 import { CustomerProfilePage } from './components/pages/CustomerProfile';
 import GroomerSearchResults from './components/pages/SearchResults/GroomerSearchResults';
-import { PetForm } from './components/pages/PetForm';
 // context import
 import { RootProvider } from './state/contexts/RootContext';
 
