@@ -201,6 +201,11 @@ const APIProvider = ({ children }) => {
       .then(res => {
         setResultInfo({ message: res.data.message, type: 'success' });
       })
+      .then(() => {
+        setTimeout(() => {
+          setResultInfo({ message: null, type: null });
+        }, 3000);
+      })
       .catch(err => {
         setResultInfo({ message: err.message, type: 'error' });
       });
