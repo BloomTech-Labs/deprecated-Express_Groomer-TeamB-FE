@@ -89,18 +89,6 @@ const PetFormModal = () => {
               >
                 <Input />
               </Form.Item>
-
-              <Form.Item
-                label="Color"
-                name="pet_color"
-                rules={[
-                  {
-                    required: false,
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
               <Form.Item
                 label="Gender"
                 name="pet_gender"
@@ -117,8 +105,8 @@ const PetFormModal = () => {
                 </Radio.Group>
               </Form.Item>
               <Form.Item
-                label="Temperament"
-                name="pet_temperament"
+                label="Color"
+                name="pet_color"
                 rules={[
                   {
                     required: false,
@@ -128,15 +116,15 @@ const PetFormModal = () => {
                 <Input />
               </Form.Item>
               <Form.Item
-                label="Additional Notes"
-                name="special_requests"
+                label="Temperament"
+                name="pet_temperament"
                 rules={[
                   {
                     required: false,
                   },
                 ]}
               >
-                <Input.TextArea />
+                <Input />
               </Form.Item>
               <Form.Item
                 label="Spayed / Neutered?"
@@ -154,6 +142,17 @@ const PetFormModal = () => {
                 valuePropName="checked"
               >
                 <Checkbox />
+              </Form.Item>
+              <Form.Item
+                label="Special requests for groomer"
+                name="special_requests"
+                rules={[
+                  {
+                    required: false,
+                  },
+                ]}
+              >
+                <Input.TextArea />
               </Form.Item>
             </Form>
           </>
