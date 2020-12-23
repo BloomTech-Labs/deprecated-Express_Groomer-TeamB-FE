@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { TimePicker } from 'antd';
 import 'antd/dist/antd.css';
 import './form.scss';
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
 
 const HoursSelector = props => {
   const { hoursOfOpp, updateCloseHours, updateOpenHours } = props;
+  const { hours } = useContext(GroomersContext);
+
   return (
     <div className="hours-container">
       <p>Hours of Operation</p>
@@ -23,6 +26,7 @@ const HoursSelector = props => {
         </div>
         <div>
           <TimePicker
+            disabled={hours.sunday.open === undefined && true}
             format="h:mm a"
             placeholder={hoursOfOpp.sunday.close}
             onChange={value => updateCloseHours('sunday', value.format('LT'))}
@@ -40,6 +44,7 @@ const HoursSelector = props => {
         </div>
         <div>
           <TimePicker
+            disabled={hours.monday.open === undefined && true}
             format="h:mm a"
             placeholder={hoursOfOpp.monday.close}
             onChange={value => updateCloseHours('monday', value.format('LT'))}
@@ -57,6 +62,7 @@ const HoursSelector = props => {
         </div>
         <div>
           <TimePicker
+            disabled={hours.tuesday.open === undefined && true}
             format="h:mm a"
             placeholder={hoursOfOpp.tuesday.close}
             onChange={value => updateCloseHours('tuesday', value.format('LT'))}
@@ -74,6 +80,7 @@ const HoursSelector = props => {
         </div>
         <div>
           <TimePicker
+            disabled={hours.wednesday.open === undefined && true}
             format="h:mm a"
             placeholder={hoursOfOpp.wednesday.close}
             onChange={value =>
@@ -93,6 +100,7 @@ const HoursSelector = props => {
         </div>
         <div>
           <TimePicker
+            disabled={hours.thursday.open === undefined && true}
             format="h:mm a"
             placeholder={hoursOfOpp.thursday.close}
             onChange={value => updateCloseHours('thursday', value.format('LT'))}
@@ -110,6 +118,7 @@ const HoursSelector = props => {
         </div>
         <div>
           <TimePicker
+            disabled={hours.friday.open === undefined && true}
             format="h:mm a"
             placeholder={hoursOfOpp.friday.close}
             onChange={value => updateCloseHours('friday', value.format('LT'))}
@@ -127,13 +136,13 @@ const HoursSelector = props => {
         </div>
         <div>
           <TimePicker
+            disabled={hours.saturday.open === undefined && true}
             format="h:mm a"
             placeholder={hoursOfOpp.saturday.close}
             onChange={value => updateCloseHours('saturday', value.format('LT'))}
           />
         </div>
       </div>
-      <p>*If closed: set open time and closed time to same value</p>
     </div>
   );
 };
