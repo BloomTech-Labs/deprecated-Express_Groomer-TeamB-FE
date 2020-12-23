@@ -44,6 +44,8 @@ const RenderFormGR = () => {
     updated,
     changePrice,
     changeService,
+    servicesUpdated,
+    setServicesUpdated,
   } = useContext(GroomersContext);
   const {
     onFailed,
@@ -71,12 +73,12 @@ const RenderFormGR = () => {
 
   useEffect(() => {
     form.resetFields();
-  }, [groomerInfo, form, updated]);
+  }, [groomerInfo, form, updated, groomerServices, servicesUpdated]);
 
   useEffect(() => {
     getServices();
     getGroomerServicesByID();
-  }, []);
+  }, [servicesUpdated]);
 
   const onGroomerInfoSubmit = async values => {
     setLoading(true);
@@ -95,7 +97,7 @@ const RenderFormGR = () => {
         authState,
         infoValues
       );
-      await getLoggedInGroomer(authState);
+      await getLoggedInGroomer();
     } else {
       putUserInfo(
         `${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`,
@@ -104,12 +106,37 @@ const RenderFormGR = () => {
       );
       await getLoggedInGroomer(authState);
       await setUpdated(!updated);
+      await setServicesUpdated(!servicesUpdated);
       await setTimeout(() => {
         setVisible(false);
         setEditHoursVisible(false);
         setEditServicesVisible(false);
       }, 2000);
     }
+  };
+
+  // function to add a new service
+  const addService = async () => {
+    setLoading(true);
+    const serviceValues = {
+      groomer_id: userInfo.sub,
+      services_id: serviceToAdd,
+      services_price: priceToAdd,
+    };
+    await postGroomerServices(
+      `${process.env.REACT_APP_API_URI}/groomer_services/`,
+      authState,
+      serviceValues,
+      setResultInfo
+    );
+    await getLoggedInGroomer(authState);
+    await setUpdated(!updated);
+    await setServicesUpdated(!servicesUpdated);
+    await setTimeout(() => {
+      setVisible(false);
+      setEditHoursVisible(false);
+      setEditServicesVisible(false);
+    }, 2000);
   };
 
   // modal specific functions
@@ -133,22 +160,6 @@ const RenderFormGR = () => {
     setVisible(false);
     setEditHoursVisible(false);
     setEditServicesVisible(false);
-  };
-
-  // functions to add a new service
-
-  const addService = authState => {
-    const serviceValues = {
-      groomer_id: userInfo.sub,
-      services_id: serviceToAdd,
-      services_price: priceToAdd,
-    };
-    postGroomerServices(
-      `${process.env.REACT_APP_API_URI}/groomer_services/`,
-      authState,
-      serviceValues,
-      setResultInfo
-    );
   };
 
   return (
@@ -371,7 +382,7 @@ const RenderFormGR = () => {
         )}
       </Modal>
       <Button type="primary" onClick={showGroomerServicesModal}>
-        Update Services
+        Add Services
       </Button>
       <Modal
         okButtonProps={{
@@ -388,52 +399,67 @@ const RenderFormGR = () => {
           // The form
           <>
             <div className="services-container">
-              <p>Add a service</p>
-              <div>
-                <Form.Item wrapperCol={{ offset: 2, span: 16 }}>
-                  <Select onChange={changeService} placeholder="Services">
-                    {services.length > 0
-                      ? services.map((service, index) => (
-                          <Option key={index} value={service.id}>
-                            {service.service_name}
-                          </Option>
-                        ))
-                      : null}
-                  </Select>
-                </Form.Item>
-
-                <Form.Item wrapperCol={{ offset: 2, span: 5 }}>
-                  <Input
-                    type="number"
-                    placeholder="Price"
-                    onChange={value => changePrice(value)}
-                  />
-                </Form.Item>
-              </div>
-              <Button
-                type="primary"
-                block="true"
-                onClick={() => addService(authState)}
+              <Form
+                id={'groomer-services-form'}
+                labelCol={{ offset: 4, span: 15 }}
+                wrapperCol={{ offset: 4, span: 15 }}
+                form={form}
+                // layout="vertical"
+                name="PoProfile"
+                initialValues={groomerInfo}
+                onFinish={addService}
+                onFinishFailed={onFailed}
+                size="small"
               >
-                Add A Service
-              </Button>
+                <p>Add a service</p>
+                <div>
+                  <Form.Item wrapperCol={{ offset: 2, span: 16 }}>
+                    <Select onChange={changeService} placeholder="Services">
+                      {services.length > 0
+                        ? services.map((service, index) => (
+                            <Option key={index} value={service.id}>
+                              {service.service_name}
+                            </Option>
+                          ))
+                        : null}
+                    </Select>
+                  </Form.Item>
+
+                  <Form.Item wrapperCol={{ offset: 2, span: 5 }}>
+                    <Input
+                      type="number"
+                      placeholder="Price"
+                      onChange={value => changePrice(value)}
+                    />
+                  </Form.Item>
+                </div>
+                {/* TODO remove after refactor*/}
+                {/*<Button*/}
+                {/*  type="primary"*/}
+                {/*  block="true"*/}
+                {/*  onClick={addService}*/}
+                {/*>*/}
+                {/*  Add A Service*/}
+                {/*</Button>*/}
+              </Form>
             </div>
 
-            <Form.Item>
-              {groomerServices.length > 0
-                ? groomerServices.map((service, index) => (
-                    <div key={index} className="services-list">
-                      <Divider
-                        style={{ borderColor: ' rgba(142, 177, 217, 1)' }}
-                      >
-                        {service.service_name}{' '}
-                      </Divider>
+            {/*  TODO remove after refactor*/}
+            {/*<Form.Item>*/}
+            {/*  {groomerServices.length > 0*/}
+            {/*    ? groomerServices.map((service, index) => (*/}
+            {/*      <div key={index} className="services-list">*/}
+            {/*        <Divider*/}
+            {/*          style={{borderColor: ' rgba(142, 177, 217, 1)'}}*/}
+            {/*        >*/}
+            {/*          {service.service_name}{' '}*/}
+            {/*        </Divider>*/}
 
-                      <EditService service={service} userInfo={userInfo} />
-                    </div>
-                  ))
-                : null}
-            </Form.Item>
+            {/*        <EditService service={service} userInfo={userInfo}/>*/}
+            {/*      </div>*/}
+            {/*    ))*/}
+            {/*    : null}*/}
+            {/*</Form.Item>*/}
           </>
         ) : (
           // Loading view for use when submitted

@@ -104,7 +104,7 @@ const GroomerProfilePage = () => {
           <div className="panel">
             <Divider style={{ borderColor: 'lightblue' }}>Services</Divider>
             <div className="panel-info">
-              <Services userInfo={userInfo} />
+              <Services />
             </div>
           </div>
         </div>

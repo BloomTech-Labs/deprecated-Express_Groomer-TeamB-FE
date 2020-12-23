@@ -6,10 +6,12 @@ import './form.scss';
 // context imports
 import { FormContext } from '../../../state/contexts/FormContext';
 import { APIContext } from '../../../state/contexts/APIContext';
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
 
 // TODO fix update to hit api and refresh services
 const EditService = props => {
   const { service } = props;
+  console.log({ service });
   const { authState } = useOktaAuth();
   // context state
   const {
@@ -22,7 +24,12 @@ const EditService = props => {
     setNewValue,
     setShowDelModal,
   } = useContext(FormContext);
-  const { editGroomerServices, deleteService } = useContext(APIContext);
+  const { servicesUpdated } = useContext(GroomersContext);
+  const {
+    editGroomerServices,
+    deleteService,
+    getGroomerServicesByID,
+  } = useContext(APIContext);
 
   useEffect(() => {
     setNewValue(service.services_price);

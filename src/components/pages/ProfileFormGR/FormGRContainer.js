@@ -21,7 +21,7 @@ const FormGRContainer = () => {
   useEffect(() => {
     if (userInfo) {
       getGroomerServicesByID();
-      getLoggedInGroomer(authState);
+      getLoggedInGroomer();
     }
     getGroomerServices();
     // eslint-disable-next-line react-hooks/exhaustive-deps
