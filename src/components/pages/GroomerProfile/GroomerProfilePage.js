@@ -42,10 +42,6 @@ const GroomerProfilePage = () => {
           {/* TODO this form component will be moved to dashboard once it
            is built */}
           <RenderFormGR />
-          {/* TODO remove this after groomer form refactor */}
-          {/*<Button type="primary" onClick={() => toggleForm()}>*/}
-          {/*  {showForm ? 'Close Form' : 'Update Profile'}*/}
-          {/*</Button>*/}
         </div>
         <div className="customer-info-box">
           <div className="panel">

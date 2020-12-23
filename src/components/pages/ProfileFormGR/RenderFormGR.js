@@ -154,15 +154,6 @@ const RenderFormGR = () => {
               onFinishFailed={onFailed}
               size="small"
             >
-              {/* TODO remove after form refactor */}
-              {/*<div className="close-btn">*/}
-              {/*  <Button onClick={() => setShowForm(false)}>x</Button>*/}
-              {/*</div>*/}
-
-              {/*<Form.Item>*/}
-              {/*  <p>Please fill out your profile information</p>*/}
-              {/*</Form.Item>*/}
-
               <Form.Item
                 label="First Name"
                 name="given_name"
@@ -253,12 +244,7 @@ const RenderFormGR = () => {
                 <Input.TextArea rows={6} />
               </Form.Item>
 
-              <Form.Item wrapperCol={{ offset: 4, span: 8 }}>
-                {/* TODO remove once form refactored */}
-                {/*<Button type="primary" htmlType="submit">*/}
-                {/*  {isRegistered ? 'Update' : 'Submit'}*/}
-                {/*</Button>*/}
-              </Form.Item>
+              <Form.Item wrapperCol={{ offset: 4, span: 8 }}></Form.Item>
 
               {/* Delete profile modal */}
               <Form.Item wrapperCol={{ offset: 4, span: 8 }}>
