@@ -35,14 +35,15 @@ const Services = () => {
           </Col>
           <Col>
             <Row>
-              <Col style={{ paddingLeft: '5px', paddingRight: '5px' }}>
-                <Button
-                  type="primary"
-                  shape="circle"
-                  size={'small'}
-                  icon={<EditOutlined />}
-                />
-              </Col>
+              {/* TODO decide if we want to add edit for selected services ?*/}
+              {/*<Col style={{ paddingLeft: '5px', paddingRight: '5px' }}>*/}
+              {/*  <Button*/}
+              {/*    type="primary"*/}
+              {/*    shape="circle"*/}
+              {/*    size={'small'}*/}
+              {/*    icon={<EditOutlined />}*/}
+              {/*  />*/}
+              {/*</Col>*/}
               <Col style={{ paddingLeft: '5px', paddingRight: '5px' }}>
                 <Button
                   type="primary"
