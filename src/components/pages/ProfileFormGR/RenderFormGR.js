@@ -33,16 +33,17 @@ const RenderFormGR = () => {
     updateOpenHours,
     updateCloseHours,
     hoursOfOpp,
-    changeService,
-    changePrice,
-    addService,
+    serviceToAdd,
+    priceToAdd,
     services,
-    grServices,
+    groomerServices,
     deleteGroomerProfile,
     groomerInfo,
     hours,
     setUpdated,
     updated,
+    changePrice,
+    changeService,
   } = useContext(GroomersContext);
   const {
     onFailed,
@@ -53,10 +54,16 @@ const RenderFormGR = () => {
     setVisible,
     loading,
     setLoading,
+    setResultInfo,
   } = useContext(FormContext);
-  const { postUserInfo, putUserInfo, getLoggedInGroomer } = useContext(
-    APIContext
-  );
+  const {
+    postUserInfo,
+    putUserInfo,
+    getLoggedInGroomer,
+    getServices,
+    getGroomerServicesByID,
+    postGroomerServices,
+  } = useContext(APIContext);
 
   // modal state specific to this components modals
   const [editHoursVisible, setEditHoursVisible] = useState(false);
@@ -65,6 +72,11 @@ const RenderFormGR = () => {
   useEffect(() => {
     form.resetFields();
   }, [groomerInfo, form, updated]);
+
+  useEffect(() => {
+    getServices();
+    getGroomerServicesByID();
+  }, []);
 
   const onGroomerInfoSubmit = async values => {
     setLoading(true);
@@ -121,6 +133,22 @@ const RenderFormGR = () => {
     setVisible(false);
     setEditHoursVisible(false);
     setEditServicesVisible(false);
+  };
+
+  // functions to add a new service
+
+  const addService = authState => {
+    const serviceValues = {
+      groomer_id: userInfo.sub,
+      services_id: serviceToAdd,
+      services_price: priceToAdd,
+    };
+    postGroomerServices(
+      `${process.env.REACT_APP_API_URI}/groomer_services/`,
+      authState,
+      serviceValues,
+      setResultInfo
+    );
   };
 
   return (
@@ -382,14 +410,18 @@ const RenderFormGR = () => {
                   />
                 </Form.Item>
               </div>
-              <Button type="primary" block="true" onClick={addService}>
+              <Button
+                type="primary"
+                block="true"
+                onClick={() => addService(authState)}
+              >
                 Add A Service
               </Button>
             </div>
 
             <Form.Item>
-              {grServices.length > 0
-                ? grServices.map((service, index) => (
+              {groomerServices.length > 0
+                ? groomerServices.map((service, index) => (
                     <div key={index} className="services-list">
                       <Divider
                         style={{ borderColor: ' rgba(142, 177, 217, 1)' }}

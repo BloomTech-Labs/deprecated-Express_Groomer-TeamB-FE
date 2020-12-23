@@ -7,6 +7,7 @@ import './form.scss';
 import { FormContext } from '../../../state/contexts/FormContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 
+// TODO fix update to hit api and refresh services
 const EditService = props => {
   const { service } = props;
   const { authState } = useOktaAuth();
@@ -50,7 +51,9 @@ const EditService = props => {
               defaultValue={service.services_price}
             />
           ) : (
-            <p>${newValue === 0 ? service.services_price : newValue}</p>
+            // TODO figure out why this is displaying wrong price
+            // <p>${newValue === 0 ? service.services_price : newValue}</p>
+            <p>${service.services_price}</p>
           )}
 
           {!isEditing ? (

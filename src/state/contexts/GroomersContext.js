@@ -36,7 +36,6 @@ const GroomersProvider = ({ children }) => {
 
   //services
   const [services, setServices] = useState({});
-  const [grServices, setGrServices] = useState([]);
 
   //for adding a service
   const [serviceToAdd, setServiceToAdd] = useState('');
@@ -154,20 +153,6 @@ const GroomersProvider = ({ children }) => {
     setPriceToAdd(event.target.value);
   };
 
-  const addService = authState => {
-    const serviceValues = {
-      groomer_id: userInfo.sub,
-      services_id: serviceToAdd,
-      services_price: priceToAdd,
-    };
-    postGroomerServices(
-      `${process.env.REACT_APP_API_URI}/groomer_services/`,
-      authState,
-      serviceValues,
-      setResultInfo
-    );
-  };
-
   return (
     <GroomersContext.Provider
       value={{
@@ -188,14 +173,11 @@ const GroomersProvider = ({ children }) => {
         setHoursOfOpp,
         services,
         setServices,
-        grServices,
-        setGrServices,
         serviceToAdd,
         setServiceToAdd,
         priceToAdd,
         updated,
         setUpdated,
-        addService,
         changePrice,
         changeService,
         updateCloseHours,
