@@ -65,6 +65,7 @@ const APIProvider = ({ children }) => {
       .get(`${process.env.REACT_APP_API_URI}/groomer_services`)
       .then(res => {
         setServices(res.data);
+        console.log('services:', res.data);
       })
       .catch(err => {
         console.log(err);

@@ -5,7 +5,7 @@ import './form.scss';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 
 const HoursSelector = props => {
-  const { hoursOfOpp, updateCloseHours, updateOpenHours } = props;
+  const { updateCloseHours, updateOpenHours } = props;
   const { hours } = useContext(GroomersContext);
 
   // TODO try to get the stringified groomerInfo.hours into an object for
