@@ -21,15 +21,15 @@ const GroomersProvider = ({ children }) => {
   const { setResultInfo } = useContext(FormContext);
 
   const history = useHistory();
-  //hours
+
   const hoursTemp = {
-    sunday: { open: '12:00 AM', close: '12:00 AM' },
-    monday: { open: '12:00 AM', close: '12:00 AM' },
-    tuesday: { open: '12:00 AM', close: '12:00 AM' },
-    wednesday: { open: '12:00 AM', close: '12:00 AM' },
-    thursday: { open: '12:00 AM', close: '12:00 AM' },
-    friday: { open: '12:00 AM', close: '12:00 AM' },
-    saturday: { open: '12:00 AM', close: '12:00 AM' },
+    sunday: 'closed',
+    monday: 'closed',
+    tuesday: 'closed',
+    wednesday: 'closed',
+    thursday: 'closed',
+    friday: 'closed',
+    saturday: 'closed',
   };
   const [hoursOfOpp, setHoursOfOpp] = useState(hoursTemp);
   const [hours, setHours] = useState(hoursTemp);
@@ -52,43 +52,43 @@ const GroomersProvider = ({ children }) => {
       case 'sunday':
         setHours({
           ...hours,
-          sunday: { ...hours.sunday, open: value },
+          sunday: value ? { open: value } : 'closed',
         });
         break;
       case 'monday':
         setHours({
           ...hours,
-          monday: { ...hours.sunday, open: value },
+          monday: value ? { open: value } : 'closed',
         });
         break;
       case 'tuesday':
         setHours({
           ...hours,
-          tuesday: { ...hours.sunday, open: value },
+          tuesday: value ? { open: value } : 'closed',
         });
         break;
       case 'wednesday':
         setHours({
           ...hours,
-          wednesday: { ...hours.sunday, open: value },
+          wednesday: value ? { open: value } : 'closed',
         });
         break;
       case 'thursday':
         setHours({
           ...hours,
-          thursday: { ...hours.sunday, open: value },
+          thursday: value ? { open: value } : 'closed',
         });
         break;
       case 'friday':
         setHours({
           ...hours,
-          friday: { ...hours.sunday, open: value },
+          friday: value ? { open: value } : 'closed',
         });
         break;
       case 'saturday':
         setHours({
           ...hours,
-          saturday: { ...hours.sunday, open: value },
+          saturday: value ? { open: value } : 'closed',
         });
         break;
       default:
@@ -102,43 +102,43 @@ const GroomersProvider = ({ children }) => {
       case 'sunday':
         setHours({
           ...hours,
-          sunday: { ...hours.sunday, close: value },
+          sunday: value ? { ...hours.sunday, close: value } : 'closed',
         });
         break;
       case 'monday':
         setHours({
           ...hours,
-          monday: { ...hours.sunday, close: value },
+          monday: value ? { ...hours.monday, close: value } : 'closed',
         });
         break;
       case 'tuesday':
         setHours({
           ...hours,
-          tuesday: { ...hours.sunday, close: value },
+          tuesday: value ? { ...hours.tuesday, close: value } : 'closed',
         });
         break;
       case 'wednesday':
         setHours({
           ...hours,
-          wednesday: { ...hours.sunday, close: value },
+          wednesday: value ? { ...hours.wednesday, close: value } : 'closed',
         });
         break;
       case 'thursday':
         setHours({
           ...hours,
-          thursday: { ...hours.sunday, close: value },
+          thursday: value ? { ...hours.thursday, close: value } : 'closed',
         });
         break;
       case 'friday':
         setHours({
           ...hours,
-          friday: { ...hours.sunday, close: value },
+          friday: value ? { ...hours.friday, close: value } : 'closed',
         });
         break;
       case 'saturday':
         setHours({
           ...hours,
-          saturday: { ...hours.sunday, close: value },
+          saturday: value ? { ...hours.saturday, close: value } : 'closed',
         });
         break;
       default:

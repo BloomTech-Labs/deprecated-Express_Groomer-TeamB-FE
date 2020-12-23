@@ -77,7 +77,6 @@ const RenderFormGR = () => {
       hours: hoursString,
       ...values,
     };
-
     //checking isRegistered and calling the API to either create or update
     //API calls are abstracted out into the API/index file as functions and called here
     if (isRegistered === false) {
@@ -97,6 +96,8 @@ const RenderFormGR = () => {
       await setUpdated(!updated);
       await setTimeout(() => {
         setVisible(false);
+        setEditHoursVisible(false);
+        setEditServicesVisible(false);
       }, 2000);
     }
   };
@@ -160,9 +161,9 @@ const RenderFormGR = () => {
               {/*  <Button onClick={() => setShowForm(false)}>x</Button>*/}
               {/*</div>*/}
 
-              <Form.Item>
-                <p>Please fill out your profile information</p>
-              </Form.Item>
+              {/*<Form.Item>*/}
+              {/*  <p>Please fill out your profile information</p>*/}
+              {/*</Form.Item>*/}
 
               <Form.Item
                 label="First Name"
@@ -334,7 +335,7 @@ const RenderFormGR = () => {
               labelCol={{ offset: 4, span: 15 }}
               wrapperCol={{ offset: 4, span: 15 }}
               form={form}
-              layout="vertical"
+              // layout="vertical"
               name="PoProfile"
               initialValues={groomerInfo}
               onFinish={onGroomerInfoSubmit}
