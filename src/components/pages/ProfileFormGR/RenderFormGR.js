@@ -1,18 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import HoursSelector from './HoursSelector';
-import EditService from './EditService';
 import { useOktaAuth } from '@okta/okta-react';
-import {
-  Form,
-  Input,
-  Button,
-  Alert,
-  Modal,
-  Select,
-  Divider,
-  Row,
-  Spin,
-} from 'antd';
+import { Form, Input, Button, Alert, Modal, Select, Row, Spin } from 'antd';
 import 'antd/dist/antd.css';
 import './form.scss';
 // context imports
@@ -78,6 +67,7 @@ const RenderFormGR = () => {
   useEffect(() => {
     getServices();
     getGroomerServicesByID();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [servicesUpdated]);
 
   const onGroomerInfoSubmit = async values => {
@@ -413,6 +403,7 @@ const RenderFormGR = () => {
               >
                 <p>Add a service</p>
                 <div>
+                  {/* TODO refactor this to allow adding new services ? */}
                   <Form.Item wrapperCol={{ offset: 2, span: 16 }}>
                     <Select onChange={changeService} placeholder="Services">
                       {services.length > 0
@@ -433,33 +424,8 @@ const RenderFormGR = () => {
                     />
                   </Form.Item>
                 </div>
-                {/* TODO remove after refactor*/}
-                {/*<Button*/}
-                {/*  type="primary"*/}
-                {/*  block="true"*/}
-                {/*  onClick={addService}*/}
-                {/*>*/}
-                {/*  Add A Service*/}
-                {/*</Button>*/}
               </Form>
             </div>
-
-            {/*  TODO remove after refactor*/}
-            {/*<Form.Item>*/}
-            {/*  {groomerServices.length > 0*/}
-            {/*    ? groomerServices.map((service, index) => (*/}
-            {/*      <div key={index} className="services-list">*/}
-            {/*        <Divider*/}
-            {/*          style={{borderColor: ' rgba(142, 177, 217, 1)'}}*/}
-            {/*        >*/}
-            {/*          {service.service_name}{' '}*/}
-            {/*        </Divider>*/}
-
-            {/*        <EditService service={service} userInfo={userInfo}/>*/}
-            {/*      </div>*/}
-            {/*    ))*/}
-            {/*    : null}*/}
-            {/*</Form.Item>*/}
           </>
         ) : (
           // Loading view for use when submitted

@@ -60,19 +60,6 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  // TODO  this function is not needed refactor out!
-  const getGroomerServices = () => {
-    return axios
-      .get(`${process.env.REACT_APP_API_URI}/groomer_services`)
-      .then(res => {
-        setGroomerServices(res.data);
-        console.log('services:', res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   const getGroomers = () => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomers`)
@@ -300,7 +287,6 @@ const APIProvider = ({ children }) => {
       value={{
         sleep,
         getGroomerServicesByID,
-        getGroomerServices,
         getServices,
         getGroomers,
         getGroomerByID,

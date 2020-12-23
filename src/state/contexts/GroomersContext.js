@@ -18,7 +18,7 @@ const GroomersProvider = ({ children }) => {
 
   // context state
   const { userInfo } = useContext(UsersContext);
-  const { deleteProfile, postGroomerServices } = useContext(APIContext);
+  const { deleteProfile } = useContext(APIContext);
   const { setResultInfo } = useContext(FormContext);
 
   const history = useHistory();
