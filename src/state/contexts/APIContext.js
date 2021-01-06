@@ -279,6 +279,23 @@ const APIProvider = ({ children }) => {
       })
       .catch(err => {
         console.log(err);
+      
+  /******************************************************************************
+   *                      API calls for pets
+   ******************************************************************************/
+
+  const addNewPet = (authState, petInfo) => {
+    const headers = getAuthHeader(authState);
+
+    return axios
+      .post(`${process.env.REACT_APP_API_URI}/pets/${userInfo.sub}`, petInfo, {
+        headers,
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        setIsError(true);
       });
   };
 
@@ -301,6 +318,7 @@ const APIProvider = ({ children }) => {
         editGroomerServices,
         deleteService,
         deleteProfile,
+        addNewPet,
       }}
     >
       {children}

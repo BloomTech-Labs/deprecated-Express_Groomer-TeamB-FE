@@ -1,7 +1,8 @@
-import { Tabs } from 'antd';
+import { Tabs, Row } from 'antd';
 import React from 'react';
-import Overview from "./overview"
-import CustomerProfilePage from "../CustomerProfile/CustProContainer"
+import Overview from './overview';
+import CustomerProfilePage from '../CustomerProfile/CustProContainer';
+import { PetForm } from '../PetForm';
 
 const { TabPane } = Tabs;
 
@@ -22,25 +23,70 @@ class CustTab extends React.Component {
     const { mode } = this.state;
     return (
       <div>
-        <Tabs defaultActiveKey="0" tabPosition={mode} style={{ height: "100%", marginLeft: "5%"}}>
-            <TabPane style={{ fontSize: "16px"}} tab={<span><i className="fas fa-paw"></i> Overview</span>} key="0">
-              <Overview/>
-            </TabPane>
-            <TabPane tab={<span><i className="fas fa-paw"></i> My Info</span>} key="1">
-              <CustomerProfilePage/> 
-            </TabPane><TabPane tab={<span><i className="fas fa-paw"></i> My Pets</span>} key="2">
-              My Pets
-            </TabPane>
-            <TabPane tab={<span><i className="fas fa-paw"></i> Appointments</span>} key="3">
-              Appointments
-            </TabPane>
-            <TabPane tab={<span><i className="fas fa-paw"></i> Search Groomers</span>} key="4">
-              Search Groomers
-            </TabPane>
+        <Tabs
+          defaultActiveKey="0"
+          tabPosition={mode}
+          style={{ height: '100%', marginLeft: '5%' }}
+        >
+          <TabPane
+            style={{ fontSize: '16px' }}
+            tab={
+              <span>
+                <i className="fas fa-paw"></i> Overview
+              </span>
+            }
+            key="0"
+          >
+            <Overview />
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <i className="fas fa-paw"></i> My Info
+              </span>
+            }
+            key="1"
+          >
+            <CustomerProfilePage />
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <i className="fas fa-paw"></i> My Pets
+              </span>
+            }
+            key="2"
+          >
+            {/* Pet form is placed inside a row component for easy center
+             alignment*/}
+            <Row justify={'center'}>
+              <PetForm />
+            </Row>
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <i className="fas fa-paw"></i> Appointments
+              </span>
+            }
+            key="3"
+          >
+            Appointments
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                <i className="fas fa-paw"></i> Search Groomers
+              </span>
+            }
+            key="4"
+          >
+            Search Groomers
+          </TabPane>
         </Tabs>
       </div>
     );
   }
 }
 
-export default CustTab
+export default CustTab;

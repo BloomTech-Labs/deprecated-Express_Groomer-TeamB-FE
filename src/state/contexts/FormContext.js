@@ -12,11 +12,19 @@ const FormProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [value, setValue] = useState(1);
+
+  const onRadioChange = e => {
+    console.log('radio checked', e.target.value);
+    setValue(e.target.value);
+  };
 
   //for result message on submitting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
   //for delete modal
   const [showDelete, setShowDelete] = useState(false);
+  // pet form modal state
+  const [visible, setVisible] = React.useState(false);
   // context state
 
   // functions
@@ -26,6 +34,10 @@ const FormProvider = ({ children }) => {
 
   const onFailed = errorInfo => {
     setResultInfo({ message: 'Error: Please try again', type: 'error' });
+  };
+
+  const onPetFormFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
   };
 
   return (
@@ -49,10 +61,14 @@ const FormProvider = ({ children }) => {
         setShowDelModal,
         searchValue,
         setSearchValue,
-        loading,
-        setLoading,
         visible,
         setVisible,
+        loading,
+        setLoading,
+        value,
+        setValue,
+        onRadioChange,
+        onPetFormFinishFailed,
         toggleForm,
         onFailed,
       }}
