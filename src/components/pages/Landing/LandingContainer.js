@@ -178,6 +178,7 @@ const Spacing = styled.div`
   margin-bottom: 5px;
 `;
 
+
 const Caption = styled.div`
   margin: 15px;
   margin-left: 45px;
@@ -229,6 +230,7 @@ const LandingContainer = () => {
 
       <Container>
         <Section>
+
           <div>Something is going to go here.</div>
           <CenterDiv>
             <Row>
@@ -274,20 +276,24 @@ const LandingContainer = () => {
 
       <Container>
         <Section>
+
           <CenterDiv>
             <SectionOne>
               <GroomerImg
                 src={require('./images/groomer.jpg')}
                 alt="groomer"
               ></GroomerImg>
+
               <Caption>
                 All of our Groomers are state certified and licensed, so you
                 know your pets are in good hands.
               </Caption>
+
             </SectionOne>
 
             <SectionTwo>
               <SecondTitle>We Love Groomers</SecondTitle>
+
               <MediumPara>
                 Whether you're looking to get extra income or start a Freelance
                 career, turn your passion for pets into extra income!
@@ -314,9 +320,15 @@ const LandingContainer = () => {
                   eligible for our <Blue>New Trainee Program</Blue>
                 </MediumPara>
               </SpacedDiv>
+
             </SectionTwo>
           </CenterDiv>
         </Section>
+      </Container>
+
+
+      <Container>
+        <Section>Section 3</Section>
       </Container>
 
       <Footer>
