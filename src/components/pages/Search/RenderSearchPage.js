@@ -1,20 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { SearchResults } from '../SearchResults/SearchResultsCard';
+import NoResults from '../SearchResults/NoResults';
 import 'antd/dist/antd.css';
 import './search.scss';
 import { Input } from 'antd';
-import { getGroomers } from '../../../api/index.js';
+// context imports
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
+import { APIContext } from '../../../state/contexts/APIContext';
+import { FormContext } from '../../../state/contexts/FormContext';
 
 const { Search } = Input;
 
 const Searching = () => {
-  const [allGroomers, setAllGroomers] = useState();
-  const [searchValue, setSearchValue] = useState('');
-  const [filteredGroomers, setFilteredGroomers] = useState([]);
+  //context state
+  const { allGroomers, filteredGroomers, setFilteredGroomers } = useContext(
+    GroomersContext
+  );
+  const { searchValue, setSearchValue } = useContext(FormContext);
+  const { getGroomers } = useContext(APIContext);
 
   //API Call
   useEffect(() => {
-    getGroomers(setAllGroomers);
+    getGroomers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = event => {
@@ -42,9 +50,13 @@ const Searching = () => {
         />
       </div>
       <div className="card-container">
-        {filteredGroomers.map((groomer, index) => {
-          return <SearchResults key={index} groomer={groomer} />;
-        })}
+        {filteredGroomers.length > 0 ? (
+          filteredGroomers.map((groomer, index) => {
+            return <SearchResults key={index} groomer={groomer} />;
+          })
+        ) : (
+          <NoResults />
+        )}
       </div>
     </div>
   );

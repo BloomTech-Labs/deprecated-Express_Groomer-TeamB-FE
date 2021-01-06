@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useContext } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
-import { getUserID } from '../../api/index';
 import { Link } from 'react-router-dom';
 import './nav.scss';
 import 'antd/dist/antd.less';
 import styled from 'styled-components';
+
+import { UsersContext } from '../../state/contexts/UsersContext';
+import { APIContext } from '../../state/contexts/APIContext';
 
 const Button = styled.button`
   background-color: white;
@@ -24,10 +26,10 @@ const Button = styled.button`
 
 function NavBar() {
   const { authState, authService } = useOktaAuth();
-  // eslint-disable-next-line no-unused-vars
-  const [userInfo, setUserInfo] = useState(null);
   const [memoAuthService] = useMemo(() => [authService], [authService]);
-  const [userRole, setUserRole] = useState('');
+  // context state
+  const { userRole, setUserRole, setUserInfo } = useContext(UsersContext);
+  const { getUserID } = useContext(APIContext);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -51,15 +53,17 @@ function NavBar() {
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
+    // * The line below is needed to drop the warning in console
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [memoAuthService, authState]);
 
   if (userRole === 'groomer') {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <div class="express-logo">
-            <span class="groomer-one">Express</span>{' '}
-            <span class="groomer-two">Groomer</span>
+          <div className="express-logo">
+            <span className="groomer-one">Express</span>{' '}
+            <span className="groomer-two">Groomer</span>
           </div>
         </div>
 
@@ -67,7 +71,7 @@ function NavBar() {
           <Link className="anchor" to="/">
             Home
           </Link>
-          <Link className="anchor" to="/groomer-dashboard">
+          <Link className="anchor" to="/dashboard">
             Dashboard
           </Link>
           <Link className="anchor" to="/Search">
@@ -83,15 +87,21 @@ function NavBar() {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <div class="express-logo">
-            <span class="groomer-one">Express</span>{' '}
-            <span class="groomer-two">Groomer</span>
+          <div className="express-logo">
+            <span className="groomer-one">Express</span>{' '}
+            <span className="groomer-two">Groomer</span>
           </div>
         </div>
 
         <nav className="nav-bar">
+          <Link className="anchor" to="/customer-dashboard">
+            Dashboard
+          </Link>
           <Link className="anchor" to="/">
             Home
+          </Link>
+          <Link className="anchor" to="/dashboard">
+            Dashboard
           </Link>
           <Link className="anchor" to="/Search">
             Search
@@ -107,13 +117,20 @@ function NavBar() {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <div class="express-logo">
-            <span class="groomer-one">Express</span>{' '}
-            <span class="groomer-two">Groomer</span>
+          <div className="express-logo">
+            <span className="groomer-one">Express</span>{' '}
+            <span className="groomer-two">Groomer</span>
           </div>
         </div>
 
-        <div className="nav-bar">{/* no nav */}</div>
+        <div className="nav-bar">
+          <Link className="anchor" to="/">
+            Home
+          </Link>
+          <Link className="anchor" to="/login">
+            Login
+          </Link>
+        </div>
       </div>
     );
   }

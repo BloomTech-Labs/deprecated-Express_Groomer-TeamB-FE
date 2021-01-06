@@ -1,19 +1,21 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useContext } from 'react';
 import RenderCustPro from './RenderCustPro';
 import { useOktaAuth } from '@okta/okta-react';
-import { getCustomerByID } from '../../../api/index.js';
+// context imports
+import { UsersContext } from '../../../state/contexts/UsersContext';
+import { CustomersContext } from '../../../state/contexts/CustomersContext';
+import { APIContext } from '../../../state/contexts/APIContext';
 
 const CustProContainer = () => {
   //grabbing user info from okta for test purposes
   //all info could/should be grabbed by state if possible
   const { authService, authState } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState({});
   const [memoAuthService] = useMemo(() => [authService], [authService]);
 
-  const [custInfo, setCustInfo] = useState({});
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [showForm, setShowForm] = useState(false);
-  const [updated, setUpdated] = useState(false);
+  // context state
+  const { userInfo, setUserInfo } = useContext(UsersContext);
+  const { updated } = useContext(CustomersContext);
+  const { getCustomerByID } = useContext(APIContext);
 
   useEffect(() => {
     let isSubscribed = true;
@@ -32,28 +34,16 @@ const CustProContainer = () => {
         return setUserInfo(null);
       });
     return () => (isSubscribed = false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [memoAuthService]);
 
   //API call to get customer info
   useEffect(() => {
-    getCustomerByID(authState, userInfo, setCustInfo, setIsRegistered);
+    getCustomerByID(authState, userInfo);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo, authState, updated]);
 
-  const toggleForm = () => {
-    setShowForm(!showForm);
-  };
-
-  return (
-    <RenderCustPro
-      userInfo={userInfo}
-      isRegistered={isRegistered}
-      custInfo={custInfo}
-      showForm={showForm}
-      toggleForm={toggleForm}
-      updated={updated}
-      setUpdated={setUpdated}
-    />
-  );
+  return <RenderCustPro />;
 };
 
 export default CustProContainer;
