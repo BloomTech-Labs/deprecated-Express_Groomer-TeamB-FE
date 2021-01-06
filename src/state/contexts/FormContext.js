@@ -11,13 +11,13 @@ const FormProvider = ({ children }) => {
   const [isError, setIsError] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState(false);
   const [visible, setVisible] = useState(false);
 
   //for result message on submitting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
   //for delete modal
   const [showDelete, setShowDelete] = useState(false);
-  // context state
 
   // functions
   const toggleForm = () => {
@@ -25,7 +25,16 @@ const FormProvider = ({ children }) => {
   };
 
   const onFailed = errorInfo => {
-    setResultInfo({ message: 'Error: Please try again', type: 'error' });
+    setResultInfo({ message: 'Error: Please try again', type: errorInfo });
+  };
+
+  const onPetFormFinishFailed = errorInfo => {
+    console.log('Failed:', errorInfo);
+  };
+
+  const onRadioChange = e => {
+    console.log('radio checked', e.target.value);
+    setValue(e.target.value);
   };
 
   return (
@@ -53,8 +62,11 @@ const FormProvider = ({ children }) => {
         setLoading,
         visible,
         setVisible,
+        value,
         toggleForm,
         onFailed,
+        onPetFormFinishFailed,
+        onRadioChange,
       }}
     >
       {children}

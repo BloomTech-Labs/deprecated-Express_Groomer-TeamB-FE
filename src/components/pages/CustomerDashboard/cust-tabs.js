@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import Overview from './overview';
 import CustomerProfilePage from '../CustomerProfile/CustProContainer';
 import { ProfileFormPO } from '../ProfileFormPO';
+import { PetForm } from '../PetForm';
 // context imports
 import { FormContext } from '../../../state/contexts/FormContext';
 
@@ -63,7 +64,11 @@ const CustTab = () => {
           }
           key="2"
         >
-          My Pets
+          {/* Pet form is placed inside a row component for easy center
+             alignment*/}
+          <Row justify={'center'}>
+            <PetForm />
+          </Row>
         </TabPane>
         <TabPane
           tab={

@@ -281,6 +281,25 @@ const APIProvider = ({ children }) => {
       });
   };
 
+  /******************************************************************************
+   *                      API calls for pets
+   ******************************************************************************/
+
+  const addNewPet = (authState, petInfo) => {
+    const headers = getAuthHeader(authState);
+
+    return axios
+      .post(`${process.env.REACT_APP_API_URI}/pets/${userInfo.sub}`, petInfo, {
+        headers,
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        setIsError(true);
+      });
+  };
+
   return (
     <APIContext.Provider
       value={{
@@ -300,6 +319,7 @@ const APIProvider = ({ children }) => {
         editGroomerServices,
         deleteService,
         deleteProfile,
+        addNewPet,
       }}
     >
       {children}
