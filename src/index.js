@@ -15,6 +15,7 @@ import { LoginPage } from './components/pages/Login';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { GroomerProfilePage } from './components/pages/GroomerProfile';
+import { GroomerDashboard } from './components/pages/GroomerProfile/GroomerDashboard';
 import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
 import { CustomerProfilePage } from './components/pages/CustomerProfile';
@@ -65,6 +66,7 @@ function App() {
         />
         <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
         <SecureRoute path="/customer-profile" component={CustomerProfilePage} />
+        <SecureRoute path="/groomer-dashboard" component={GroomerDashboard} />
         <Route component={NotFoundPage} />
       </Switch>
     </Security>

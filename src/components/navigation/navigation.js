@@ -67,7 +67,7 @@ function NavBar() {
           <Link className="anchor" to="/">
             Home
           </Link>
-          <Link className="anchor" to="/">
+          <Link className="anchor" to="/groomer-dashboard">
             Dashboard
           </Link>
           <Link className="anchor" to="/Search">
