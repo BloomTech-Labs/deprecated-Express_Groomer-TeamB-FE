@@ -10,21 +10,14 @@ const FormProvider = ({ children }) => {
   const [isDeleted, setIsDeleted] = useState(false);
   const [isError, setIsError] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const [loading, setLoading] = React.useState(false);
-  const [value, setValue] = React.useState(1);
-
-  const onRadioChange = e => {
-    console.log('radio checked', e.target.value);
-    setValue(e.target.value);
-  };
+  const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   //for result message on submitting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
   //for delete modal
   const [showDelete, setShowDelete] = useState(false);
-  // pet form modal state
-  const [visible, setVisible] = React.useState(false);
-  // context state
 
   // functions
   const toggleForm = () => {
@@ -32,11 +25,16 @@ const FormProvider = ({ children }) => {
   };
 
   const onFailed = errorInfo => {
-    setResultInfo({ message: 'Error: Please try again', type: 'error' });
+    setResultInfo({ message: 'Error: Please try again', type: errorInfo });
   };
 
   const onPetFormFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
+  };
+
+  const onRadioChange = e => {
+    console.log('radio checked', e.target.value);
+    setValue(e.target.value);
   };
 
   return (
@@ -60,16 +58,15 @@ const FormProvider = ({ children }) => {
         setShowDelModal,
         searchValue,
         setSearchValue,
-        visible,
-        setVisible,
         loading,
         setLoading,
+        visible,
+        setVisible,
         value,
-        setValue,
-        onRadioChange,
-        onPetFormFinishFailed,
         toggleForm,
         onFailed,
+        onPetFormFinishFailed,
+        onRadioChange,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ProfileFormPO } from '../ProfileFormPO';
-import { Button, Layout, Avatar, Divider } from 'antd';
+import { Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './customer.scss';
@@ -13,7 +13,7 @@ const RenderCustPro = () => {
   // context state
   const { userInfo } = useContext(UsersContext);
   const { custInfo } = useContext(CustomersContext);
-  const { toggleForm, showForm } = useContext(FormContext);
+  const { showForm } = useContext(FormContext);
 
   return (
     <div>
@@ -36,9 +36,6 @@ const RenderCustPro = () => {
             {custInfo.given_name ? custInfo.given_name : userInfo.given_name}{' '}
             Welcome to Express Groomer
           </p>
-          <Button type="primary" onClick={() => toggleForm()}>
-            {showForm ? 'Close Form' : 'Update Profile'}
-          </Button>
         </div>
         <div className="customer-info-box">
           <div className="panel">
