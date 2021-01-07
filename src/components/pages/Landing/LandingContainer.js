@@ -6,6 +6,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1rem;
+  margin-top: 50px;
+  margin-bottom: 50px;
 `;
 
 const Title = styled.div`
