@@ -4,7 +4,7 @@ import { useOktaAuth } from '@okta/okta-react';
 // context imports
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined } from '@ant-design/icons';
 
 const Services = () => {
   const { authState } = useOktaAuth();

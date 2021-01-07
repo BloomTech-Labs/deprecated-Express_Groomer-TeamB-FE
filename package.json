@@ -27,10 +27,7 @@
     "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
     "coverage": "npm test -- --coverage --watchAll=false",
     "lint": "eslint 'src/**/*.{js,jsx}' --fix",
-    "format": "prettier --write 'src/**/*.{js,jsx,css,scss}'",
-    "storybook": "start-storybook -p 6006 -s public",
-    "deploy-storybook": "storybook-to-ghpages",
-    "build-storybook": "build-storybook -s public"
+    "format": "prettier --write 'src/**/*.{js,jsx,css,scss}'"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -69,16 +66,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
-    "@storybook/addon-actions": "^6.0.26",
-    "@storybook/addon-essentials": "^6.0.26",
-    "@storybook/addon-knobs": "^5.3.19",
-    "@storybook/addon-links": "^6.0.26",
-    "@storybook/addon-notes": "^5.3.19",
-    "@storybook/addons": "^5.3.19",
-    "@storybook/node-logger": "^6.0.26",
-    "@storybook/preset-create-react-app": "^3.1.4",
-    "@storybook/react": "^6.0.26",
-    "@storybook/storybook-deployer": "^2.8.7",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^10.2.1",
     "@testing-library/user-event": "^7.2.1",

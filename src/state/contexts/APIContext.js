@@ -48,7 +48,7 @@ const APIProvider = ({ children }) => {
       .then(response => response.data);
   };
 
-  //resusable GET functions (auth not required)
+  //reusable GET functions (auth not required)
   const getGroomerServicesByID = () => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}`)
@@ -180,7 +180,7 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  const putUserInfo = (url, authState, infoValues) => {
+  const putUserInfo = async (url, authState, infoValues) => {
     const headers = getAuthHeader(authState);
     if (!url) {
       throw new Error('No URL provided');
@@ -239,7 +239,6 @@ const APIProvider = ({ children }) => {
 
   const editGroomerServices = (authState, price) => {
     const headers = getAuthHeader(authState);
-
     return axios
       .put(
         `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}?service=${service.id}`,
@@ -253,6 +252,7 @@ const APIProvider = ({ children }) => {
         setIsError(true);
       });
   };
+
   const deleteService = (authState, service) => {
     const headers = getAuthHeader(authState);
 
@@ -282,12 +282,30 @@ const APIProvider = ({ children }) => {
       });
   };
 
+  /******************************************************************************
+   *                      API calls for pets
+   ******************************************************************************/
+
+  const addNewPet = (authState, petInfo) => {
+    const headers = getAuthHeader(authState);
+
+    return axios
+      .post(`${process.env.REACT_APP_API_URI}/pets/${userInfo.sub}`, petInfo, {
+        headers,
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        setIsError(true);
+      });
+  };
+
   return (
     <APIContext.Provider
       value={{
         sleep,
         getGroomerServicesByID,
-        getServices,
         getGroomers,
         getGroomerByID,
         getLoggedInGroomer,
@@ -301,6 +319,8 @@ const APIProvider = ({ children }) => {
         editGroomerServices,
         deleteService,
         deleteProfile,
+        addNewPet,
+        getServices,
       }}
     >
       {children}
