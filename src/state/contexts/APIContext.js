@@ -1,21 +1,16 @@
 import React, { createContext, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import axios from 'axios';
-
 // context imports
 import { UsersContext } from './UsersContext';
 import { GroomersContext } from './GroomersContext';
 import { CustomersContext } from './CustomersContext';
 import { FormContext } from './FormContext';
-
 export const APIContext = createContext({});
-
 const APIProvider = ({ children }) => {
   const history = useHistory();
   const { userInfo, setIsRegistered } = useContext(UsersContext);
   const { setCustInfo } = useContext(CustomersContext);
-
   const {
     setGroomerInfo,
     setGroomerServices,
@@ -32,23 +27,19 @@ const APIProvider = ({ children }) => {
     setIsError,
     setResultInfo,
   } = useContext(FormContext);
-
   // we will define a bunch of API calls here.
   const apiUrl = `${process.env.REACT_APP_API_URI}`;
-
   const sleep = time =>
     new Promise(resolve => {
       setTimeout(resolve, time);
     });
-
   //example of non-auth API call function
   const getExampleData = () => {
     return axios
       .get(`https://jsonplaceholder.typicode.com/photos?albumId=1`)
       .then(response => response.data);
   };
-
-  //resusable GET functions (auth not required)
+  //reusable GET functions (auth not required)
   const getGroomerServicesByID = () => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}`)
@@ -59,7 +50,6 @@ const APIProvider = ({ children }) => {
         console.log(err);
       });
   };
-
   const getGroomers = () => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomers`)
@@ -70,7 +60,6 @@ const APIProvider = ({ children }) => {
         console.log('Error', err);
       });
   };
-
   const getGroomerByID = pathway => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomers/${pathway}`)
@@ -81,7 +70,6 @@ const APIProvider = ({ children }) => {
         console.log(err);
       });
   };
-
   const getLoggedInGroomer = () => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
@@ -95,22 +83,17 @@ const APIProvider = ({ children }) => {
         console.log(err);
       });
   };
-
   //AUTH
-
   const getAuthHeader = authState => {
     if (!authState.isAuthenticated) {
       throw new Error('Not authenticated');
     }
     return { Authorization: `Bearer ${authState.idToken}` };
   };
-
   const apiAuthGet = authHeader => {
     return axios.get(`${apiUrl}/profiles`, { headers: authHeader });
   };
-
   //Various GET (auth) API calls
-
   const getProfileData = authState => {
     try {
       return apiAuthGet(getAuthHeader(authState)).then(
@@ -123,7 +106,6 @@ const APIProvider = ({ children }) => {
       });
     }
   };
-
   //used to obtain okta user id to set role
   const getUserID = (url, authState) => {
     // here's another way you can compose together your API calls.
@@ -137,11 +119,9 @@ const APIProvider = ({ children }) => {
       .then(res => res.data)
       .catch(err => err);
   };
-
   //CUSTOMER/PET OWNER GET CALLS
   const getCustomerByID = authState => {
     const headers = getAuthHeader(authState);
-
     return axios
       .get(`${process.env.REACT_APP_API_URI}/customers/${userInfo.sub}`, {
         headers,
@@ -156,7 +136,6 @@ const APIProvider = ({ children }) => {
         console.log(err);
       });
   };
-
   //GROOMER PROFILE FORM FUNCTIONS
   //User can be groomer or pet owner
   const postUserInfo = (url, authState, infoValues) => {
@@ -179,8 +158,7 @@ const APIProvider = ({ children }) => {
         setResultInfo({ message: err.message, type: 'error' });
       });
   };
-
-  const putUserInfo = (url, authState, infoValues) => {
+  const putUserInfo = async (url, authState, infoValues) => {
     const headers = getAuthHeader(authState);
     if (!url) {
       throw new Error('No URL provided');
@@ -199,7 +177,6 @@ const APIProvider = ({ children }) => {
         setResultInfo({ message: err.message, type: 'error' });
       });
   };
-
   const deleteProfile = (
     authState,
     userType,
@@ -208,7 +185,6 @@ const APIProvider = ({ children }) => {
     setStateVar
   ) => {
     const headers = getAuthHeader(authState);
-
     return axios
       .delete(`${process.env.REACT_APP_API_URI}/${userType}/${userInfo.sub}`, {
         headers,
@@ -220,7 +196,6 @@ const APIProvider = ({ children }) => {
         setStateVar({ message: err.message, type: 'error' });
       });
   };
-
   //GROOMER SERVICE SPECIFIC FUNCTIONS
   const postGroomerServices = (url, authState, serviceValues, setStateVar) => {
     const headers = getAuthHeader(authState);
@@ -236,10 +211,8 @@ const APIProvider = ({ children }) => {
         setStateVar({ message: err.message, type: 'error' });
       });
   };
-
   const editGroomerServices = (authState, price) => {
     const headers = getAuthHeader(authState);
-
     return axios
       .put(
         `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}?service=${service.id}`,
@@ -255,7 +228,6 @@ const APIProvider = ({ children }) => {
   };
   const deleteService = (authState, service) => {
     const headers = getAuthHeader(authState);
-
     return axios
       .delete(
         `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}?service=${service.id}`,
@@ -269,7 +241,6 @@ const APIProvider = ({ children }) => {
         setIsError(true);
       });
   };
-
   // API call to get all services
   const getServices = () => {
     return axios
@@ -279,14 +250,13 @@ const APIProvider = ({ children }) => {
       })
       .catch(err => {
         console.log(err);
-      
+      });
+  };
   /******************************************************************************
    *                      API calls for pets
    ******************************************************************************/
-
   const addNewPet = (authState, petInfo) => {
     const headers = getAuthHeader(authState);
-
     return axios
       .post(`${process.env.REACT_APP_API_URI}/pets/${userInfo.sub}`, petInfo, {
         headers,
@@ -298,13 +268,11 @@ const APIProvider = ({ children }) => {
         setIsError(true);
       });
   };
-
   return (
     <APIContext.Provider
       value={{
         sleep,
         getGroomerServicesByID,
-        getServices,
         getGroomers,
         getGroomerByID,
         getLoggedInGroomer,
@@ -319,11 +287,11 @@ const APIProvider = ({ children }) => {
         deleteService,
         deleteProfile,
         addNewPet,
+        getServices,
       }}
     >
       {children}
     </APIContext.Provider>
   );
 };
-
 export default APIProvider;
