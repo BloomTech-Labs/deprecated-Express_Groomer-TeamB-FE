@@ -281,7 +281,7 @@ const LandingContainer = () => {
                 coat of its delicate oils.
               </MediumPara>
               <div>
-                Our Groomers only use shampoos from pre-approved list of
+                Our Groomers only use shampoos from a pre-approved list of
                 products containing natural, moisturizing ingredients that are
                 sure to leave your pet with a shiny soft coat. No harsh
                 chemicals needed!
