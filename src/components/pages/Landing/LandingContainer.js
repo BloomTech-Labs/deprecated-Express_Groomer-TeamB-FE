@@ -119,6 +119,7 @@ const BlueExpress = styled.span`
 
 const Footer = styled.footer`
   border-top: 10px solid #1ea7fd;
+  background-color: #15699e;
   height: 265px;
   display: flex;
   justify-content: space-around;
@@ -190,6 +191,25 @@ const Poodle = styled.img`
   height: auto;
 `;
 
+const SpacingLeft = styled.div`
+  margin: 25px;
+  margin-bottom: 10px;
+  color: #1ea7fd;
+  font-weight: 900;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+`;
+
+const SpacingRight = styled.div`
+  margin: 25px;
+  color: #1ea7fd;
+  font-weight: 900;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row-reverse;
+`;
+
 const LandingContainer = () => {
   return (
     <div>
@@ -229,15 +249,14 @@ const LandingContainer = () => {
 
       <Container>
         <Section>
-          <div>Something is going to go here.</div>
+          <SpacingLeft>Spend less time on grooming...</SpacingLeft>
           <CenterDiv>
             <Row>
               <SecondTitle>Why Wait?</SecondTitle>
               <MediumPara>
                 Appointments at a National Chain Salon can take up to 3 hours.
-              </MediumPara>{' '}
+              </MediumPara>
               <div>
-                {' '}
                 Most of that time spent waiting in a crate, surrounded by
                 unfamiliar pets and strange noises - then being handled by a
                 stranger. With Express Groomer the average appointment lasts
@@ -260,7 +279,6 @@ const LandingContainer = () => {
                 coat of its delicate oils.
               </MediumPara>
               <div>
-                {' '}
                 Our Groomers only use shampoos from pre-approved list of
                 products containing natural, moisturizing ingredients that are
                 sure to leave your pet with a shiny soft coat. No harsh
@@ -268,7 +286,7 @@ const LandingContainer = () => {
               </div>
             </Row>
           </CenterDiv>
-          <div>Something is going to go here.</div>
+          <SpacingRight>...and more time with your pets</SpacingRight>
         </Section>
       </Container>
 
