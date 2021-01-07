@@ -48,23 +48,12 @@ const APIProvider = ({ children }) => {
       .then(response => response.data);
   };
 
-  //resusable GET functions (auth not required)
+  //reusable GET functions (auth not required)
   const getGroomerServicesByID = () => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}`)
       .then(res => {
         setGroomerServices(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const getGroomerServices = () => {
-    return axios
-      .get(`${process.env.REACT_APP_API_URI}/groomer_services`)
-      .then(res => {
-        setServices(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -250,7 +239,6 @@ const APIProvider = ({ children }) => {
 
   const editGroomerServices = (authState, price) => {
     const headers = getAuthHeader(authState);
-
     return axios
       .put(
         `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}?service=${service.id}`,
@@ -264,6 +252,7 @@ const APIProvider = ({ children }) => {
         setIsError(true);
       });
   };
+
   const deleteService = (authState, service) => {
     const headers = getAuthHeader(authState);
 
@@ -278,6 +267,18 @@ const APIProvider = ({ children }) => {
       })
       .catch(err => {
         setIsError(true);
+      });
+  };
+
+  // API call to get all services
+  const getServices = () => {
+    return axios
+      .get(`${process.env.REACT_APP_API_URI}/services`)
+      .then(res => {
+        setServices(res.data);
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
@@ -305,7 +306,6 @@ const APIProvider = ({ children }) => {
       value={{
         sleep,
         getGroomerServicesByID,
-        getGroomerServices,
         getGroomers,
         getGroomerByID,
         getLoggedInGroomer,
@@ -320,6 +320,7 @@ const APIProvider = ({ children }) => {
         deleteService,
         deleteProfile,
         addNewPet,
+        getServices,
       }}
     >
       {children}

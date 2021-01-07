@@ -39,7 +39,7 @@ const GroomerProfileContainer = () => {
 
   //getGroomer API call
   useEffect(() => {
-    getLoggedInGroomer(userInfo);
+    getLoggedInGroomer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo, updated]);
 
