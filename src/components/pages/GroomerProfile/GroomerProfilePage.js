@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { ProfileFormGR } from '../ProfileFormGR';
-import { Button, Layout, Avatar, Divider } from 'antd';
+import { Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './groomer.css';
@@ -9,12 +9,13 @@ import Services from './ServicesArea';
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { FormContext } from '../../../state/contexts/FormContext';
+import RenderFormGR from '../ProfileFormGR/RenderFormGR';
 
 const GroomerProfilePage = () => {
   // context state
   const { userInfo } = useContext(UsersContext);
   const { groomerInfo } = useContext(GroomersContext);
-  const { showForm, toggleForm } = useContext(FormContext);
+  const { showForm } = useContext(FormContext);
 
   return (
     <div>
@@ -38,10 +39,9 @@ const GroomerProfilePage = () => {
               ? groomerInfo.given_name
               : userInfo.given_name}{' '}
           </p>
-
-          <Button type="primary" onClick={() => toggleForm()}>
-            {showForm ? 'Close Form' : 'Update Profile'}
-          </Button>
+          {/* TODO this form component will be moved to dashboard once it
+           is built */}
+          <RenderFormGR />
         </div>
         <div className="customer-info-box">
           <div className="panel">
@@ -104,7 +104,7 @@ const GroomerProfilePage = () => {
           <div className="panel">
             <Divider style={{ borderColor: 'lightblue' }}>Services</Divider>
             <div className="panel-info">
-              <Services userInfo={userInfo} />
+              <Services />
             </div>
           </div>
         </div>

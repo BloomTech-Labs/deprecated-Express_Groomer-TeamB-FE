@@ -1,17 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import HoursSelector from './HoursSelector';
-import EditService from './EditService';
 import { useOktaAuth } from '@okta/okta-react';
-import {
-  Form,
-  Input,
-  Button,
-  Alert,
-  Modal,
-  Layout,
-  Select,
-  Divider,
-} from 'antd';
+import { Form, Input, Button, Alert, Modal, Select, Row, Spin } from 'antd';
 import 'antd/dist/antd.css';
 import './form.scss';
 // context imports
@@ -32,31 +22,56 @@ const RenderFormGR = () => {
     updateOpenHours,
     updateCloseHours,
     hoursOfOpp,
-    changeService,
-    changePrice,
-    addService,
+    serviceToAdd,
+    priceToAdd,
     services,
-    grServices,
+    groomerServices,
     deleteGroomerProfile,
     groomerInfo,
     hours,
     setUpdated,
     updated,
+    changePrice,
+    changeService,
+    servicesUpdated,
+    setServicesUpdated,
   } = useContext(GroomersContext);
   const {
     onFailed,
-    setShowForm,
     resultInfo,
     showDelete,
     setShowDelete,
+    visible,
+    setVisible,
+    loading,
+    setLoading,
+    setResultInfo,
   } = useContext(FormContext);
-  const { postUserInfo, putUserInfo } = useContext(APIContext);
+  const {
+    postUserInfo,
+    putUserInfo,
+    getLoggedInGroomer,
+    getServices,
+    getGroomerServicesByID,
+    postGroomerServices,
+  } = useContext(APIContext);
+
+  // modal state specific to this components modals
+  const [editHoursVisible, setEditHoursVisible] = useState(false);
+  const [editServicesVisible, setEditServicesVisible] = useState(false);
 
   useEffect(() => {
     form.resetFields();
-  }, [groomerInfo, form]);
+  }, [groomerInfo, form, updated, groomerServices, servicesUpdated]);
 
-  const onFinish = values => {
+  useEffect(() => {
+    getServices();
+    getGroomerServicesByID();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [servicesUpdated]);
+
+  const onGroomerInfoSubmit = async values => {
+    setLoading(true);
     const hoursString = JSON.stringify(hours);
     //add in user id and hours
     const infoValues = {
@@ -64,7 +79,6 @@ const RenderFormGR = () => {
       hours: hoursString,
       ...values,
     };
-
     //checking isRegistered and calling the API to either create or update
     //API calls are abstracted out into the API/index file as functions and called here
     if (isRegistered === false) {
@@ -73,50 +87,102 @@ const RenderFormGR = () => {
         authState,
         infoValues
       );
+      await getLoggedInGroomer();
     } else {
       putUserInfo(
         `${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`,
         authState,
         infoValues
       );
-      setUpdated(!updated);
+      await getLoggedInGroomer(authState);
+      await setUpdated(!updated);
+      await setServicesUpdated(!servicesUpdated);
+      await setTimeout(() => {
+        setVisible(false);
+        setEditHoursVisible(false);
+        setEditServicesVisible(false);
+      }, 2000);
     }
   };
 
+  // function to add a new service
+  const addService = async () => {
+    setLoading(true);
+    const serviceValues = {
+      groomer_id: userInfo.sub,
+      services_id: serviceToAdd,
+      services_price: priceToAdd,
+    };
+    await postGroomerServices(
+      `${process.env.REACT_APP_API_URI}/groomer_services/`,
+      authState,
+      serviceValues,
+      setResultInfo
+    );
+    await getLoggedInGroomer(authState);
+    await setUpdated(!updated);
+    await setServicesUpdated(!servicesUpdated);
+    await setTimeout(() => {
+      setVisible(false);
+      setEditHoursVisible(false);
+      setEditServicesVisible(false);
+    }, 2000);
+  };
+
+  // modal specific functions
+  const showGroomerProfileModal = async () => {
+    getLoggedInGroomer(authState);
+    setLoading(false);
+    setVisible(true);
+  };
+
+  const showGroomerHoursModal = () => {
+    setLoading(false);
+    setEditHoursVisible(true);
+  };
+
+  const showGroomerServicesModal = () => {
+    setLoading(false);
+    setEditServicesVisible(true);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
+    setEditHoursVisible(false);
+    setEditServicesVisible(false);
+  };
+
   return (
-    <div>
-      <Layout.Content
-        style={{
-          border: '1px solid black',
-          width: '900px',
-          padding: '20px 10px',
-          background: 'white',
-          position: 'absolute',
-          left: '10%',
-          zIndex: '2',
+    <>
+      <Button type="primary" onClick={showGroomerProfileModal}>
+        Update Profile
+      </Button>
+      <Modal
+        okButtonProps={{
+          form: 'groomer-profile-form',
+          key: 'submit',
+          htmlType: 'submit',
         }}
+        title="Groomer Information"
+        visible={visible}
+        confirmLoading={loading}
+        onCancel={handleCancel}
       >
-        <Form
-          labelCol={{ offset: 4, span: 15 }}
-          wrapperCol={{ offset: 4, span: 15 }}
-          form={form}
-          layout="vertical"
-          name="PoProfile"
-          initialValues={groomerInfo}
-          onFinish={onFinish}
-          onFinishFailed={onFailed}
-          size="small"
-        >
-          <div className="close-btn">
-            <Button onClick={() => setShowForm(false)}>x</Button>
-          </div>
-
-          <div className="form-top">
-            <div className="form-panel">
-              <Form.Item>
-                <p>Please fill out your profile information</p>
-              </Form.Item>
-
+        {loading === false ? (
+          // The form
+          <>
+            <Form
+              id={'groomer-profile-form'}
+              labelCol={{ offset: 4, span: 15 }}
+              wrapperCol={{ offset: 4, span: 15 }}
+              form={form}
+              layout="vertical"
+              name="PoProfile"
+              initialValues={groomerInfo}
+              onFinish={onGroomerInfoSubmit}
+              onFinishFailed={onFailed}
+              size="small"
+            >
               <Form.Item
                 label="First Name"
                 name="given_name"
@@ -207,11 +273,7 @@ const RenderFormGR = () => {
                 <Input.TextArea rows={6} />
               </Form.Item>
 
-              <Form.Item wrapperCol={{ offset: 4, span: 8 }}>
-                <Button type="primary" htmlType="submit">
-                  {isRegistered ? 'Update' : 'Submit'}
-                </Button>
-              </Form.Item>
+              <Form.Item wrapperCol={{ offset: 4, span: 8 }}></Form.Item>
 
               {/* Delete profile modal */}
               <Form.Item wrapperCol={{ offset: 4, span: 8 }}>
@@ -225,18 +287,123 @@ const RenderFormGR = () => {
                   </Button>
                 ) : null}
               </Form.Item>
-            </div>
+              {/* When form is submited this alert will show success or error message */}
+              {/* TODO this will need to be refactored to the dashboard tab
+               once groomer dashboard is ready */}
+              {resultInfo.message !== null ? (
+                <Form.Item>
+                  <Alert
+                    message={resultInfo.message}
+                    type={resultInfo.type}
+                    showIcon
+                  />
+                </Form.Item>
+              ) : null}
 
-            <div className="form-panel">
+              <Modal
+                title="Are you sure you want to delete your profile?"
+                visible={showDelete}
+                onOk={() => {
+                  deleteGroomerProfile();
+                  setShowDelete(false);
+                }}
+                onCancel={() => setShowDelete(false)}
+              >
+                <Alert
+                  message="By selecting Ok your profile will be deleted"
+                  type="warning"
+                  showIcon
+                />
+              </Modal>
+            </Form>
+          </>
+        ) : (
+          // Loading view for use when submitted
+          <>
+            <Row justify={'center'} align={'center'}>
+              <Spin tip="Loading..." size={'large'} />
+            </Row>
+          </>
+        )}
+      </Modal>
+      <Button type="primary" onClick={showGroomerHoursModal}>
+        Update Hours
+      </Button>
+      <Modal
+        okButtonProps={{
+          form: 'groomer-hours-form',
+          key: 'submit',
+          htmlType: 'submit',
+        }}
+        title="Groomer Hours Information"
+        visible={editHoursVisible}
+        confirmLoading={loading}
+        onCancel={handleCancel}
+      >
+        {loading === false ? (
+          // The form
+          <>
+            <Form
+              id={'groomer-hours-form'}
+              labelCol={{ offset: 4, span: 15 }}
+              wrapperCol={{ offset: 4, span: 15 }}
+              form={form}
+              // layout="vertical"
+              name="PoProfile"
+              initialValues={groomerInfo}
+              onFinish={onGroomerInfoSubmit}
+              onFinishFailed={onFailed}
+              size="small"
+            >
               <HoursSelector
                 hoursOfOpp={hoursOfOpp}
                 updateOpenHours={updateOpenHours}
                 updateCloseHours={updateCloseHours}
               />
-
-              <div className="services-container">
+            </Form>
+          </>
+        ) : (
+          // Loading view for use when submitted
+          <>
+            <Row justify={'center'} align={'center'}>
+              <Spin tip="Loading..." size={'large'} />
+            </Row>
+          </>
+        )}
+      </Modal>
+      <Button type="primary" onClick={showGroomerServicesModal}>
+        Add Services
+      </Button>
+      <Modal
+        okButtonProps={{
+          form: 'groomer-services-form',
+          key: 'submit',
+          htmlType: 'submit',
+        }}
+        title="Groomer Services Information"
+        visible={editServicesVisible}
+        confirmLoading={loading}
+        onCancel={handleCancel}
+      >
+        {loading === false ? (
+          // The form
+          <>
+            <div className="services-container">
+              <Form
+                id={'groomer-services-form'}
+                labelCol={{ offset: 4, span: 15 }}
+                wrapperCol={{ offset: 4, span: 15 }}
+                form={form}
+                // layout="vertical"
+                name="PoProfile"
+                initialValues={groomerInfo}
+                onFinish={addService}
+                onFinishFailed={onFailed}
+                size="small"
+              >
                 <p>Add a service</p>
                 <div>
+                  {/* TODO refactor this to allow adding new services ? */}
                   <Form.Item wrapperCol={{ offset: 2, span: 16 }}>
                     <Select onChange={changeService} placeholder="Services">
                       {services.length > 0
@@ -257,58 +424,19 @@ const RenderFormGR = () => {
                     />
                   </Form.Item>
                 </div>
-                <Button type="primary" block="true" onClick={addService}>
-                  Add A Service
-                </Button>
-              </div>
-
-              <Form.Item>
-                {grServices.length > 0
-                  ? grServices.map((service, index) => (
-                      <div key={index} className="services-list">
-                        <Divider
-                          style={{ borderColor: ' rgba(142, 177, 217, 1)' }}
-                        >
-                          {service.service_name}{' '}
-                        </Divider>
-
-                        <EditService service={service} userInfo={userInfo} />
-                      </div>
-                    ))
-                  : null}
-              </Form.Item>
+              </Form>
             </div>
-          </div>
-
-          {/* When form is submited this alert will show success or error message */}
-          {resultInfo.message !== null ? (
-            <Form.Item>
-              <Alert
-                message={resultInfo.message}
-                type={resultInfo.type}
-                showIcon
-              />
-            </Form.Item>
-          ) : null}
-
-          <Modal
-            title="Are you sure you want to delete your profile?"
-            visible={showDelete}
-            onOk={() => {
-              deleteGroomerProfile();
-              setShowDelete(false);
-            }}
-            onCancel={() => setShowDelete(false)}
-          >
-            <Alert
-              message="By selecting Ok your profile will be deleted"
-              type="warning"
-              showIcon
-            />
-          </Modal>
-        </Form>
-      </Layout.Content>
-    </div>
+          </>
+        ) : (
+          // Loading view for use when submitted
+          <>
+            <Row justify={'center'} align={'center'}>
+              <Spin tip="Loading..." size={'large'} />
+            </Row>
+          </>
+        )}
+      </Modal>
+    </>
   );
 };
 
