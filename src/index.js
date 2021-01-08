@@ -19,7 +19,6 @@ import { LandingPage } from './components/pages/Landing';
 import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 import { GroomerProfilePage } from './components/pages/GroomerProfile';
-import { GroomerDashboard } from './components/pages/GroomerProfile/GroomerDashboard';
 import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
 import { CustomerProfilePage } from './components/pages/CustomerProfile';
