@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+import ReactMapGL, { GeolocateControl, Marker, Popup } from 'react-map-gl';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 import { Button } from 'antd';
@@ -46,6 +46,10 @@ const GroomerMap = () => {
           setViewport(viewport);
         }}
       >
+        <GeolocateControl
+          positionOptions={{ enableHighAccuracy: true }}
+          trackUserLocation={true}
+        />
         {allGroomers &&
           allGroomers.map(groomer => {
             return (
