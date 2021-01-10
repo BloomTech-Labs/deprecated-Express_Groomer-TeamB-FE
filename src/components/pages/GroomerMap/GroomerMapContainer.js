@@ -5,8 +5,10 @@ import { APIContext } from '../../../state/contexts/APIContext';
 import { Button, Col, Row } from 'antd';
 import { ScissorOutlined } from '@ant-design/icons';
 import './GroomerMap.css';
+import { useHistory } from 'react-router-dom';
 
 const GroomerMap = () => {
+  const history = useHistory();
   const { allGroomers } = useContext(GroomersContext);
   const { getGroomers } = useContext(APIContext);
   const [selectedGroomer, setSelectedGroomer] = useState(null);
@@ -36,6 +38,10 @@ const GroomerMap = () => {
       window.removeEventListener('keydown', listener);
     };
   }, []);
+
+  const handleGroomerClick = () => {
+    history.push(`/groomer-search-results/${selectedGroomer.user_id}`);
+  };
 
   return (
     <>
@@ -82,12 +88,17 @@ const GroomerMap = () => {
               <Popup
                 latitude={selectedGroomer.lat}
                 longitude={selectedGroomer.lng}
-                onClose={() => {
-                  setSelectedGroomer(null);
+                onClose={async () => {
+                  // awaiting the timeout to give the button a chance to
+                  // push to groomer info page before resetting selected groomer
+                  await setTimeout(() => {
+                    setSelectedGroomer(null);
+                  }, 1000);
                 }}
               >
                 <div>
                   <h2>{selectedGroomer.business_name}</h2>
+
                   <h3>
                     {selectedGroomer.address}
                     <br /> {selectedGroomer.city}, {selectedGroomer.state}{' '}
@@ -95,7 +106,9 @@ const GroomerMap = () => {
                   </h3>
                   <h3>{selectedGroomer.email}</h3>
                   <h3>{selectedGroomer.phone_number}</h3>
-                  <p style={{ maxWidth: '350px' }}>{selectedGroomer.about}</p>
+                  <Button type={'primary'} onClick={handleGroomerClick}>
+                    Go
+                  </Button>
                 </div>
               </Popup>
             ) : null}
