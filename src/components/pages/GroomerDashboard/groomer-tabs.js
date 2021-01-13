@@ -1,8 +1,7 @@
-import { Tabs, Row } from 'antd';
+import { Tabs } from 'antd';
 import React from 'react';
 import Overview from './overview';
 import GroomerProfilePage from '../GroomerProfile/GroomerProfilePage';
-import { ProfileFormGR } from '../ProfileFormGR';
 
 const { TabPane } = Tabs;
 
