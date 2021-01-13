@@ -52,6 +52,7 @@ function HomeContainer({ LoadingComponent }) {
         )}
         {authState.isAuthenticated && userInfo && (
           <GroomerProfilePage userInfo={userInfo} authService={authService} />
+          // need to change component redirected to
         )}
       </div>
     );
