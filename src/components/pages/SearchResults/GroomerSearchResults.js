@@ -30,27 +30,34 @@ const GroomerSearchResults = props => {
             padding: '10px',
           }}
         >
-          <div className="avatar">
-            <Avatar size={74} icon={<UserOutlined />} />
-          </div>
 
           <div className="customer-header">
             <p className="heading"> {groomer.given_name} </p>
+            <div className="rating">
+              <h1>THIS WILL BE RATING</h1>
+            </div>
+            <div className="avatar">
+            <Avatar size={74} icon={<UserOutlined />} />
+          </div>
           </div>
           <div className="customer-info-box">
+            <div></div>
             <div className="panel">
               <Divider style={{ borderColor: 'lightblue' }}>
-                Personal Info
+              About
               </Divider>
               <div className="panel-info">
-                <p>First Name: {groomer.given_name}</p>
-                <p>Last Name: {groomer.family_name}</p>
-                <p>Email: {groomer.email}</p>
-                <p>Phone Number: {groomer.phone_number}</p>
+                <p>This will be about me section</p>
               </div>
             </div>
             <div className="panel">
-              <Divider style={{ borderColor: 'lightblue' }}>Address</Divider>
+              <Divider style={{ borderColor: 'lightblue' }}>Services</Divider>
+              <div className="panel-info">
+                <Services />
+              </div>
+            </div>
+            <div className="panel">
+              <Divider style={{ borderColor: 'lightblue' }}>Location</Divider>
               <div className="panel-info">
                 <p>Address: {groomer.address}</p>
                 <p>City: {groomer.city}</p>
@@ -60,9 +67,11 @@ const GroomerSearchResults = props => {
               </div>
             </div>
             <div className="panel">
-              <Divider style={{ borderColor: 'lightblue' }}>Services</Divider>
+              <Divider style={{ borderColor: 'lightblue' }}>
+              Hours
+              </Divider>
               <div className="panel-info">
-                <Services />
+                <p>Hours will go here</p>
               </div>
             </div>
           </div>

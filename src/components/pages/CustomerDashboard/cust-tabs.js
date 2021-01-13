@@ -71,7 +71,7 @@ class CustTab extends React.Component {
             }
             key="3"
           >
-            Appointments
+          Appointments
           </TabPane>
           <TabPane
             tab={
