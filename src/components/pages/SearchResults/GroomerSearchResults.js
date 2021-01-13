@@ -9,6 +9,7 @@ import './GroomerPublicProfile.scss'
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 
+
 const GroomerSearchResults = props => {
   const pathway = props.match.params.id;
   // context state
@@ -52,7 +53,7 @@ const GroomerSearchResults = props => {
                 About
                 </Divider>
                 <div className="panel-info">
-                  <p>This will be about me section</p>
+                  <p>{groomer.about}</p>
                 </div>
               </div>
               <div className="panel">
@@ -78,7 +79,8 @@ const GroomerSearchResults = props => {
                 Hours
                 </Divider>
                 <div className="panel-info">
-                  <p>Hours will go here</p>
+                <p>Sunday:{groomer.hours['sunday']}
+               </p>
                 </div>
               </div>
               <button className="appt-button">Schedule Appointment</button>
