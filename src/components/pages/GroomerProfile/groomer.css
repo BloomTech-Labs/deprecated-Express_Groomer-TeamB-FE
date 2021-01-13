@@ -1,20 +1,25 @@
 .avatar{
     width: 75px;
     margin: 20px auto;
+    display: flex;
+    margin-right: 5%
+    
 }
 
 .customer-header{
     display: flex;
-    justify-content: space-between;
+    margin-right: 6%;
+    margin-left: 7%;
+    margin-top: 5%;
 }
 
 .heading{
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .customer-info-box {
     display: flex;
-
+    flex-wrap: wrap ;
 }
 
 .panel {
@@ -24,4 +29,11 @@
 
 .panel-info {
     padding: 0px 30%;
+}
+.appt-button {
+    width: 15%;
+    height: 20%;
+    font-size: 12px;
+    margin-top: 22%;
+    margin-left: 5%
 }
