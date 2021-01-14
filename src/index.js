@@ -11,6 +11,7 @@ import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
 import 'antd/dist/antd.less';
 import { NotFoundPage } from './components/pages/NotFound';
 import { CustDash } from './components/pages/CustomerDashboard';
+import { GroomerDash } from './components/pages/GroomerDashboard';
 import { HomePage } from './components/pages/Home';
 import { LoginPage } from './components/pages/Login';
 import { LandingPage } from './components/pages/Landing';
@@ -69,6 +70,7 @@ function App() {
           component={() => <HomePage LoadingComponent={LoadingComponent} />}
         />
         <SecureRoute path="/groomer-profile" component={GroomerProfilePage} />
+        <SecureRoute path="/groomer-dashboard" component={GroomerDash} />
         <SecureRoute path="/customer-dashboard" component={CustDash} />
         <SecureRoute path="/customer-profile" component={CustomerProfilePage} />
         <Route component={NotFoundPage} />
