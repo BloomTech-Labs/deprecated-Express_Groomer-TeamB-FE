@@ -11,7 +11,7 @@ import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 
 
-const GroomerSearchResults = props => {
+const GroomerPublicProfile = props => {
   const pathway = props.match.params.id;
   // context state
   const { groomer } = useContext(GroomersContext);
@@ -96,4 +96,4 @@ const GroomerSearchResults = props => {
   }
 };
 
-export default GroomerSearchResults;
+export default GroomerPublicProfile;

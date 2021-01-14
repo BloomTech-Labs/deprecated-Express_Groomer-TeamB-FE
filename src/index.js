@@ -20,7 +20,7 @@ import { GroomerProfilePage } from './components/pages/GroomerProfile';
 import NavBar from './components/navigation/navigation';
 import Searching from './components/pages/Search/RenderSearchPage';
 import { CustomerProfilePage } from './components/pages/CustomerProfile';
-import GroomerSearchResults from './components/pages/SearchResults/GroomerSearchResults';
+import GroomerPublicProfile from './components/pages/SearchResults/GroomerPublicProfile';
 // context import
 import { RootProvider } from './state/contexts/RootContext';
 
@@ -58,7 +58,7 @@ function App() {
         <Route path="/groomers/:id" component={GroomerProfilePage} />
         <Route
           path="/groomer-search-results/:id"
-          component={GroomerSearchResults}
+          component={GroomerPublicProfile}
         />
         {/* any of the routes you need secured should be registered as SecureRoutes */}
         <SecureRoute
