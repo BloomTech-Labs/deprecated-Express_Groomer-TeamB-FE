@@ -23,6 +23,9 @@ const GroomerPublicProfile = props => {
   }, [pathway]);
 
   if (groomer) {
+    const hop = groomer.hours
+    const hopObj = JSON.parse(hop);
+    console.log(hopObj)
     return (
       <div className="groomer-public-box">
         <Layout.Content
@@ -77,8 +80,13 @@ const GroomerPublicProfile = props => {
                 Hours
                 </Divider>
                 <div className="panel-info">
-                  <p>Hours Here
-                </p>
+                Sunday: {hopObj["sunday"] || "n/a"}<br/>
+                Monday: {hopObj["monday"]}<br/>
+                Tuesday: {hopObj["tuesday"]}<br/>
+                Wednesday: {hopObj["wednesday"]}<br/>
+                Thursday: {hopObj["thursday"]}<br/>
+                Friday: {hopObj["friday"]}<br/>
+                Saturday: {hopObj["saturday"]}<br/>
                 </div>
               </div>
               <button className="appt-button">Schedule Appointment</button>
