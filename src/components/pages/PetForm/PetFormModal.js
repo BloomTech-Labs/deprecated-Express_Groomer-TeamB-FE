@@ -9,8 +9,8 @@ const PetFormModal = () => {
 
   // context state
   const {
-    visible,
-    setVisible,
+    petFormVisible,
+    setPetFormVisible,
     loading,
     setLoading,
     onPetFormFinishFailed,
@@ -22,11 +22,11 @@ const PetFormModal = () => {
   // modal specific functions
   const showModal = () => {
     setLoading(false);
-    setVisible(true);
+    setPetFormVisible(true);
   };
 
   const handleCancel = () => {
-    setVisible(false);
+    setPetFormVisible(false);
   };
 
   // this function will be used to handle pet form submit
@@ -34,7 +34,7 @@ const PetFormModal = () => {
     setLoading(true);
     await addNewPet(authState, values);
     await setTimeout(() => {
-      setVisible(false);
+      setPetFormVisible(false);
     }, 2000);
   };
 
@@ -46,7 +46,7 @@ const PetFormModal = () => {
       <Modal
         okButtonProps={{ form: 'pet-form', key: 'submit', htmlType: 'submit' }}
         title="Pet Information"
-        visible={visible}
+        visible={petFormVisible}
         confirmLoading={loading}
         onCancel={handleCancel}
       >
