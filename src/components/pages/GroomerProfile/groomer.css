@@ -1,8 +1,11 @@
 .avatar{
-    width: 75px;
+    width: 30%;
     margin: 20px auto;
     display: flex;
-    margin-right: 5%
+    flex-direction: column;
+    margin-right: 5%;
+    font-size: 4vh;
+    align-items: center;
     
 }
 

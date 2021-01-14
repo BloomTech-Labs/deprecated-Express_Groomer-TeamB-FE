@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import '../GroomerProfile/groomer.css';
 import Services from '../GroomerProfile/ServicesArea';
 import './GroomerPublicProfile.scss'
+import { Rate } from 'antd';
 // context imports
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
@@ -34,16 +35,13 @@ const GroomerSearchResults = props => {
         >
 
           <div className="customer-header">
-            <p className="heading"> {groomer.given_name} </p>
+            <p className="heading">{groomer.business_name}</p>
             <div className="rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
+            <Rate />
             </div>
             <div className="avatar">
             <Avatar size={74} icon={<UserOutlined />} />
+            <p> {groomer.given_name} {groomer.family_name} </p>
           </div>
           </div>
           <div className="customer-info-box">
@@ -79,8 +77,8 @@ const GroomerSearchResults = props => {
                 Hours
                 </Divider>
                 <div className="panel-info">
-                <p>Sunday:{groomer.hours['sunday']}
-               </p>
+                  <p>Hours Here
+                </p>
                 </div>
               </div>
               <button className="appt-button">Schedule Appointment</button>
