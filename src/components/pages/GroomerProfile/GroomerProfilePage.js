@@ -9,7 +9,6 @@ import Services from './ServicesArea';
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { FormContext } from '../../../state/contexts/FormContext';
-import RenderFormGR from '../ProfileFormGR/RenderFormGR';
 
 const GroomerProfilePage = () => {
   // context state
@@ -39,9 +38,6 @@ const GroomerProfilePage = () => {
               ? groomerInfo.given_name
               : userInfo.given_name}{' '}
           </p>
-          {/* TODO this form component will be moved to dashboard once it
-           is built */}
-          <RenderFormGR />
         </div>
         <div className="customer-info-box">
           <div className="panel">
