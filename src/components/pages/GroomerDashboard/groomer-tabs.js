@@ -3,8 +3,9 @@ import { Alert, Col, Form, Row, Tabs } from 'antd';
 import Overview from './overview';
 import GroomerProfilePage from '../GroomerProfile/GroomerProfilePage';
 import RenderFormGR from '../ProfileFormGR/RenderFormGR';
-import { FormContext } from '../../../state/contexts/FormContext';
 import './groomer-dash.scss';
+// context imports
+import { FormContext } from '../../../state/contexts/FormContext';
 
 const { TabPane } = Tabs;
 
