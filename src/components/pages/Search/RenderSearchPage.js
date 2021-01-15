@@ -3,15 +3,17 @@ import { SearchResults } from '../SearchResults/SearchResultsCard';
 import NoResults from '../SearchResults/NoResults';
 import 'antd/dist/antd.css';
 import './search.scss';
-import { Input } from 'antd';
+import { Button, Col, Input, Row } from 'antd';
 // context imports
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 import { FormContext } from '../../../state/contexts/FormContext';
+import { useHistory } from 'react-router-dom';
 
 const { Search } = Input;
 
 const Searching = () => {
+  const history = useHistory();
   //context state
   const { allGroomers, filteredGroomers, setFilteredGroomers } = useContext(
     GroomersContext
@@ -49,6 +51,16 @@ const Searching = () => {
           style={{ width: 500 }}
         />
       </div>
+      <Row justify={'center'} style={{ marginTop: '20px' }}>
+        <Col>-- OR --</Col>
+      </Row>
+      <Row justify={'center'} className={'map-button'}>
+        <Col>
+          <Button type={'primary'} onClick={() => history.push('/groomer-map')}>
+            Find Groomers Near Me
+          </Button>
+        </Col>
+      </Row>
       <div className="card-container">
         {filteredGroomers.length > 0 ? (
           filteredGroomers.map((groomer, index) => {
