@@ -16,6 +16,13 @@ const GroomerProfilePage = () => {
   const { groomerInfo } = useContext(GroomersContext);
   const { showForm, toggleForm } = useContext(FormContext);
 
+  useEffect(() => {
+    if (groomerInfo.hours) {
+      setHours(JSON.parse(groomerInfo.hours));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [groomerInfo]);
+
   return (
     <div>
       {showForm ? <ProfileFormGR /> : null}
