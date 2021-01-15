@@ -14,7 +14,6 @@
 
 .customer-info-box {
     display: flex;
-
 }
 
 .panel {
@@ -23,5 +22,5 @@
 }
 
 .panel-info {
-    padding: 0px 30%;
+    /*padding: 0px 30%;*/
 }
