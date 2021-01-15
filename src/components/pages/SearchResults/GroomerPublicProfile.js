@@ -16,6 +16,7 @@ const GroomerPublicProfile = props => {
   // context state
   const { groomer } = useContext(GroomersContext);
   const { getGroomerByID } = useContext(APIContext);
+  const defaulthours = "closed"
 
   useEffect(() => {
     getGroomerByID(pathway);
@@ -24,8 +25,16 @@ const GroomerPublicProfile = props => {
 
   if (groomer) {
     const hop = groomer.hours
-    const hopObj = JSON.parse(hop);
-    console.log(hopObj)
+    const objhop = JSON.parse(hop)
+    console.log(hop)
+    const sunday = objhop.sunday
+    const monday = objhop.monday
+    const tuesday = objhop.tuesday
+    const wednesday = objhop.wednseday
+    const thursday = objhop.thursday
+    const friday = objhop.friday
+    const saturday = objhop.saturday
+
     return (
       <div className="groomer-public-box">
         <Layout.Content
@@ -80,13 +89,13 @@ const GroomerPublicProfile = props => {
                 Hours
                 </Divider>
                 <div className="panel-info">
-                Sunday: {hopObj["sunday"] || "n/a"}<br/>
-                Monday: {hopObj["monday"]}<br/>
-                Tuesday: {hopObj["tuesday"]}<br/>
-                Wednesday: {hopObj["wednesday"]}<br/>
-                Thursday: {hopObj["thursday"]}<br/>
-                Friday: {hopObj["friday"]}<br/>
-                Saturday: {hopObj["saturday"]}<br/>
+                Sunday: {sunday.open} {sunday.close}<br/>
+                Monday: {sunday.open} {sunday.close}<br/>
+                Tuesday: {sunday.open} {sunday.close}<br/>
+                Wednesday: {sunday.open} {sunday.close}<br/>
+                Thursday: {sunday.open} {sunday.close}<br/>
+                Friday: {sunday.open} {sunday.close}<br/>
+                Saturday: {sunday.open} {sunday.close}<br/>
                 </div>
               </div>
               <button className="appt-button">Schedule Appointment</button>
