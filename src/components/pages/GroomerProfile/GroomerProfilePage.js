@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './groomer.css';
 import Services from './ServicesArea';
-// context imports
+// context imports below
 import { APIContext } from '../../../state/contexts/APIContext';
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
