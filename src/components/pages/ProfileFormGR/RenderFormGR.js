@@ -267,6 +267,14 @@ const RenderFormGR = () => {
               >
                 <Input />
               </Form.Item>
+              <Form.Item
+                label="Personal Calendly Scheduling Link"
+                name="personal_calendly_link"
+                rules={[{ required: true }]}
+                initialValue={groomerInfo.personal_calendly_link}
+              >
+                <Input />
+              </Form.Item>
 
               <Form.Item
                 label="About"
