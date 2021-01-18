@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 describe('Navigation tests', () => {
+
   it('Renders navigation and all its elements on initial page load', () => {
     cy.visit('http://localhost:3000/');
     // get the nav container
@@ -15,13 +16,15 @@ describe('Navigation tests', () => {
     cy.get('.groomer-one');
     cy.get('.groomer-two');
   });
-  it('Should have only two nav links visible on initial page load', () => {
+
+  it('Should only display two nav links on initial page load (no logged in user)', () => {
     // get nav links
     cy.get('.anchor:visible').should('have.length', 2);
     //  alternative method with parent child chaining
     cy.get('.nav-bar').find('.anchor').should('have.length', 2);
   });
-  it('Okta sign in widget should appear after clicking login button', () => {
+
+  it('Should display Okta sign in widget after clicking login button', () => {
     // get login link
     cy.get('[href="/login"]');
     //  alternative method with eq
@@ -29,8 +32,36 @@ describe('Navigation tests', () => {
     cy.get('.anchor:visible').eq(1).contains('Login').click();
     cy.get('#sign-in-widget');
   });
-    it('Okta sign in widget should disappear after clicking Info button', () => {
-    cy.get('.anchor:visible').eq(0).contains('Info').click();
-    cy.get('#sign-in-widget').should('not.exist');
+
+  it('Should display four nav links on page after a groomer logs in', () => {
+    cy.get('.anchor:visible').eq(1).contains('Login').click();
+    cy.get('#okta-signin-username').type('llama003@maildrop.cc');
+    cy.get('#okta-signin-password').type('Test003Test');
+    cy.get('#okta-signin-submit').click();
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(3000);
+    cy.get('.anchor').should('have.length', 4);
   });
+
+  it('Should display two nav links after groomer clicks logout', () => {
+    cy.get('.anchor:visible').eq(3).contains('Logout').click();
+    cy.get('.anchor').should('have.length', 2);
+  });
+
+  it('Should display four nav links on page after a customer logs in', () => {
+    cy.get('.anchor:visible').eq(1).contains('Login').click();
+    cy.get('#okta-signin-username').type('llama007@maildrop.cc');
+    cy.get('#okta-signin-password').type('Test007Test');
+    cy.get('#okta-signin-submit').click();
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(3000);
+    cy.get('.anchor').should('have.length', 4);
+  });
+
+  it('Should display two nav links after customer clicks logout', () => {
+    cy.get('.anchor:visible').eq(3).contains('Logout').click();
+    cy.get('.anchor').should('have.length', 2);
+  });
+//  TODO add tests to check for routing to info page after PR containing the
+//   nav changes has been merged
 });

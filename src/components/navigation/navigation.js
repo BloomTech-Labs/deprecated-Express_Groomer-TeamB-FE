@@ -77,7 +77,11 @@ function NavBar() {
           <Link className="anchor" to="/">
             Info
           </Link>
-          <Button type="primary" onClick={() => authService.logout()}>
+          <Button
+            type="primary"
+            className={'anchor'}
+            onClick={() => authService.logout()}
+          >
             Logout
           </Button>
         </nav>
@@ -103,7 +107,11 @@ function NavBar() {
           <Link className="anchor" to="/">
             Info
           </Link>
-          <Button type="primary" onClick={() => authService.logout()}>
+          <Button
+            type="primary"
+            className={'anchor'}
+            onClick={() => authService.logout()}
+          >
             Logout
           </Button>
         </nav>
