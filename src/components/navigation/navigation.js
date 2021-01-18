@@ -68,14 +68,14 @@ function NavBar() {
         </div>
 
         <nav className="nav-bar">
-          <Link className="anchor" to="/">
-            Home
-          </Link>
           <Link className="anchor" to="/groomer-dashboard">
             Dashboard
           </Link>
           <Link className="anchor" to="/Search">
             Search
+          </Link>
+          <Link className="anchor" to="/">
+            Info
           </Link>
           <Button type="primary" onClick={() => authService.logout()}>
             Logout
@@ -97,14 +97,11 @@ function NavBar() {
           <Link className="anchor" to="/customer-dashboard">
             Dashboard
           </Link>
-          <Link className="anchor" to="/">
-            Home
-          </Link>
-          <Link className="anchor" to="/dashboard">
-            Dashboard
-          </Link>
           <Link className="anchor" to="/Search">
             Search
+          </Link>
+          <Link className="anchor" to="/">
+            Info
           </Link>
           <Button type="primary" onClick={() => authService.logout()}>
             Logout
@@ -125,7 +122,7 @@ function NavBar() {
 
         <div className="nav-bar">
           <Link className="anchor" to="/">
-            Home
+            Info
           </Link>
           <Link className="anchor" to="/login">
             Login
