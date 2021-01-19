@@ -16,7 +16,6 @@ describe('Login tests', () => {
     cy.get('.checked');
   });
 
-
   it('Should only display forgot password and help links if need help' +
     ' signing in is clicked', () => {
     cy.get('.js-forgot-password').should('not.be.visible');
