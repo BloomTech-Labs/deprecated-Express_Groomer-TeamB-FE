@@ -66,7 +66,7 @@ const RenderFormGR = () => {
 
   useEffect(() => {
     getServices();
-    getGroomerServicesByID();
+    getGroomerServicesByID(authState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [servicesUpdated]);
 
@@ -94,7 +94,7 @@ const RenderFormGR = () => {
         authState,
         infoValues
       );
-      await getLoggedInGroomer();
+      await getLoggedInGroomer(authState);
     } else {
       putUserInfo(
         `${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`,

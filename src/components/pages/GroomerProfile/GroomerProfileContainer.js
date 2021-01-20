@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useContext } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import GroomerProfilePage from './GroomerProfilePage';
 // context imports
@@ -7,6 +7,7 @@ import { APIContext } from '../../../state/contexts/APIContext';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 
 const GroomerProfileContainer = () => {
+  const { authState } = useOktaAuth();
   //grabbing user info from okta for test purposes
   //all info could/should be grabbed by state if possible
   const { authService } = useOktaAuth();
@@ -39,7 +40,7 @@ const GroomerProfileContainer = () => {
 
   //getGroomer API call
   useEffect(() => {
-    getLoggedInGroomer();
+    getLoggedInGroomer(authState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo, updated]);
 
