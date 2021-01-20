@@ -3,17 +3,43 @@
   "env": {
     "browser": true,
     "node": true,
-    "jest": true
+    "cypress/globals": true,
+    "jest/globals": true,
+    "es6": true
   },
   "plugins": [
     // ...
-    "react-hooks"
+    "react-hooks",
+    "jest",
+    "cypress"
   ],
   "rules": {
     // ...
-    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error",
+    "react-hooks/rules-of-hooks": "error",
+    // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn",
+    // Checks effect dependencies
     "semi": "error"
   },
-  "extends": "react-app"
+  "extends": [
+    "react-app",
+    "plugin:jest/recommended",
+    "eslint:recommended",
+    "plugin:cypress/recommended",
+    "plugin:jest/recommended"
+  ],
+  "globals": {
+    "describe": true,
+    "it": true
+  }
 }

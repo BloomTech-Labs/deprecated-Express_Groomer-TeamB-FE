@@ -32,9 +32,9 @@ const RenderCustPro = () => {
 
         <div className="customer-header">
           <p className="heading">
-            Hello{' '}
-            {custInfo.given_name ? custInfo.given_name : userInfo.given_name}{' '}
-            Welcome to Express Groomer
+            {custInfo.given_name
+              ? `${custInfo.given_name} ${custInfo.family_name}`
+              : userInfo.given_name}{' '}
           </p>
         </div>
         <div className="customer-info-box">

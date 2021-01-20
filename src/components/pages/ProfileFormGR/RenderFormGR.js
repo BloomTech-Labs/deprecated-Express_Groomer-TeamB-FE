@@ -53,6 +53,7 @@ const RenderFormGR = () => {
     getServices,
     getGroomerServicesByID,
     postGroomerServices,
+    getLatLng,
   } = useContext(APIContext);
 
   // modal state specific to this components modals
@@ -70,12 +71,19 @@ const RenderFormGR = () => {
   }, [servicesUpdated]);
 
   const onGroomerInfoSubmit = async values => {
+    // TODO calculate lat & lng  from address and zip to add to the groomer info
+    const address = `${values.address}+${values.zip_code}`;
+    const latLng = await getLatLng(address);
+    console.log(latLng);
+
     setLoading(true);
     const hoursString = JSON.stringify(hours);
     //add in user id and hours
     const infoValues = {
       user_id: userInfo.sub,
       hours: hoursString,
+      lat: latLng[0],
+      lng: latLng[1],
       ...values,
     };
     //checking isRegistered and calling the API to either create or update
