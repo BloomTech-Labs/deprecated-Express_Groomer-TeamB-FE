@@ -120,7 +120,6 @@ function NavBar() {
       </div>
     );
   } else {
-    // ============================================================
     return (
       <div className="App-Nav">
         <div className="img-container">
