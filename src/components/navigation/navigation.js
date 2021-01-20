@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useContext } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { useOktaAuth } from '@okta/okta-react';
 import { Link } from 'react-router-dom';
 import './nav.scss';
@@ -68,6 +68,11 @@ function NavBar() {
         </div>
 
         <nav className="nav-bar">
+
+          <Link className="anchor" to="/info">
+            Info
+          </Link>
+
           <Link className="anchor" to="/groomer-dashboard">
             Dashboard
           </Link>
@@ -91,16 +96,22 @@ function NavBar() {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <div className="express-logo">
-            <span className="groomer-one">Express</span>{' '}
-            <span className="groomer-two">Groomer</span>
-          </div>
+          <Link className="anchor" to="/info">
+            <div className="express-logo">
+              <span className="groomer-one">Express</span>{' '}
+              <span className="groomer-two">Groomer</span>
+            </div>
+          </Link>
         </div>
 
         <nav className="nav-bar">
           <Link className="anchor" to="/customer-dashboard">
             Dashboard
           </Link>
+          <Link className="anchor" to="/info">
+            Info
+          </Link>
+
           <Link className="anchor" to="/Search">
             Search
           </Link>
@@ -122,14 +133,16 @@ function NavBar() {
     return (
       <div className="App-Nav">
         <div className="img-container">
-          <div className="express-logo">
-            <span className="groomer-one">Express</span>{' '}
-            <span className="groomer-two">Groomer</span>
-          </div>
+          <Link className="anchor" to="/info">
+            <div className="express-logo">
+              <span className="groomer-one">Express</span>{' '}
+              <span className="groomer-two">Groomer</span>
+            </div>
+          </Link>
         </div>
 
         <div className="nav-bar">
-          <Link className="anchor" to="/">
+          <Link className="anchor" to="/info">
             Info
           </Link>
           <Link className="anchor" to="/login">
