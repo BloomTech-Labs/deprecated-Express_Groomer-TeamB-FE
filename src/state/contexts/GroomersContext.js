@@ -32,7 +32,6 @@ const GroomersProvider = ({ children }) => {
     friday: 'closed',
     saturday: 'closed',
   };
-  const [hoursOfOpp, setHoursOfOpp] = useState(hoursTemp);
   const [hours, setHours] = useState(hoursTemp);
 
   //services
@@ -168,10 +167,8 @@ const GroomersProvider = ({ children }) => {
         groomerServices,
         setGroomerServices,
         hours,
-        hoursOfOpp,
         hoursTemp,
         setHours,
-        setHoursOfOpp,
         services,
         setServices,
         serviceToAdd,

@@ -22,6 +22,7 @@ import GroomerSearchResults from './components/pages/SearchResults/GroomerSearch
 // context import
 import { RootProvider } from './state/contexts/RootContext';
 import { AfterLogin } from './components/pages/AfterLogin';
+import { GroomerMap } from './components/pages/GroomerMap';
 
 ReactDOM.render(
   <Router>
@@ -56,6 +57,7 @@ function App() {
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/search" component={Searching} />
         <Route path="/groomers/:id" component={GroomerProfilePage} />
+        <Route path={'/groomer-map'} component={GroomerMap} />
         <Route
           path="/groomer-search-results/:id"
           component={GroomerSearchResults}

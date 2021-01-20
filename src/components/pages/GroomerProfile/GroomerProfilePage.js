@@ -1,21 +1,34 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ProfileFormGR } from '../ProfileFormGR';
-import { Layout, Avatar, Divider } from 'antd';
+import { Avatar, Divider, Layout } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import './groomer.css';
 import Services from './ServicesArea';
 // context imports
+import { APIContext } from '../../../state/contexts/APIContext';
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { FormContext } from '../../../state/contexts/FormContext';
-import RenderFormGR from '../ProfileFormGR/RenderFormGR';
 
 const GroomerProfilePage = () => {
   // context state
   const { userInfo } = useContext(UsersContext);
-  const { groomerInfo } = useContext(GroomersContext);
+  const { groomerInfo, setHours, hours } = useContext(GroomersContext);
   const { showForm } = useContext(FormContext);
+  const { getLoggedInGroomer } = useContext(APIContext);
+
+  useEffect(() => {
+    getLoggedInGroomer();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (groomerInfo.hours) {
+      setHours(JSON.parse(groomerInfo.hours));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [groomerInfo]);
 
   return (
     <div>
@@ -39,9 +52,6 @@ const GroomerProfilePage = () => {
               ? groomerInfo.given_name
               : userInfo.given_name}{' '}
           </p>
-          {/* TODO this form component will be moved to dashboard once it
-           is built */}
-          <RenderFormGR />
         </div>
         <div className="customer-info-box">
           <div className="panel">
@@ -98,6 +108,55 @@ const GroomerProfilePage = () => {
                 {groomerInfo.country
                   ? groomerInfo.country
                   : 'Update your profile'}
+              </p>
+            </div>
+          </div>
+          <div className="panel">
+            <Divider style={{ borderColor: 'lightblue' }}>
+              Hours of Operation
+            </Divider>
+            <div className="panel-info">
+              <p>
+                Monday:{' '}
+                {hours.monday.open
+                  ? `${hours.monday.open} - ${hours.monday.close}`
+                  : hours.monday}
+              </p>
+              <p>
+                Tuesday:{' '}
+                {hours.tuesday.open
+                  ? `${hours.tuesday.open} - ${hours.tuesday.close}`
+                  : hours.tuesday}
+              </p>
+              <p>
+                Wednesday:{' '}
+                {hours.wednesday.open
+                  ? `${hours.wednesday.open} - ${hours.wednesday.close}`
+                  : hours.wednesday}
+              </p>
+              <p>
+                Thursday:{' '}
+                {hours.thursday.open
+                  ? `${hours.thursday.open} - ${hours.thursday.close}`
+                  : hours.thursday}
+              </p>
+              <p>
+                Friday:{' '}
+                {hours.friday.open
+                  ? `${hours.friday.open} - ${hours.friday.close}`
+                  : hours.friday}
+              </p>
+              <p>
+                Saturday:{' '}
+                {hours.saturday.open
+                  ? `${hours.saturday.open} - ${hours.saturday.close}`
+                  : hours.saturday}
+              </p>
+              <p>
+                Sunday:{' '}
+                {hours.sunday.open
+                  ? `${hours.sunday.open} - ${hours.sunday.close}`
+                  : hours.sunday}
               </p>
             </div>
           </div>

@@ -1,7 +1,7 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import HoursSelector from './HoursSelector';
 import { useOktaAuth } from '@okta/okta-react';
-import { Form, Input, Button, Alert, Modal, Select, Row, Spin } from 'antd';
+import { Alert, Button, Form, Input, Modal, Row, Select, Spin } from 'antd';
 import 'antd/dist/antd.css';
 import './form.scss';
 // context imports
@@ -38,7 +38,6 @@ const RenderFormGR = () => {
   } = useContext(GroomersContext);
   const {
     onFailed,
-    resultInfo,
     showDelete,
     setShowDelete,
     visible,
@@ -54,6 +53,7 @@ const RenderFormGR = () => {
     getServices,
     getGroomerServicesByID,
     postGroomerServices,
+    getLatLng,
   } = useContext(APIContext);
 
   // modal state specific to this components modals
@@ -71,12 +71,19 @@ const RenderFormGR = () => {
   }, [servicesUpdated]);
 
   const onGroomerInfoSubmit = async values => {
+    // TODO calculate lat & lng  from address and zip to add to the groomer info
+    const address = `${values.address}+${values.zip_code}`;
+    const latLng = await getLatLng(address);
+    console.log(latLng);
+
     setLoading(true);
     const hoursString = JSON.stringify(hours);
     //add in user id and hours
     const infoValues = {
       user_id: userInfo.sub,
       hours: hoursString,
+      lat: latLng[0],
+      lng: latLng[1],
       ...values,
     };
     //checking isRegistered and calling the API to either create or update
@@ -154,7 +161,11 @@ const RenderFormGR = () => {
 
   return (
     <>
-      <Button type="primary" onClick={showGroomerProfileModal}>
+      <Button
+        type="primary"
+        onClick={showGroomerProfileModal}
+        className={'form-button'}
+      >
         Update Profile
       </Button>
       <Modal
@@ -287,18 +298,6 @@ const RenderFormGR = () => {
                   </Button>
                 ) : null}
               </Form.Item>
-              {/* When form is submited this alert will show success or error message */}
-              {/* TODO this will need to be refactored to the dashboard tab
-               once groomer dashboard is ready */}
-              {resultInfo.message !== null ? (
-                <Form.Item>
-                  <Alert
-                    message={resultInfo.message}
-                    type={resultInfo.type}
-                    showIcon
-                  />
-                </Form.Item>
-              ) : null}
 
               <Modal
                 title="Are you sure you want to delete your profile?"
@@ -326,7 +325,11 @@ const RenderFormGR = () => {
           </>
         )}
       </Modal>
-      <Button type="primary" onClick={showGroomerHoursModal}>
+      <Button
+        type="primary"
+        onClick={showGroomerHoursModal}
+        className={'form-button'}
+      >
         Update Hours
       </Button>
       <Modal
@@ -371,7 +374,11 @@ const RenderFormGR = () => {
           </>
         )}
       </Modal>
-      <Button type="primary" onClick={showGroomerServicesModal}>
+      <Button
+        type="primary"
+        onClick={showGroomerServicesModal}
+        className={'form-button'}
+      >
         Add Services
       </Button>
       <Modal
