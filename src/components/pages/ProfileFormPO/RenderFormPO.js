@@ -20,8 +20,8 @@ const RenderFormPO = () => {
     onFailed,
     showDelete,
     setShowDelete,
-    visible,
-    setVisible,
+    custFormVisible,
+    setCustFormVisible,
     loading,
     setLoading,
   } = useContext(FormContext);
@@ -58,7 +58,7 @@ const RenderFormPO = () => {
     }
     setUpdated(!updated);
     await setTimeout(() => {
-      setVisible(false);
+      setCustFormVisible(false);
     }, 2000);
   };
 
@@ -66,11 +66,11 @@ const RenderFormPO = () => {
   const showModal = () => {
     getCustomerByID(authState);
     setLoading(false);
-    setVisible(true);
+    setCustFormVisible(true);
   };
 
   const handleCancel = () => {
-    setVisible(false);
+    setCustFormVisible(false);
   };
 
   return (
@@ -85,7 +85,7 @@ const RenderFormPO = () => {
           htmlType: 'submit',
         }}
         title="Customer Information"
-        visible={visible}
+        visible={custFormVisible}
         confirmLoading={loading}
         onCancel={handleCancel}
       >

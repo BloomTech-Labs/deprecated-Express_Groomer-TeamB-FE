@@ -111,6 +111,15 @@ const APIProvider = ({ children }) => {
 
   //Various GET (auth) API calls
 
+  const getLatLng = async address => {
+    const formatted_address = address.split(' ').join('+');
+    const res = await axios.get(
+      `https://nominatim.openstreetmap.org/?q=${formatted_address}&format=json`
+    );
+    const latLng = [res.data[0].lat, res.data[0].lon];
+    return latLng;
+  };
+
   const getProfileData = authState => {
     try {
       return apiAuthGet(getAuthHeader(authState)).then(
@@ -321,6 +330,7 @@ const APIProvider = ({ children }) => {
         deleteProfile,
         addNewPet,
         getServices,
+        getLatLng,
       }}
     >
       {children}
