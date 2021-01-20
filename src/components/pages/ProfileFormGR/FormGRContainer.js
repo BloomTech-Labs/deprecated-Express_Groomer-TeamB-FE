@@ -27,7 +27,6 @@ const FormGRContainer = () => {
 
   useEffect(() => {
     if (groomerInfo.hours) {
-      // setHoursOfOpp(JSON.parse(groomerInfo.hours));
       setHours(JSON.parse(groomerInfo.hours));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

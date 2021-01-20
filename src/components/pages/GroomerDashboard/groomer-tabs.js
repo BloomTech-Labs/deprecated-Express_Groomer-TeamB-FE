@@ -1,77 +1,85 @@
-import { Tabs, Row } from 'antd';
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { Alert, Col, Form, Row, Tabs } from 'antd';
 import Overview from './overview';
 import GroomerProfilePage from '../GroomerProfile/GroomerProfilePage';
-import { ProfileFormGR } from '../ProfileFormGR';
+import RenderFormGR from '../ProfileFormGR/RenderFormGR';
+import './groomer-dash.scss';
+// context imports
+import { FormContext } from '../../../state/contexts/FormContext';
 
 const { TabPane } = Tabs;
 
-class GroomerTab extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mode: 'left',
-    };
-  }
+const GroomerTab = () => {
+  const { resultInfo } = useContext(FormContext);
+  const [mode] = useState('left');
 
-  handleModeChange = e => {
-    const mode = e.target.value;
-    this.setState({ mode });
-  };
-
-  render() {
-    const { mode } = this.state;
-    return (
-      <div>
-        <Tabs
-          defaultActiveKey="0"
-          tabPosition={mode}
-          style={{ height: '100%', marginLeft: '5%' }}
+  return (
+    <div>
+      <Tabs
+        defaultActiveKey="0"
+        tabPosition={mode}
+        style={{ height: '100%', marginLeft: '5%' }}
+      >
+        <TabPane
+          style={{ fontSize: '16px' }}
+          tab={
+            <span>
+              <i className="fas fa-paw"></i> Overview
+            </span>
+          }
+          key="0"
         >
-          <TabPane
-            style={{ fontSize: '16px' }}
-            tab={
-              <span>
-                <i className="fas fa-paw"></i> Overview
-              </span>
-            }
-            key="0"
-          >
-            <Overview />
-          </TabPane>
-          <TabPane
-            tab={
-              <span>
-                <i className="fas fa-paw"></i> My Info
-              </span>
-            }
-            key="1"
-          >
-            <GroomerProfilePage />
-          </TabPane>
+          <Overview />
+        </TabPane>
+        <TabPane
+          tab={
+            <span>
+              <i className="fas fa-paw"></i> My Info
+            </span>
+          }
+          key="1"
+        >
+          <Row justify={'center'}>
+            <Col>
+              <RenderFormGR />
+            </Col>
+          </Row>
+          <Row justify={'center'} className={'alert-row'}>
+            {resultInfo.message !== null ? (
+              <Form.Item>
+                <Alert
+                  message={resultInfo.message}
+                  type={resultInfo.type}
+                  showIcon
+                  className={'alert'}
+                />
+              </Form.Item>
+            ) : null}
+          </Row>
+          <GroomerProfilePage />
+        </TabPane>
 
-          <TabPane
-            tab={
-              <span>
-                <i className="fas fa-paw"></i> Payments
-              </span>
-            }
-            key="2"
-          ></TabPane>
-          <TabPane
-            tab={
-              <span>
-                <i className="fas fa-paw"></i> Appointments
-              </span>
-            }
-            key="3"
-          >
-            Appointments
-          </TabPane>
-        </Tabs>
-      </div>
-    );
-  }
-}
+        <TabPane
+          tab={
+            <span>
+              <i className="fas fa-paw"></i> Payments
+            </span>
+          }
+          key="2"
+        ></TabPane>
+        <TabPane
+          tab={
+            <span>
+              <i className="fas fa-paw"></i> Appointments
+            </span>
+          }
+          key="3"
+        >
+          Appointments
+        </TabPane>
+      </Tabs>
+    </div>
+  );
+};
 
 export default GroomerTab;
