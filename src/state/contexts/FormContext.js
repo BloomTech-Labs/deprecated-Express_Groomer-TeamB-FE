@@ -10,7 +10,8 @@ const FormProvider = ({ children }) => {
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(false);
-  const [visible, setVisible] = useState(false);
+  const [petFormVisible, setPetFormVisible] = useState(false);
+  const [custFormVisible, setCustFormVisible] = useState(false);
   //for result message on submitting form
   const [resultInfo, setResultInfo] = useState({ message: null, type: null });
   //for delete modal
@@ -52,9 +53,11 @@ const FormProvider = ({ children }) => {
         setSearchValue,
         loading,
         setLoading,
-        visible,
-        setVisible,
         value,
+        petFormVisible,
+        setPetFormVisible,
+        custFormVisible,
+        setCustFormVisible,
         toggleForm,
         onFailed,
         onPetFormFinishFailed,
