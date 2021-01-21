@@ -33,6 +33,13 @@ const GroomerProfilePage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [groomerInfo]);
 
+  useEffect(() => {
+    if (groomerInfo.hours) {
+      setHours(JSON.parse(groomerInfo.hours));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [groomerInfo]);
+
   return (
     <div>
       {showForm ? <ProfileFormGR /> : null}
