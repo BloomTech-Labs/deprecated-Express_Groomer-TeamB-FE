@@ -22,11 +22,11 @@
 
 .customer-info-box {
     display: flex;
-    flex-wrap: wrap ;
+    flex-direction: column;
 }
 
 .panel {
-    width: 50%;
+    /*width: 50%;*/
     margin-right: 30px;
 }
 
@@ -38,5 +38,6 @@
     height: 20%;
     font-size: 12px;
     margin-top: 22%;
-    margin-left: 5%
+    margin-left: 5%;
+    margin-right: 5%;
 }

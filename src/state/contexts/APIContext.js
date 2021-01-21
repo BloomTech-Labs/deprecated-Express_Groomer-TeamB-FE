@@ -48,23 +48,12 @@ const APIProvider = ({ children }) => {
       .then(response => response.data);
   };
 
-  //resusable GET functions (auth not required)
+  //reusable GET functions (auth not required)
   const getGroomerServicesByID = () => {
     return axios
       .get(`${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}`)
       .then(res => {
         setGroomerServices(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const getGroomerServices = () => {
-    return axios
-      .get(`${process.env.REACT_APP_API_URI}/groomer_services`)
-      .then(res => {
-        setServices(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -121,6 +110,15 @@ const APIProvider = ({ children }) => {
   };
 
   //Various GET (auth) API calls
+
+  const getLatLng = async address => {
+    const formatted_address = address.split(' ').join('+');
+    const res = await axios.get(
+      `https://nominatim.openstreetmap.org/?q=${formatted_address}&format=json`
+    );
+    const latLng = [res.data[0].lat, res.data[0].lon];
+    return latLng;
+  };
 
   const getProfileData = authState => {
     try {
@@ -191,7 +189,7 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  const putUserInfo = (url, authState, infoValues) => {
+  const putUserInfo = async (url, authState, infoValues) => {
     const headers = getAuthHeader(authState);
     if (!url) {
       throw new Error('No URL provided');
@@ -200,6 +198,11 @@ const APIProvider = ({ children }) => {
       .put(url, infoValues, { headers })
       .then(res => {
         setResultInfo({ message: res.data.message, type: 'success' });
+      })
+      .then(() => {
+        setTimeout(() => {
+          setResultInfo({ message: null, type: null });
+        }, 3000);
       })
       .catch(err => {
         setResultInfo({ message: err.message, type: 'error' });
@@ -245,7 +248,6 @@ const APIProvider = ({ children }) => {
 
   const editGroomerServices = (authState, price) => {
     const headers = getAuthHeader(authState);
-
     return axios
       .put(
         `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}?service=${service.id}`,
@@ -259,6 +261,7 @@ const APIProvider = ({ children }) => {
         setIsError(true);
       });
   };
+
   const deleteService = (authState, service) => {
     const headers = getAuthHeader(authState);
 
@@ -273,6 +276,18 @@ const APIProvider = ({ children }) => {
       })
       .catch(err => {
         setIsError(true);
+      });
+  };
+
+  // API call to get all services
+  const getServices = () => {
+    return axios
+      .get(`${process.env.REACT_APP_API_URI}/services`)
+      .then(res => {
+        setServices(res.data);
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
@@ -300,7 +315,6 @@ const APIProvider = ({ children }) => {
       value={{
         sleep,
         getGroomerServicesByID,
-        getGroomerServices,
         getGroomers,
         getGroomerByID,
         getLoggedInGroomer,
@@ -315,6 +329,8 @@ const APIProvider = ({ children }) => {
         deleteService,
         deleteProfile,
         addNewPet,
+        getServices,
+        getLatLng,
       }}
     >
       {children}

@@ -1,18 +1,17 @@
-import { Alert, Row, Tabs } from 'antd';
 import React, { useContext, useState } from 'react';
+import { Alert, Col, Form, Row, Tabs } from 'antd';
 import Overview from './overview';
-import CustomerProfilePage from '../CustomerProfile/CustProContainer';
-import { ProfileFormPO } from '../ProfileFormPO';
-import { PetForm } from '../PetForm';
+import GroomerProfilePage from '../GroomerProfile/GroomerProfilePage';
+import RenderFormGR from '../ProfileFormGR/RenderFormGR';
+import './groomer-dash.scss';
 // context imports
 import { FormContext } from '../../../state/contexts/FormContext';
 
 const { TabPane } = Tabs;
 
-const CustTab = () => {
-  const [mode] = useState('left');
-  // context state
+const GroomerTab = () => {
   const { resultInfo } = useContext(FormContext);
+  const [mode] = useState('left');
 
   return (
     <div>
@@ -35,41 +34,39 @@ const CustTab = () => {
         <TabPane
           tab={
             <span>
-              <i className="fas fa-paw"></i>
-              My Info
+              <i className="fas fa-paw"></i> My Info
             </span>
           }
           key="1"
         >
           <Row justify={'center'}>
-            <ProfileFormPO />
+            <Col>
+              <RenderFormGR />
+            </Col>
           </Row>
-          <Row justify={'center'} style={{ height: '60px' }}>
+          <Row justify={'center'} className={'alert-row'}>
             {resultInfo.message !== null ? (
-              <Alert
-                message={resultInfo.message}
-                type={resultInfo.type}
-                showIcon
-                style={{ marginTop: '20px', height: '40px' }}
-              />
+              <Form.Item>
+                <Alert
+                  message={resultInfo.message}
+                  type={resultInfo.type}
+                  showIcon
+                  className={'alert'}
+                />
+              </Form.Item>
             ) : null}
           </Row>
-          <CustomerProfilePage />
+          <GroomerProfilePage />
         </TabPane>
+
         <TabPane
           tab={
             <span>
-              <i className="fas fa-paw"></i> My Pets
+              <i className="fas fa-paw"></i> Payments
             </span>
           }
           key="2"
-        >
-          {/* Pet form is placed inside a row component for easy center
-             alignment*/}
-          <Row justify={'center'}>
-            <PetForm />
-          </Row>
-        </TabPane>
+        ></TabPane>
         <TabPane
           tab={
             <span>
@@ -80,19 +77,9 @@ const CustTab = () => {
         >
           Appointments
         </TabPane>
-        <TabPane
-          tab={
-            <span>
-              <i className="fas fa-paw"></i> Search Groomers
-            </span>
-          }
-          key="4"
-        >
-          Search Groomers
-        </TabPane>
       </Tabs>
     </div>
   );
 };
 
-export default CustTab;
+export default GroomerTab;

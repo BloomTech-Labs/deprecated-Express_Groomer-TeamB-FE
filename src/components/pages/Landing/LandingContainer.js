@@ -6,6 +6,8 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 1rem;
+  margin-top: 50px;
+  margin-bottom: 50px;
 `;
 
 const Title = styled.div`
@@ -63,7 +65,17 @@ const Section = styled.div`
   width: 85%;
   margin-top: 30px;
   height: 650px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+`;
+
+const Row = styled.div`
+  width: 33%;
+  padding: 20px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-left: 10px;
 `;
 
 const CenterDiv = styled.div`
@@ -88,6 +100,11 @@ const Button = styled.button`
   outline: none;
 `;
 
+const Blue = styled.span`
+  color: #1ea7fd;
+  font-weight: 900;
+`;
+
 const SpacedDiv = styled.div`
   display: flex;
   justify-content: space-between;
@@ -104,6 +121,7 @@ const BlueExpress = styled.span`
 
 const Footer = styled.footer`
   border-top: 10px solid #1ea7fd;
+  background-color: #15699e;
   height: 265px;
   display: flex;
   justify-content: space-around;
@@ -140,8 +158,6 @@ const FooterTitles = styled.span`
 const FooterSect = styled.div`
   display: flex;
   flex-direction: column;
-  /* margin-left: 20px;
-margin-right: 20px; */
   color: white;
   font-size: 1.1rem;
 `;
@@ -163,6 +179,37 @@ const GroomerImg = styled.img`
 
 const Spacing = styled.div`
   margin-bottom: 5px;
+`;
+
+const Caption = styled.div`
+  margin: 15px;
+  margin-left: 45px;
+  margin-right: 45px;
+`;
+
+const Poodle = styled.img`
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
+`;
+
+const SpacingLeft = styled.div`
+  margin: 25px;
+  margin-bottom: 10px;
+  color: #1ea7fd;
+  font-weight: 900;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row;
+`;
+
+const SpacingRight = styled.div`
+  margin: 25px;
+  color: #1ea7fd;
+  font-weight: 900;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: row-reverse;
 `;
 
 const LandingContainer = () => {
@@ -204,23 +251,92 @@ const LandingContainer = () => {
 
       <Container>
         <Section>
+          <SpacingLeft>Spend less time on grooming...</SpacingLeft>
+          <CenterDiv>
+            <Row>
+              <SecondTitle>Why Wait?</SecondTitle>
+              <MediumPara>
+                Appointments at a National Chain Salon can take up to 3 hours.
+              </MediumPara>
+              <div>
+                Most of that time spent waiting in a crate, surrounded by
+                unfamiliar pets and strange noises - then being handled by a
+                stranger. With Express Groomer the average appointment lasts
+                only 90 minutes - most of that time being spent 1 on 1 with a
+                Groomer who can become a familiar face.
+              </div>
+            </Row>
+
+            <Row>
+              <Poodle
+                src={require('./images/poodle.jpg')}
+                alt="poodle"
+              ></Poodle>
+            </Row>
+
+            <Row>
+              <SecondTitle>Sensitive Skin?</SecondTitle>
+              <MediumPara>
+                Commercial shampoos contain harsh sulfates that strip your pet's
+                coat of its delicate oils.
+              </MediumPara>
+              <div>
+                Our Groomers only use shampoos from a pre-approved list of
+                products containing natural, moisturizing ingredients that are
+                sure to leave your pet with a shiny soft coat. No harsh
+                chemicals needed!
+              </div>
+            </Row>
+          </CenterDiv>
+          <SpacingRight>...and more time with your pets</SpacingRight>
+        </Section>
+      </Container>
+
+      <Container>
+        <Section>
           <CenterDiv>
             <SectionOne>
               <GroomerImg
                 src={require('./images/groomer.jpg')}
                 alt="groomer"
               ></GroomerImg>
+              <Caption>
+                All of our Groomers are state certified and licensed, so you
+                know your pets are in good hands.
+              </Caption>
             </SectionOne>
 
             <SectionTwo>
               <SecondTitle>We Love Groomers</SecondTitle>
+              <MediumPara>
+                Whether you're looking to get extra income or start a Freelance
+                career, turn your passion for pets into extra income!
+              </MediumPara>
+              <ul>
+                <li>Make your own hours</li>
+                <li>Schedule at your convience</li>
+                <li>Work as little or as much as you like</li>
+                <li>You decide which appointments to accept</li>
+                <li>
+                  Our client rating system lets you pick the clients right for
+                  you
+                </li>
+              </ul>
+              <p>
+                Becoming a Groomer with Express Groomer is Easy! Just upload a
+                copy of your Groomer's License and ID and one of our
+                representitives will reach out for a brief chat.
+              </p>
+              <p>Earn a $500 bonus after your first 100 appointments</p>
+              <SpacedDiv>
+                <MediumPara>
+                  Interested in Grooming but don't have experience? You may be
+                  eligible for our <Blue>New Trainee Program</Blue>
+                </MediumPara>
+              </SpacedDiv>
             </SectionTwo>
           </CenterDiv>
         </Section>
-      </Container>
-
-      <Container>
-        <Section>Section 3</Section>
       </Container>
 
       <Footer>

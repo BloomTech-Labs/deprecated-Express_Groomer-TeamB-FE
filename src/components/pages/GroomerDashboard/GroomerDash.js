@@ -1,13 +1,13 @@
 import React from 'react';
-import './cust-dash.scss';
-import CustTab from './cust-tabs';
+import './groomer-dash.scss';
+import GroomerTab from './groomer-tabs';
 
-export default function CustomerDashboard() {
+export default function GroomerDash() {
   return (
     <div className="tab-bar">
       <h1 className="dashboard">Dashboard</h1>
       <div id="tabs">
-        <CustTab />
+        <GroomerTab />
       </div>
     </div>
   );

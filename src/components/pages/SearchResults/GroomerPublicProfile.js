@@ -16,24 +16,21 @@ const GroomerPublicProfile = props => {
   // context state
   const { groomer } = useContext(GroomersContext);
   const { getGroomerByID } = useContext(APIContext);
-  const defaulthours = "closed"
+
+  console.log(getGroomerByID)
+  
 
   useEffect(() => {
     getGroomerByID(pathway);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathway]);
 
+
+
   if (groomer) {
-    const hop = groomer.hours
-    const objhop = JSON.parse(hop)
-    console.log(hop)
-    const sunday = objhop.sunday
-    const monday = objhop.monday
-    const tuesday = objhop.tuesday
-    const wednesday = objhop.wednseday
-    const thursday = objhop.thursday
-    const friday = objhop.friday
-    const saturday = objhop.saturday
+    var groomerHours = JSON.parse(groomer.hours)
+    console.log(groomerHours)
+    
 
     return (
       <div className="groomer-public-box">
@@ -89,13 +86,13 @@ const GroomerPublicProfile = props => {
                 Hours
                 </Divider>
                 <div className="panel-info">
-                Sunday: {sunday.open} {sunday.close}<br/>
-                Monday: {sunday.open} {sunday.close}<br/>
-                Tuesday: {sunday.open} {sunday.close}<br/>
-                Wednesday: {sunday.open} {sunday.close}<br/>
-                Thursday: {sunday.open} {sunday.close}<br/>
-                Friday: {sunday.open} {sunday.close}<br/>
-                Saturday: {sunday.open} {sunday.close}<br/>
+                <p>Sunday: {groomerHours.sunday.open} - {groomerHours.sunday.close}</p>
+                <p>Monday: {groomerHours.monday.open} - {groomerHours.monday.close}</p>
+                <p>Tuesday: {groomerHours.tuesday.open} - {groomerHours.tuesday.close}</p>
+                <p>Wednesday: {groomerHours.wednesday.open} - {groomerHours.wednesday.close}</p>
+                <p>Thurday: {groomerHours.thursday.open} - {groomerHours.thursday.close}</p>
+                <p>Friday: {groomerHours.friday.open} - {groomerHours.friday.close}</p>
+                <p>Saturday: {groomerHours.saturday.open} - {groomerHours.saturday.close}</p>
                 </div>
               </div>
               <button className="appt-button">Schedule Appointment</button>
