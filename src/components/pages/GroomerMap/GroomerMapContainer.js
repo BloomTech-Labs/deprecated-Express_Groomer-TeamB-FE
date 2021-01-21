@@ -6,8 +6,10 @@ import { Button, Col, Row } from 'antd';
 import { ScissorOutlined } from '@ant-design/icons';
 import './GroomerMap.css';
 import { useHistory } from 'react-router-dom';
+import { useOktaAuth } from '@okta/okta-react';
 
 const GroomerMap = () => {
+  const { authState } = useOktaAuth();
   const history = useHistory();
   const { allGroomers } = useContext(GroomersContext);
   const { getGroomers } = useContext(APIContext);
@@ -22,7 +24,7 @@ const GroomerMap = () => {
   });
 
   useEffect(() => {
-    getGroomers();
+    getGroomers(authState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

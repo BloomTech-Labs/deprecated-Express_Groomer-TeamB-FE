@@ -5,8 +5,11 @@ import RenderFormGR from './RenderFormGR';
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
+import { useOktaAuth } from '@okta/okta-react';
 
 const FormGRContainer = () => {
+  const { authState } = useOktaAuth();
+
   // context state
   const { userInfo } = useContext(UsersContext);
   const { groomerInfo, setHours } = useContext(GroomersContext);
@@ -18,10 +21,10 @@ const FormGRContainer = () => {
 
   useEffect(() => {
     if (userInfo) {
-      getGroomerServicesByID();
-      getLoggedInGroomer();
+      getGroomerServicesByID(authState);
+      getLoggedInGroomer(authState);
     }
-    getGroomerServices();
+    getGroomerServices(authState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo, groomerInfo]);
 

@@ -49,9 +49,16 @@ const APIProvider = ({ children }) => {
   };
 
   //reusable GET functions (auth not required)
-  const getGroomerServicesByID = () => {
+  const getGroomerServicesByID = authState => {
+    const headers = getAuthHeader(authState);
+
     return axios
-      .get(`${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}`)
+      .get(
+        `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}`,
+        {
+          headers,
+        }
+      )
       .then(res => {
         setGroomerServices(res.data);
       })
@@ -60,9 +67,12 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  const getGroomers = () => {
+  const getGroomers = authState => {
+    const headers = getAuthHeader(authState);
     return axios
-      .get(`${process.env.REACT_APP_API_URI}/groomers`)
+      .get(`${process.env.REACT_APP_API_URI}/groomers`, {
+        headers,
+      })
       .then(res => {
         setAllGroomers(res.data);
       })
@@ -82,9 +92,13 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  const getLoggedInGroomer = () => {
+  const getLoggedInGroomer = authState => {
+    const headers = getAuthHeader(authState);
+
     return axios
-      .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`)
+      .get(`${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`, {
+        headers,
+      })
       .then(res => {
         if (res.data) {
           setGroomerInfo(res.data);
