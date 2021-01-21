@@ -49,16 +49,9 @@ const APIProvider = ({ children }) => {
   };
 
   //reusable GET functions (auth not required)
-  const getGroomerServicesByID = authState => {
-    const headers = getAuthHeader(authState);
-
+  const getGroomerServicesByID = id => {
     return axios
-      .get(
-        `${process.env.REACT_APP_API_URI}/groomer_services/${userInfo.sub}`,
-        {
-          headers,
-        }
-      )
+      .get(`${process.env.REACT_APP_API_URI}/groomer_services/${id}`)
       .then(res => {
         setGroomerServices(res.data);
       })

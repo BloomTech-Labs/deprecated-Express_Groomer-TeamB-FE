@@ -21,7 +21,7 @@ const FormGRContainer = () => {
 
   useEffect(() => {
     if (userInfo) {
-      getGroomerServicesByID(authState);
+      getGroomerServicesByID(userInfo.sub);
       getLoggedInGroomer(authState);
     }
     getGroomerServices(authState);
