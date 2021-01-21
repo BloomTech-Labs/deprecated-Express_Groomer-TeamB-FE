@@ -30,6 +30,16 @@ const GroomerPublicProfile = props => {
   if (groomer) {
     var groomerHours = JSON.parse(groomer.hours)
     console.log(groomerHours)
+
+    if (groomerHours === null) {
+      groomerHours = {sunday: {open:'CLOSED', close:""},
+      monday: {open:'CLOSED', close:""},
+      tuesday: {open:'CLOSED', close:""},
+      wednesday: {open:'CLOSED', close:""},
+      thursday: {open:'CLOSED', close:""},
+      friday: {open:'CLOSED', close:""},
+      saturday: {open:'CLOSED', close:""}}
+    }
     
 
     return (
@@ -86,13 +96,13 @@ const GroomerPublicProfile = props => {
                 Hours
                 </Divider>
                 <div className="panel-info">
-                <p>Sunday: {groomerHours.sunday.open} - {groomerHours.sunday.close}</p>
-                <p>Monday: {groomerHours.monday.open} - {groomerHours.monday.close}</p>
-                <p>Tuesday: {groomerHours.tuesday.open} - {groomerHours.tuesday.close}</p>
-                <p>Wednesday: {groomerHours.wednesday.open} - {groomerHours.wednesday.close}</p>
-                <p>Thurday: {groomerHours.thursday.open} - {groomerHours.thursday.close}</p>
-                <p>Friday: {groomerHours.friday.open} - {groomerHours.friday.close}</p>
-                <p>Saturday: {groomerHours.saturday.open} - {groomerHours.saturday.close}</p>
+                <p>Sunday: {groomerHours.sunday.open}  {groomerHours.sunday.close}</p>
+                <p>Monday: {groomerHours.monday.open}  {groomerHours.monday.close}</p>
+                <p>Tuesday: {groomerHours.tuesday.open}  {groomerHours.tuesday.close}</p>
+                <p>Wednesday: {groomerHours.wednesday.open}  {groomerHours.wednesday.close}</p>
+                <p>Thurday: {groomerHours.thursday.open}  {groomerHours.thursday.close}</p>
+                <p>Friday: {groomerHours.friday.open}  {groomerHours.friday.close}</p>
+                <p>Saturday: {groomerHours.saturday.open}  {groomerHours.saturday.close}</p>
                 </div>
               </div>
               <button className="appt-button">Schedule Appointment</button>
