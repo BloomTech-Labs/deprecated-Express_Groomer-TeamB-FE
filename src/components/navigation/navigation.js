@@ -135,6 +135,9 @@ function NavBar() {
           <Link className="anchor" to="/info">
             Info
           </Link>
+          <Link className="anchor" to="/Search">
+            Search
+          </Link>
           <Link className="anchor" to="/login">
             Login
           </Link>
