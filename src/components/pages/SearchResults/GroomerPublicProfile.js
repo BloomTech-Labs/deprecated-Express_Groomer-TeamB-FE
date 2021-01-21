@@ -3,7 +3,7 @@ import { Layout, Avatar, Divider } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 import '../GroomerProfile/groomer.css';
-import Services from '../GroomerProfile/ServicesArea';
+import PublicServices from './GroomerPublicServices';
 import './GroomerPublicProfile.scss'
 import { Rate } from 'antd';
 // context imports
@@ -11,19 +11,18 @@ import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 
 
+
 const GroomerPublicProfile = props => {
   const pathway = props.match.params.id;
   // context state
   const { groomer } = useContext(GroomersContext);
   const { getGroomerByID } = useContext(APIContext);
-  
+
 
   useEffect(() => {
     getGroomerByID(pathway);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathway]);
-
-
 
   if (groomer) {
     var groomerHours = JSON.parse(groomer.hours)
@@ -73,7 +72,7 @@ const GroomerPublicProfile = props => {
               <div className="panel">
                 <Divider style={{ borderColor: 'lightblue' }}>Services</Divider>
                 <div className="panel-info">
-                  <Services />
+                  <PublicServices />
                 </div>
               </div>
             </div>
