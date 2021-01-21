@@ -6,10 +6,10 @@
   "repository": "github:Lambda-School-Labs/express-groomer",
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
-    "@craco/craco": "^5.7.0",
+    "@craco/craco": "^5.6.4",
     "@okta/okta-react": "^3.0.8",
     "@okta/okta-signin-widget": "^4.5.1",
-    "antd": "^4.6.6",
+    "antd": "^4.10.2",
     "axios": "^0.19.2",
     "craco-less": "^1.17.0",
     "react": "^16.13.1",
