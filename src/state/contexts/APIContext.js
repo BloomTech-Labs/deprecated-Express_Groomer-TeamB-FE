@@ -67,12 +67,9 @@ const APIProvider = ({ children }) => {
       });
   };
 
-  const getGroomers = authState => {
-    const headers = getAuthHeader(authState);
+  const getGroomers = () => {
     return axios
-      .get(`${process.env.REACT_APP_API_URI}/groomers`, {
-        headers,
-      })
+      .get(`${process.env.REACT_APP_API_URI}/groomers`)
       .then(res => {
         setAllGroomers(res.data);
       })
