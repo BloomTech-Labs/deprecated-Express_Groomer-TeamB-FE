@@ -16,8 +16,6 @@ const GroomerPublicProfile = props => {
   // context state
   const { groomer } = useContext(GroomersContext);
   const { getGroomerByID } = useContext(APIContext);
-
-  console.log(getGroomerByID)
   
 
   useEffect(() => {
@@ -29,7 +27,6 @@ const GroomerPublicProfile = props => {
 
   if (groomer) {
     var groomerHours = JSON.parse(groomer.hours)
-    console.log(groomerHours)
 
     if (groomerHours === null) {
       groomerHours = {sunday: {open:'CLOSED', close:""},
@@ -105,7 +102,7 @@ const GroomerPublicProfile = props => {
                 <p>Saturday: {groomerHours.saturday.open}  {groomerHours.saturday.close}</p>
                 </div>
               </div>
-              <button className="appt-button">Schedule Appointment</button>
+        
             </div>
           </div>
         </Layout.Content>
