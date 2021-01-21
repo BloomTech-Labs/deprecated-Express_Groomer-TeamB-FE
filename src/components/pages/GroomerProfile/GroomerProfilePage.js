@@ -10,8 +10,11 @@ import { APIContext } from '../../../state/contexts/APIContext';
 import { UsersContext } from '../../../state/contexts/UsersContext';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { FormContext } from '../../../state/contexts/FormContext';
+import { useOktaAuth } from '@okta/okta-react';
 
 const GroomerProfilePage = () => {
+  const { authState } = useOktaAuth();
+
   // context state
   const { userInfo } = useContext(UsersContext);
   const { groomerInfo, setHours, hours } = useContext(GroomersContext);
@@ -19,7 +22,7 @@ const GroomerProfilePage = () => {
   const { getLoggedInGroomer } = useContext(APIContext);
 
   useEffect(() => {
-    getLoggedInGroomer();
+    getLoggedInGroomer(authState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

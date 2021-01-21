@@ -215,7 +215,7 @@ const SpacingRight = styled.div`
 const LandingContainer = () => {
   return (
     <div>
-      <Container>
+      <Container className={'container'}>
         <Section>
           <Title>
             <BlueExpress>Express Groomer</BlueExpress>
@@ -249,7 +249,7 @@ const LandingContainer = () => {
         </Section>
       </Container>
 
-      <Container>
+      <Container className={'container'}>
         <Section>
           <SpacingLeft>Spend less time on grooming...</SpacingLeft>
           <CenterDiv>
@@ -292,7 +292,7 @@ const LandingContainer = () => {
         </Section>
       </Container>
 
-      <Container>
+      <Container className={'container'}>
         <Section>
           <CenterDiv>
             <SectionOne>
@@ -339,7 +339,7 @@ const LandingContainer = () => {
         </Section>
       </Container>
 
-      <Footer>
+      <Footer className={'footer'}>
         <LogoContainer>
           <Logo>Express Groomer</Logo>
           <SocialContainer>

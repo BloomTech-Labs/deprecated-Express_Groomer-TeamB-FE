@@ -77,7 +77,11 @@ function NavBar() {
           <Link className="anchor" to="/Search">
             Search
           </Link>
-          <Button type="primary" onClick={() => authService.logout()}>
+          <Button
+            type="primary"
+            className={'anchor'}
+            onClick={() => authService.logout()}
+          >
             Logout
           </Button>
         </nav>
@@ -99,20 +103,23 @@ function NavBar() {
           <Link className="anchor" to="/customer-dashboard">
             Dashboard
           </Link>
-          <Link className="anchor" to="/info">
-            Info
-          </Link>
           <Link className="anchor" to="/Search">
             Search
           </Link>
-          <Button type="primary" onClick={() => authService.logout()}>
+          <Link className="anchor" to="/info">
+            Info
+          </Link>
+          <Button
+            type="primary"
+            className={'anchor'}
+            onClick={() => authService.logout()}
+          >
             Logout
           </Button>
         </nav>
       </div>
     );
   } else {
-    // ============================================================
     return (
       <div className="App-Nav">
         <div className="img-container">

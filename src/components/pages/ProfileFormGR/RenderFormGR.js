@@ -40,8 +40,8 @@ const RenderFormGR = () => {
     onFailed,
     showDelete,
     setShowDelete,
-    visible,
-    setVisible,
+    groomerFormVisible,
+    setGroomerFormVisible,
     loading,
     setLoading,
     setResultInfo,
@@ -66,7 +66,7 @@ const RenderFormGR = () => {
 
   useEffect(() => {
     getServices();
-    getGroomerServicesByID();
+    getGroomerServicesByID(authState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [servicesUpdated]);
 
@@ -94,7 +94,7 @@ const RenderFormGR = () => {
         authState,
         infoValues
       );
-      await getLoggedInGroomer();
+      await getLoggedInGroomer(authState);
     } else {
       putUserInfo(
         `${process.env.REACT_APP_API_URI}/groomers/${userInfo.sub}`,
@@ -105,7 +105,7 @@ const RenderFormGR = () => {
       await setUpdated(!updated);
       await setServicesUpdated(!servicesUpdated);
       await setTimeout(() => {
-        setVisible(false);
+        setGroomerFormVisible(false);
         setEditHoursVisible(false);
         setEditServicesVisible(false);
       }, 2000);
@@ -130,7 +130,7 @@ const RenderFormGR = () => {
     await setUpdated(!updated);
     await setServicesUpdated(!servicesUpdated);
     await setTimeout(() => {
-      setVisible(false);
+      setGroomerFormVisible(false);
       setEditHoursVisible(false);
       setEditServicesVisible(false);
     }, 2000);
@@ -140,7 +140,7 @@ const RenderFormGR = () => {
   const showGroomerProfileModal = async () => {
     getLoggedInGroomer(authState);
     setLoading(false);
-    setVisible(true);
+    setGroomerFormVisible(true);
   };
 
   const showGroomerHoursModal = () => {
@@ -154,7 +154,7 @@ const RenderFormGR = () => {
   };
 
   const handleCancel = () => {
-    setVisible(false);
+    setGroomerFormVisible(false);
     setEditHoursVisible(false);
     setEditServicesVisible(false);
   };
@@ -175,7 +175,7 @@ const RenderFormGR = () => {
           htmlType: 'submit',
         }}
         title="Groomer Information"
-        visible={visible}
+        visible={groomerFormVisible}
         confirmLoading={loading}
         onCancel={handleCancel}
       >
