@@ -1,22 +1,33 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Button, Col, List, Row } from 'antd';
 import { useOktaAuth } from '@okta/okta-react';
 // context imports
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 import { DeleteOutlined } from '@ant-design/icons';
+import { UsersContext } from '../../../state/contexts/UsersContext';
 
-const Services = () => {
+const Services = props => {
   const { authState } = useOktaAuth();
 
   // context state
+  const { userInfo } = useContext(UsersContext);
   const { groomerServices, servicesUpdated, setServicesUpdated } = useContext(
     GroomersContext
   );
   const { getGroomerServicesByID, deleteService } = useContext(APIContext);
+  const pathway = useParams();
 
   useEffect(() => {
-    getGroomerServicesByID(authState);
+    let id = '';
+    if (userInfo) {
+      id = userInfo.sub;
+    } else if (pathway) {
+      id = pathway;
+    }
+
+    getGroomerServicesByID(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [servicesUpdated]);
 
