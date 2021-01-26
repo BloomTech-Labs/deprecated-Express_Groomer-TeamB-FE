@@ -66,7 +66,7 @@ const RenderFormGR = () => {
 
   useEffect(() => {
     getServices();
-    getGroomerServicesByID(authState);
+    getGroomerServicesByID(userInfo.sub);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [servicesUpdated]);
 
