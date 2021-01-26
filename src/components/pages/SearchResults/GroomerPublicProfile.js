@@ -104,7 +104,7 @@ const GroomerPublicProfile = props => {
                 <p>Saturday: {groomerHours.saturday.open}  {groomerHours.saturday.close}</p>
                 </div>
               </div>
-              <CalendlyPopupWidget scheduleLink={groomer.personal_calendly_link}/>
+                <CalendlyPopupWidget scheduleLink={groomer.personal_calendly_link}/>
             </div>
           </div>
         </Layout.Content>
