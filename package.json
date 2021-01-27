@@ -19,7 +19,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
     "sass": "^1.27.1",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "worker-loader": "^3.0.7"
   },
   "scripts": {
     "start": "craco start",
