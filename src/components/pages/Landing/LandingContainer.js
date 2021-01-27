@@ -92,6 +92,7 @@ const Section = styled.div`
     width: 90%;
     margin-top: -10px;
     margin-bottom: -10px;
+    height: 550px;
   }
 `;
 
@@ -104,14 +105,16 @@ const Row = styled.div`
   margin-right: 10px;
   margin-left: 10px;
   @media screen and (max-width: 450px) {
+    font-size: 1rem;
     border: 2px solid red;
     border-radius: 10px;
     padding: 0;
-    margin: 0;
-    margin-right: 2.5px;
-    margin-left: 2.5px;
+    margin: 30px;
     margin-bottom: 2.5px;
     width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
   }
 `;
 
@@ -279,9 +282,6 @@ const Poodle = styled.img`
   border-radius: 50%;
   width: 100%;
   height: auto;
-  @media screen and (max-width: 450px) {
-    display: none;
-  }
 `;
 
 const SpacingLeft = styled.div`
@@ -293,7 +293,8 @@ const SpacingLeft = styled.div`
   display: flex;
   flex-direction: row;
   @media screen and (max-width: 450px) {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    margin-top: 30px;
   }
 `;
 
@@ -305,7 +306,8 @@ const SpacingRight = styled.div`
   display: flex;
   flex-direction: row-reverse;
   @media screen and (max-width: 450px) {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    margin-bottom: 30px;
   }
 `;
 
@@ -371,7 +373,7 @@ const LandingContainer = () => {
               ></Poodle>
             </HiddenRow>
 
-            <Row>
+            <HiddenRow>
               <SecondTitle>Sensitive Skin?</SecondTitle>
               <MediumPara>
                 Commercial shampoos contain harsh sulfates that strip your pet's
@@ -383,7 +385,7 @@ const LandingContainer = () => {
                 sure to leave your pet with a shiny soft coat. No harsh
                 chemicals needed!
               </div>
-            </Row>
+            </HiddenRow>
           </CenterDiv>
           <SpacingRight>...and more time with your pets</SpacingRight>
         </Section>
