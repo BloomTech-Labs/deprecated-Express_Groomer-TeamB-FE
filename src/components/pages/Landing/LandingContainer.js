@@ -15,11 +15,21 @@ const Title = styled.div`
   display: flex;
   justify-content: center;
   font-family: 'Poppins', sans-serif;
+  @media screen and (max-width: 450px) {
+    font-size: 2.75rem;
+    margin-top: 15px;
+    margin-bottom: 25px;
+  }
 `;
 
 const SecondTitle = styled.div`
   font-size: 2.5rem;
   font-family: 'Poppins', sans-serif;
+  @media screen and (max-width: 450px) {
+    font-size: 1.75rem;
+    margin: 10px;
+    margin-bottom: 5px;
+  }
 `;
 
 const SectionOne = styled.div`
@@ -30,6 +40,15 @@ const SectionOne = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 30px;
+  @media screen and (max-width: 450px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+  }
 `;
 
 const SectionTwo = styled.div`
@@ -38,6 +57,9 @@ const SectionTwo = styled.div`
   padding: 20px;
   margin-top: 10px;
   position: relative;
+  @media screen and (max-width: 450px) {
+    display: none;
+  }
 `;
 
 const IntroImage1 = styled.img`
@@ -63,9 +85,12 @@ const Section = styled.div`
   border-radius: 10px;
   border: none;
   width: 85%;
-  margin-top: 30px;
+  margin-top: 15px;
   height: 650px;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
+  @media screen and (max-width: 450px) {
+    width: 90%;
+  }
 `;
 
 const Row = styled.div`
@@ -87,6 +112,9 @@ const MediumPara = styled.div`
   font-size: 1.25rem;
   margin-top: 20px;
   margin-bottom: 30px;
+  @media screen and (max-width: 450px) {
+    font-size: 1rem;
+  }
 `;
 const Button = styled.button`
   color: white;
