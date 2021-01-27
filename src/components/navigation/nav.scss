@@ -13,6 +13,10 @@
   margin-bottom: 1rem;
   font-size: 1.5rem;
   font-family: 'Poppins', sans-serif;
+  @media screen and (max-width: 450px) {
+    font-size: 1.2rem;
+    width: 40%;
+  }
 
   a {
     width: 170px;
@@ -42,6 +46,7 @@
   background-color: #ffffff;
   border-bottom: 10px solid #1ea7fd;
   border-top: 10px solid #1ea7fd;
+  
 
   .img-container {
     display: flex;
@@ -56,7 +61,12 @@
     padding: .25em;
     border-radius: 10px;
     font-family: 'Leckerli One', cursive;
+    @media screen and (max-width: 450px) {
+      font-size: 2rem;
+      width: 80%;
+    }
   }
 
   
 }
+
