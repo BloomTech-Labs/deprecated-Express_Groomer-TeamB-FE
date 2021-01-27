@@ -26,9 +26,9 @@ const SecondTitle = styled.div`
   font-size: 2.5rem;
   font-family: 'Poppins', sans-serif;
   @media screen and (max-width: 450px) {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     margin: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
   }
 `;
 
@@ -90,6 +90,8 @@ const Section = styled.div`
   margin-bottom: 15px;
   @media screen and (max-width: 450px) {
     width: 90%;
+    margin-top: -10px;
+    margin-bottom: -10px;
   }
 `;
 
@@ -101,6 +103,29 @@ const Row = styled.div`
   flex-direction: column;
   margin-right: 10px;
   margin-left: 10px;
+  @media screen and (max-width: 450px) {
+    border: 2px solid red;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    margin-right: 2.5px;
+    margin-left: 2.5px;
+    margin-bottom: 2.5px;
+    width: 100%;
+  }
+`;
+
+const HiddenRow = styled.div`
+  width: 33%;
+  padding: 20px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-left: 10px;
+  @media screen and (max-width: 450px) {
+    display: none;
+  }
 `;
 
 const CenterDiv = styled.div`
@@ -254,6 +279,9 @@ const Poodle = styled.img`
   border-radius: 50%;
   width: 100%;
   height: auto;
+  @media screen and (max-width: 450px) {
+    display: none;
+  }
 `;
 
 const SpacingLeft = styled.div`
@@ -264,6 +292,9 @@ const SpacingLeft = styled.div`
   font-size: 2rem;
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: 450px) {
+    font-size: 1rem;
+  }
 `;
 
 const SpacingRight = styled.div`
@@ -273,6 +304,9 @@ const SpacingRight = styled.div`
   font-size: 2rem;
   display: flex;
   flex-direction: row-reverse;
+  @media screen and (max-width: 450px) {
+    font-size: 1rem;
+  }
 `;
 
 const LandingContainer = () => {
@@ -330,12 +364,12 @@ const LandingContainer = () => {
               </div>
             </Row>
 
-            <Row>
+            <HiddenRow>
               <Poodle
                 src={require('./images/poodle.jpg')}
                 alt="poodle"
               ></Poodle>
-            </Row>
+            </HiddenRow>
 
             <Row>
               <SecondTitle>Sensitive Skin?</SecondTitle>
