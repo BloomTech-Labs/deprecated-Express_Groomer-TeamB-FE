@@ -8,7 +8,7 @@ import './GroomerMap.css';
 import { useHistory } from 'react-router-dom';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-ReactMapGL.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+ReactMapGL.workerClass = require('worker-loader!react-map-gl/dist/react-map-gl-csp-worker').default;
 
 const GroomerMap = () => {
   const history = useHistory();
