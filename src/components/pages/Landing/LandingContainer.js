@@ -154,11 +154,23 @@ const Footer = styled.footer`
   display: flex;
   justify-content: space-around;
   position: relative;
+  @media screen and (max-width: 450px) {
+    font-size: 1rem;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const LogoContainer = styled.div`
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 450px) {
+    position: absolute;
+    top: 5px;
+    margin-bottom: 10px;
+  }
 `;
 
 const SocialContainer = styled.div`
@@ -166,6 +178,9 @@ const SocialContainer = styled.div`
   justify-content: space-evenly;
   color: white;
   font-size: 2rem;
+  @media screen and (max-width: 450px) {
+    font-size: 1rem;
+  }
 `;
 
 const Logo = styled.div`
@@ -174,6 +189,9 @@ const Logo = styled.div`
   padding: 0.25em;
   border-radius: 10px;
   font-family: 'Leckerli One', cursive;
+  @media screen and (max-width: 450px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const FooterTitles = styled.span`
@@ -181,6 +199,10 @@ const FooterTitles = styled.span`
   font-size: 1.55rem;
   font-weight: 700;
   color: white;
+  @media screen and (max-width: 450px) {
+    font-size: 1rem;
+    margin-top: 15px;
+  }
 `;
 
 const FooterSect = styled.div`
@@ -188,6 +210,12 @@ const FooterSect = styled.div`
   flex-direction: column;
   color: white;
   font-size: 1.1rem;
+  @media screen and (max-width: 450px) {
+    font-size: 1rem;
+    margin-top: 20px;
+    width: 120px;
+    padding-top: 50px;
+  }
 `;
 const Copyright = styled.div`
   font-size: 0.5 rem;
@@ -196,6 +224,10 @@ const Copyright = styled.div`
   color: white;
   position: absolute;
   top: 200px;
+  @media screen and (max-width: 450px) {
+    padding-top: 20px;
+    font-size: 0.75rem;
+  }
 `;
 
 const GroomerImg = styled.img`
@@ -207,6 +239,9 @@ const GroomerImg = styled.img`
 
 const Spacing = styled.div`
   margin-bottom: 5px;
+  @media screen and (max-width: 450px) {
+    margin-bottom: 2.5px;
+  }
 `;
 
 const Caption = styled.div`
