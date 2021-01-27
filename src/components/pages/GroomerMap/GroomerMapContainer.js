@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import React, { useContext, useEffect, useState } from 'react';
 import ReactMapGL, { GeolocateControl, Marker, Popup } from 'react-map-gl';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
@@ -9,7 +8,7 @@ import './GroomerMap.css';
 import { useHistory } from 'react-router-dom';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+ReactMapGL.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 const GroomerMap = () => {
   const history = useHistory();
