@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import ReactMapGL, { GeolocateControl, Marker, Popup } from 'react-map-gl';
+import mapboxgl from 'mapbox-gl';
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 import { Button, Col, Row } from 'antd';
 import { ScissorOutlined } from '@ant-design/icons';
 import './GroomerMap.css';
 import { useHistory } from 'react-router-dom';
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 const GroomerMap = () => {
   const history = useHistory();
