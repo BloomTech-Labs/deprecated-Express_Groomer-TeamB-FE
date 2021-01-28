@@ -18,7 +18,7 @@ const Title = styled.div`
   @media screen and (max-width: 450px) {
     font-size: 2.75rem;
     margin-top: 15px;
-    margin-bottom: 25px;
+    margin-bottom: 0px;
   }
 `;
 
@@ -26,9 +26,10 @@ const SecondTitle = styled.div`
   font-size: 2.5rem;
   font-family: 'Poppins', sans-serif;
   @media screen and (max-width: 450px) {
-    font-size: 1.5rem;
-    margin: 10px;
+    font-size: 1.25rem;
+    margin: 5px;
     margin-bottom: 0px;
+    text-align: center;
   }
 `;
 
@@ -59,6 +60,35 @@ const SectionTwo = styled.div`
   position: relative;
   @media screen and (max-width: 450px) {
     display: none;
+  }
+`;
+
+const SectionThree = styled.div`
+  width: 50%;
+  height: 414px;
+  padding: 20px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  @media screen and (max-width: 450px) {
+    display: none;
+  }
+`;
+
+const SectionFour = styled.div`
+  width: 50%;
+  height: 520px;
+  padding: 20px;
+  margin-top: 10px;
+  @media screen and (max-width: 450px) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1rem;
   }
 `;
 
@@ -106,7 +136,6 @@ const Row = styled.div`
   margin-left: 10px;
   @media screen and (max-width: 450px) {
     font-size: 1rem;
-    border: 2px solid red;
     border-radius: 10px;
     padding: 0;
     margin: 30px;
@@ -142,6 +171,8 @@ const MediumPara = styled.div`
   margin-bottom: 30px;
   @media screen and (max-width: 450px) {
     font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
 `;
 const Button = styled.button`
@@ -167,12 +198,18 @@ const SpacedDiv = styled.div`
   align-items: center;
   text-align: center;
   margin-top: 50px;
+  @media screen and (max-width: 450px) {
+    margin-top: 20px;
+  }
 `;
 const BlueExpress = styled.span`
   font-family: 'Leckerli One', cursive;
   color: #1ea7fd;
   margin-left: 5px;
   margin-right: 5px;
+  @media screen and (max-width: 450px) {
+    margin-bottom: 0px;
+  }
 `;
 
 const Footer = styled.footer`
@@ -263,6 +300,14 @@ const GroomerImg = styled.img`
   height: auto;
   margin: auto;
   width: 75%;
+`;
+
+const GroomerText = styled.div`
+  @media screen and (max-width: 450px) {
+    font-size: 0.9rem;
+    margin-top: -10px;
+    margin-bottom: -20px;
+  }
 `;
 
 const Spacing = styled.div`
@@ -394,7 +439,7 @@ const LandingContainer = () => {
       <Container className={'container'}>
         <Section>
           <CenterDiv>
-            <SectionOne>
+            <SectionThree>
               <GroomerImg
                 src={require('./images/groomer.jpg')}
                 alt="groomer"
@@ -403,37 +448,39 @@ const LandingContainer = () => {
                 All of our Groomers are state certified and licensed, so you
                 know your pets are in good hands.
               </Caption>
-            </SectionOne>
+            </SectionThree>
 
-            <SectionTwo>
+            <SectionFour>
               <SecondTitle>We Love Groomers</SecondTitle>
               <MediumPara>
                 Whether you're looking to get extra income or start a Freelance
                 career, turn your passion for pets into extra income!
               </MediumPara>
-              <ul>
-                <li>Make your own hours</li>
-                <li>Schedule at your convience</li>
-                <li>Work as little or as much as you like</li>
-                <li>You decide which appointments to accept</li>
-                <li>
-                  Our client rating system lets you pick the clients right for
-                  you
-                </li>
-              </ul>
-              <p>
-                Becoming a Groomer with Express Groomer is Easy! Just upload a
-                copy of your Groomer's License and ID and one of our
-                representitives will reach out for a brief chat.
-              </p>
-              <p>Earn a $500 bonus after your first 100 appointments</p>
+              <GroomerText>
+                <ul>
+                  <li>Make your own hours</li>
+                  <li>Schedule at your convience</li>
+                  <li>Work as little or as much as you like</li>
+                  <li>You decide which appointments to accept</li>
+                  <li>
+                    Our client rating system lets you pick the clients right for
+                    you
+                  </li>
+                </ul>
+                <p>
+                  Becoming a Groomer with Express Groomer is Easy! Just upload a
+                  copy of your Groomer's License and ID and one of our
+                  representitives will reach out for a brief chat.
+                </p>
+                <p>Earn a $500 bonus after your first 100 appointments</p>
+              </GroomerText>
               <SpacedDiv>
                 <MediumPara>
                   Interested in Grooming but don't have experience? You may be
                   eligible for our <Blue>New Trainee Program</Blue>
                 </MediumPara>
               </SpacedDiv>
-            </SectionTwo>
+            </SectionFour>
           </CenterDiv>
         </Section>
       </Container>
