@@ -1,24 +1,30 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Col, List, Row } from 'antd';
-import { useOktaAuth } from '@okta/okta-react';
 // context imports
 import { GroomersContext } from '../../../state/contexts/GroomersContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 
-const PublicServices = () => {
-  const { authState } = useOktaAuth();
+const PublicServices = props => {
 
   // context state
-  const { groomerServices, servicesUpdated } = useContext(
+  const { groomerServices, servicesUpdated,} = useContext(
     GroomersContext
   );
-  const { getGroomerServicesByID} = useContext(APIContext);
+  const { getGroomerServicesByID } = useContext(APIContext);
+  const pathway = useParams();
 
-  useEffect(() => {
-    getGroomerServicesByID(authState);
+  useEffect(()  => {
+    async function fetchData(id) {
+      await getGroomerServicesByID(id);
+    }
+    let id = '';
+    id = pathway;
+     
+    fetchData(id.id)
+    console.log(id.id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [servicesUpdated]);
-
 
   return (
     <List
@@ -31,6 +37,15 @@ const PublicServices = () => {
           </Col>
           <Col>
             <Row>
+              {/* TODO decide if we want to add edit for selected services ?*/}
+              {/*<Col style={{ paddingLeft: '5px', paddingRight: '5px' }}>*/}
+              {/*  <Button*/}
+              {/*    type="primary"*/}
+              {/*    shape="circle"*/}
+              {/*    size={'small'}*/}
+              {/*    icon={<EditOutlined />}*/}
+              {/*  />*/}
+              {/*</Col>*/}
             </Row>
           </Col>
         </Row>
