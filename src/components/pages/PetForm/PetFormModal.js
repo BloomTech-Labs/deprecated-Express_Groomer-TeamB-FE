@@ -4,6 +4,9 @@ import { FormContext } from '../../../state/contexts/FormContext';
 import { APIContext } from '../../../state/contexts/APIContext';
 import { useOktaAuth } from '@okta/okta-react';
 
+import PetCard from './PetCard';
+import './petcard.css';
+
 const PetFormModal = () => {
   const { authState } = useOktaAuth();
 
@@ -40,9 +43,15 @@ const PetFormModal = () => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Add Pet
-      </Button>
+      <div className="cardContainer">
+        <div className="myPets">My Pets</div>
+        <PetCard />
+
+        <Button type="primary" onClick={showModal}>
+          Add Pet
+        </Button>
+      </div>
+
       <Modal
         okButtonProps={{ form: 'pet-form', key: 'submit', htmlType: 'submit' }}
         title="Pet Information"
