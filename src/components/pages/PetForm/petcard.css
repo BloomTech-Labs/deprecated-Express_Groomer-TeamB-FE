@@ -6,7 +6,15 @@
     padding: 40px;
 }
 
-h1 {
+.petLink {
+    background: white;
+    margin: 5px;
+    border: 5px solid #1ea7fd;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+h1, h2 {
     color:#1ea7fd;
 }
 
