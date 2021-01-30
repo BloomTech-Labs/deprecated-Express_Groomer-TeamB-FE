@@ -6,6 +6,7 @@ import RenderFormGR from '../ProfileFormGR/RenderFormGR';
 import './groomer-dash.scss';
 // context imports
 import { FormContext } from '../../../state/contexts/FormContext';
+import FileUpload from '../../common/FileUpload';
 
 const { TabPane } = Tabs;
 
@@ -42,6 +43,9 @@ const GroomerTab = () => {
           <Row justify={'center'}>
             <Col>
               <RenderFormGR />
+            </Col>
+            <Col>
+              <FileUpload />
             </Col>
           </Row>
           <Row justify={'center'} className={'alert-row'}>
