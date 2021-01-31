@@ -1,18 +1,35 @@
 import { Alert, Row, Tabs } from 'antd';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Overview from './overview';
 import CustomerProfilePage from '../CustomerProfile/CustProContainer';
 import { ProfileFormPO } from '../ProfileFormPO';
 import { PetForm } from '../PetForm';
 // context imports
 import { FormContext } from '../../../state/contexts/FormContext';
+import FileUpload from '../../common/FileUpload';
+import { CustomersContext } from '../../../state/contexts/CustomersContext';
+import { APIContext } from '../../../state/contexts/APIContext';
+import { useOktaAuth } from '@okta/okta-react';
 
 const { TabPane } = Tabs;
 
+// this will need to be deleted and pet, setPet will be used instead once
+// hooked up
+const pet = {};
+
 const CustTab = () => {
+  const { authState } = useOktaAuth();
+  // const [pet, setPet] = useState();
   const [mode] = useState('left');
   // context state
   const { resultInfo } = useContext(FormContext);
+  const { custInfo } = useContext(CustomersContext);
+  const { getCustomerByID } = useContext(APIContext);
+
+  useEffect(() => {
+    getCustomerByID(authState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
@@ -68,6 +85,31 @@ const CustTab = () => {
              alignment*/}
           <Row justify={'center'}>
             <PetForm />
+          </Row>
+          {/* These 2 components will eventually live on pet display
+           component*/}
+          <Row justify={'center'}>
+            <h2 style={{ marginTop: '10px' }}>Upload Pet Image</h2>
+          </Row>
+          <Row justify={'center'}>
+            <FileUpload
+              /* logic will need to be added to get a pet from API for this
+               to be functional */
+              uploadUrl={`pets/image-upload/${pet && pet.id}?customer_id=${
+                custInfo.user_id
+              }`}
+            />
+          </Row>
+          <Row justify={'center'}>
+            <h2 style={{ marginTop: '10px' }}>Upload Pet Vaccination Image</h2>
+          </Row>
+          <Row justify={'center'}>
+            <FileUpload
+              /* logic will need to be added to get a pet from API for this
+               to be functional */
+              uploadUrl={`pets/vaccination-upload/${pet &&
+                pet.id}?customer_id=${custInfo.user_id}`}
+            />
           </Row>
         </TabPane>
         <TabPane
