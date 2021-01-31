@@ -1,0 +1,14 @@
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.upload-label {
+  font-size: 1.2rem;
+}
+.upload-input {
+  margin: 5px 0;
+}
+.submit-button {
+
+}

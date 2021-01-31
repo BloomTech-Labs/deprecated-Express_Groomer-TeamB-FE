@@ -1,45 +1,57 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Button } from 'antd';
+import './FileUpload.css';
+import { useOktaAuth } from '@okta/okta-react';
 
-const FileUpload = () => {
+const FileUpload = ({ uploadUrl }) => {
+  const { authState } = useOktaAuth();
   const [selectedFile, setSelectedFile] = useState();
-  const [isFilePicked, setIsFilePicked] = useState(false);
+
+  const getAuthHeader = authState => {
+    if (!authState.isAuthenticated) {
+      throw new Error('Not authenticated');
+    }
+    return { Authorization: `Bearer ${authState.idToken}` };
+  };
 
   const changeHandler = event => {
     setSelectedFile(event.target.files[0]);
-    setIsFilePicked(true);
   };
-  console.log({ selectedFile });
 
   const handleSubmission = async () => {
-    const formData = new FormData();
+    const headers = getAuthHeader(authState);
 
+    const formData = new FormData();
+    // setting the data to image because the server expects an 'image'
     formData.append('image', selectedFile);
 
     const res = await axios.post(
-      'http://localhost:8000/image-upload',
-      formData
+      `${process.env.REACT_APP_API_URI}/${uploadUrl}`,
+      formData,
+      {
+        headers,
+      }
     );
     console.log({ res });
   };
   return (
-    <div>
-      <input type="file" name="file" onChange={changeHandler} />
-      {isFilePicked ? (
-        <div>
-          <p>Filename: {selectedFile.name}</p>
-          <p>Filetype: {selectedFile.type}</p>
-          <p>Size in bytes: {selectedFile.size}</p>
-          <p>
-            lastModifiedDate:{' '}
-            {selectedFile.lastModifiedDate.toLocaleDateString()}
-          </p>
-        </div>
-      ) : (
-        <p>Select a file to show details</p>
-      )}
+    <div className={'upload-form'}>
+      <input
+        className={'upload-input'}
+        id={'upload'}
+        type="file"
+        name="file"
+        onChange={changeHandler}
+      />
       <div>
-        <button onClick={handleSubmission}>Submit</button>
+        <Button
+          className={'submit-button'}
+          type={'primary'}
+          onClick={handleSubmission}
+        >
+          Submit
+        </Button>
       </div>
     </div>
   );

@@ -7,11 +7,14 @@ import './groomer-dash.scss';
 // context imports
 import { FormContext } from '../../../state/contexts/FormContext';
 import FileUpload from '../../common/FileUpload';
+import { GroomersContext } from '../../../state/contexts/GroomersContext';
 
 const { TabPane } = Tabs;
 
 const GroomerTab = () => {
   const { resultInfo } = useContext(FormContext);
+  const { groomerInfo } = useContext(GroomersContext);
+
   const [mode] = useState('left');
 
   return (
@@ -44,10 +47,16 @@ const GroomerTab = () => {
             <Col>
               <RenderFormGR />
             </Col>
-            <Col>
-              <FileUpload />
-            </Col>
           </Row>
+          <Row justify={'center'}>
+            <h2 style={{ marginTop: '10px' }}>Upload License</h2>
+          </Row>
+          <Row justify={'center'}>
+            <FileUpload
+              uploadUrl={`groomers/license-upload/${groomerInfo.user_id}`}
+            />
+          </Row>
+
           <Row justify={'center'} className={'alert-row'}>
             {resultInfo.message !== null ? (
               <Form.Item>
