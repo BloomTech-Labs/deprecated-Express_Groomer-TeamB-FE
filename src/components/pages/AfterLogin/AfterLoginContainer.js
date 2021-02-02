@@ -15,10 +15,8 @@ const AfterLogin = () => {
         case 'customer':
           history.push('/customer-dashboard');
           break;
-        case '':
-          history.push('/info');
-          break;
         default:
+          history.push('/info');
           break;
       }
     }, 1000);
