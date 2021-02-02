@@ -22,7 +22,6 @@ const PublicServices = props => {
     id = pathway;
      
     fetchData(id.id)
-    console.log(id.id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [servicesUpdated]);
 
