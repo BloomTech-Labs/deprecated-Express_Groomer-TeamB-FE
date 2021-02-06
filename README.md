@@ -1,84 +1,99 @@
-# express-groomer
+# Express Groomer
 
-- Welcome to your `Basic Single Page Application Repository`. Use this to start your own Greenfield Project using ReactJS and common industry standards.
+You can find the deployed project at https://a.bridgestoprosperity.dev/
 
-- This repository assumes a handful of industry practices and standards. We strive to keep you on the bleeding edge of the industry and as a result, we have made some opinions for you so that you don't have to; you're welcome.
+Here is the Demo for the project: https://youtu.be/Q3rNoQhRpxk                |
 
-- The following was built using [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) for base boiler-plating. We will maintain the dependencies as according to their specifications as an Engineering Organization.
+<br>
 
-## StoryBook
+## Project Overview
 
-- All of the reusable components for this repository can be [found here using a Storybook](https://lambda-school-labs.github.io/labs-spa-starter/?path=/story/form-button--basic-usage).
-- For more information on contributing to our Storybook for this application [you can see here](./src/stories/README.md).
+[Trello Board](https://trello.com/b/TjEIzVvG/labspt14-express-groomer-b)
 
-## Requirements
+[Labs PT14 Product Roadmap]()
 
-- [Labs Engineering Standard requirements found here](https://labs.lambdaschool.com/topics/node-js/)
+[Onboarding Video/Demo](https://www.youtube.com/watch?v=Z3cMgTNvtLc&feature=youtu.be)
 
-## Getting Started
+<h2>Description</h2>
 
-### Environment variables
+Our website receives and displays data from our backend API. Displays data on mapbox interface, using React Map Gl, and also on ant design table. Users are unable to interact with the data on the mapbox interface and the table to view additional information and edit data points. Users can zoom in and the boundaries of all the communities will show, also users can switch to the satellite style We used react-chartjs-2 and echarts for data visualization.
 
-- `REACT_APP_CLIENT_ID` Okta client id
-- `REACT_APP_OKTA_ISSUER_URI` Okta api authorization server issuer uri (eg. `https://name-438r8hr.okta.com/oauth2/default`)
-- `REACT_APP_API_URI` The URL (localhost or live) for the Backend that you're building
+## 1️⃣ Key Features
 
-### Setup Steps
+- Mapbox Interface (React Map Gl)
 
-- Fork and clone the repo to install it as your own remote.
-  - **note** please [be sure to set your remote](https://help.github.jp/enterprise/2.11/user/articles/changing-a-remote-s-url/) for this repo to point to your Labs Team Front End Repository.
-- run: `npm install` to download all dependencies.
-- run: `npm start` to start your local development server.
 
-> When using Okta for authentication, the app will need to run locally on port 3000.
+## 2️⃣ Tech Stack
 
-## Errors on Deploy
+### Front end built using:
 
-- Are you seeing an error on `npm start` that looks something like this?
-  ![npm start fail](https://tk-assets.lambdaschool.com/e1b1f8c9-612d-4744-b413-36ebf29f0337_image4.png)
+- React
+- React-Router-Dom
+- Context API
+- Okta
+- Ant Design
+- Axios
+- MapBox via [react-map-gl](https://visgl.github.io/react-map-gl/)
+- Calendly via [react-calendly](https://www.npmjs.com/package/react-calendly)
+- Styled Components
+- Less (Installed with AntDesign)
 
-- Head over to the `package.json` file and please modify your scripts in order to allocate more memory for the 'craco' package. More information on 'craco' and why we use it [can be found here](https://github.com/gsoft-inc/craco).
 
-```js
-"start": "craco --max_old_space_size=4096 start",
-"build": "craco --max_old_space_size=4096 build",
+#### Front end deployed to `AWS`
+
+https://a.bridgestoprosperity.dev/
+
+#### [Back end] built using:
+
+https://github.com/Lambda-School-Labs/Labs27-B-Bridges-BE
+
+#### back end framework goes here
+
+- nodejs
+- express
+- postgreSQL
+- Docker
+
+
+## 2️⃣ Authentication API here
+
+Okta API for Authentication:
+
+The Okta Identity Cloud gives you one trusted platform to secure every identity in your organization and connect with all your customers.
+
+## 3️⃣ Environment Variables
+
+```
+REACT_APP_CLIENT_ID=....
+REACT_APP_OKTA_ISSUER_URI=....
+REACT_APP_API_URI=http://localhost:8000
+REACT_APP_MAPBOX_TOKEN=....
+REACT
 ```
 
-## Deploying Your App
+## 4️⃣ Testing
 
-- Your front end is to be deployed using [AWS amplify](https://aws.amazon.com/amplify/). You can find a step-by-step deployment guide [here](./DEPLOYMENT_GUIDE.md).
-- Your engineering manager will ensure that you have the credentials you need to get your app deployed.
+JEST is currently used to have basic testing for the front end. The front end is largely without tests at this time.
 
-## Components
+## 5️⃣  Backend Documentation
 
-- We feel that you shouldn't have to spend time as a developer worrying about where your files should go and your architectural decisions that you'd have to make if you started from scratch.
-- Following the patterns we've laid out for your and the definitions of 'components' will help you focus on getting work done, rather than spending time deliberating on 'how' your work will get done.
-- Please see [the following documentation](./src/components/README.md) on how to work with and structure your components in this app.
+See the [Backend Documentation Generated in Postman](https://documenter.getpostman.com/view/10971957/TVzViwNL) for details on the interacting with the backend of the project. 
 
-## Styling Your App
+You can import the entire Postman Collection via this button: 
 
-- In order to provide an experience for you to dive right into a code base and have everything you need to successfully style and craft your UI Components we'd like for you to gain some practice using the [`ANT Design Library`](https://ant.design/).
 
-- Instructions on how to use components can be found in the `notes` portion in the [project storybook](https://lambda-school-labs.github.io/labs-spa-starter/?path=/info/form--example-form).
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/f34416839ea9be987e33)
 
-- It is recommended that you use the [AntD components](https://ant.design/components/overview/) as your common components.
+**NOTE:** neither this documentation nor the Postman collection include the authentication headers with the Bearer Token needed to access protected routes.  
 
-### Theme-ing your app
+Within the repo you will find almost all API calls being made via functions within the APIContext.js file (src/state/contexts/APIContext.js). Within that file you will see the function which generates the authheaders which hold the Bearer Token recieved from Okta.
 
-- Even though you're using Ant Design and the global stylesheet that comes with it, you can control the theme of your application by changing things like font-family, sizes, border-radius', primary/accent colors etc.
+![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
+![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
 
-- To do this, simply go to the `theme-overrides.js` file and use the[ following properties to override the styles](https://ant.design/docs/react/customize-theme)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-- **You will need to restart your app completely restart your dev server when making changes to this JS file**
 
-## Testing your App.
 
-- In accordance with our [Labs Engineering Standards](https://labs.lambdaschool.com/) this app uses common practices for Unit/Integration Testing using:
-  [React Testing Library](https://github.com/testing-library/react-testing-library)
-  [Jest](https://jestjs.io/)
-- For examples on how to test your application and more information please see [the following documentation](./src/__tests__/README.md).
 
-## Contributing
 
-- As this repository is a Work In Progress (WIP) we'd love to hear more about what is working for you and what could be improved. [Please use the `Issues` tab in Github](https://github.com/Lambda-School-Labs/labs-spa-starter/issues) to submit and file any issues that come up during your development cycle. Issues should be related to things like, documentation, bugs that come up with the existing flow, architectural discussion, suggestions for improvements, and anything that you find cumbersome about getting started and working through a product cycle using these tools.
-- **Please use `Labels` when filing issues** try and include screenshots of bugs and steps to reproduce.
