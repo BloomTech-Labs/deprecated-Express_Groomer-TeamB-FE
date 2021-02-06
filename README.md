@@ -1,29 +1,30 @@
 # Express Groomer
 
-You can find the deployed project at https://a.bridgestoprosperity.dev/
-
-Here is the Demo for the project: https://youtu.be/Q3rNoQhRpxk                |
+You can find the [`Deployed Project`](https://b.expressgroomer.dev) located [here](https://b.expressgroomer.dev).
 
 <br>
 
 ## Project Overview
+<br>
 
-[Trello Board](https://trello.com/b/TjEIzVvG/labspt14-express-groomer-b)
+### **Resources**
 
-[Labs PT14 Product Roadmap]()
 
-[Onboarding Video/Demo](https://www.youtube.com/watch?v=Z3cMgTNvtLc&feature=youtu.be)
+[Labs PT14 Trello Board](https://trello.com/b/TjEIzVvG/labspt14-express-groomer-b)
 
-<h2>Description</h2>
+[Labs PT14 Product Roadmap](https://www.notion.so/Express-Groomer-Build-On-171e358c0a2f49019572d0afa7ff5ba0)
 
-Our website receives and displays data from our backend API. Displays data on mapbox interface, using React Map Gl, and also on ant design table. Users are unable to interact with the data on the mapbox interface and the table to view additional information and edit data points. Users can zoom in and the boundaries of all the communities will show, also users can switch to the satellite style We used react-chartjs-2 and echarts for data visualization.
+[Onboarding Video/Demo](https://www.youtube.com/watch?v=Z3cMgTNvtLc&feature=youtu.be): This video was created by the Labs PT14 team to introduce the next labs teams working on this project to the current state of the project and various quirks and items of note.
 
-## 1️⃣ Key Features
+<br>
+
+## **Features**
 
 - Mapbox Interface (React Map Gl)
 
+<br>
 
-## 2️⃣ Tech Stack
+## **Tech Stack**
 
 ### Front end built using:
 
@@ -39,20 +40,8 @@ Our website receives and displays data from our backend API. Displays data on ma
 - Less (Installed with AntDesign)
 
 
-#### Front end deployed to `AWS`
+### Front end deployed to [`AWS Amplify`](https://b.expressgroomer.dev)
 
-https://a.bridgestoprosperity.dev/
-
-#### [Back end] built using:
-
-https://github.com/Lambda-School-Labs/Labs27-B-Bridges-BE
-
-#### back end framework goes here
-
-- nodejs
-- express
-- postgreSQL
-- Docker
 
 
 ## 2️⃣ Authentication API here
@@ -61,21 +50,35 @@ Okta API for Authentication:
 
 The Okta Identity Cloud gives you one trusted platform to secure every identity in your organization and connect with all your customers.
 
-## 3️⃣ Environment Variables
+## 3️⃣ Environment Variables ##
 
 ```
 REACT_APP_CLIENT_ID=....
 REACT_APP_OKTA_ISSUER_URI=....
 REACT_APP_API_URI=http://localhost:8000
 REACT_APP_MAPBOX_TOKEN=....
-REACT
+REACT_APP_MAPBOX_STYLE=mapbox://styles/jgertig/ckjz150hz03vj17rw47oq53wb
 ```
 
 ## 4️⃣ Testing
 
 JEST is currently used to have basic testing for the front end. The front end is largely without tests at this time.
 
-## 5️⃣  Backend Documentation
+## 5️⃣  Back End API
+
+#### Backend [`Github Repo`](https://github.com/Lambda-School-Labs/Express_Groomer-TeamB-BE) located [here](https://github.com/Lambda-School-Labs/Express_Groomer-TeamB-BE).
+
+
+#### Back End [`Deployed Site`](https://express-groomer-b-api.herokuapp.com/) located [here](https://express-groomer-b-api.herokuapp.com/)
+
+### Tech Stack 
+
+- nodejs
+- express
+- postgreSQL
+- Docker
+
+ ### Back End Documentation
 
 See the [Backend Documentation Generated in Postman](https://documenter.getpostman.com/view/10971957/TVzViwNL) for details on the interacting with the backend of the project. 
 
