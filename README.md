@@ -18,7 +18,9 @@ You can find the [`Deployed Project`](https://b.expressgroomer.dev) located [her
 
 [Labs PT14 Product Roadmap](https://www.notion.so/Express-Groomer-Build-On-171e358c0a2f49019572d0afa7ff5ba0)
 
-[Onboarding Video/Demo](https://www.youtube.com/watch?v=Z3cMgTNvtLc&feature=youtu.be): This video was created by the Labs PT14 team to introduce the next labs teams working on this project to the current state of the project and various quirks and items of note.
+[Onboarding Video/Demo](https://www.youtube.com/watch?v=Z3cMgTNvtLc&feature=youtu.be): This `very useful` video was created by the Labs PT14 team to introduce the next labs teams working on this project to the current state of the project and various quirks and items of note.
+
+The original [Instructional ReadMe](INITIAL_README.md) for this repository can be found [here](INITIAL_README.md)
 
 <br>
 
