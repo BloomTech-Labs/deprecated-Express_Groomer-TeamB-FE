@@ -12,15 +12,15 @@ You can find the [`Deployed Project`](https://b.expressgroomer.dev) located [her
 <br>
 
 ### **Resources**
+</br>
 
+**[Labs PT14 Trello Board](https://trello.com/b/TjEIzVvG/labspt14-express-groomer-b)**: All known `bugs` are currently documented on this Trello board (among other items).
 
-[Labs PT14 Trello Board](https://trello.com/b/TjEIzVvG/labspt14-express-groomer-b)
+**[Labs PT14 Product Roadmap](https://www.notion.so/Express-Groomer-Build-On-171e358c0a2f49019572d0afa7ff5ba0)**: This Roadmap is discussed in detail under 'Features' below.
 
-[Labs PT14 Product Roadmap](https://www.notion.so/Express-Groomer-Build-On-171e358c0a2f49019572d0afa7ff5ba0)
+**[Onboarding Video/Demo](https://www.youtube.com/watch?v=Z3cMgTNvtLc&feature=youtu.be):**  This `very useful` video was created by the Labs PT14 team to introduce the next labs teams working on this project to the current state of the project and various quirks and items of note.
 
-[Onboarding Video/Demo](https://www.youtube.com/watch?v=Z3cMgTNvtLc&feature=youtu.be): This `very useful` video was created by the Labs PT14 team to introduce the next labs teams working on this project to the current state of the project and various quirks and items of note.
-
-The original [Instructional ReadMe](INITIAL_README.md) for this repository can be found [here](INITIAL_README.md) and you may need to consult it to set up your local environment.
+The original **[Instructional ReadMe](INITIAL_README.md)** for this repository can be found [here](INITIAL_README.md) and `you may need to consult it to set up your local environment.`
 
 <br>
 
@@ -38,7 +38,7 @@ This part of the roadmap includes several 'features'
     2. Customer facing Groomer profile, which will pull from the database the information the groomer has entered.
     3. Actual search bar which brings up relevant cards.  From these cards the customer may choose to view the full customer facing Groomer Profile.
 
-* **Changes:** This team built on the original team's basic rendering of the all of the above features, and made improvements:
+* **Further Notes:** This team built on the original team's basic rendering of the all of the above features, and made improvements:
     1. A groomer dashboard feature with tabs (using an Ant Design component) was implemented.  The Groomer Profile takes up one of the tabs.
         - Three forms may be used to add general information, Groomer hours, and a list of services and prices.
         - Services are populated in a drop down menu from the back end to prevent duplications, user error, etc. The groomer can choose what price they will charge for a service if they add it to their profile. If a groomer has specialized services they want to add they are free to describe them in a general about section. The dropdown services menu is currently populated via a seeded table on the backend.
@@ -52,8 +52,6 @@ This part of the roadmap includes several 'features'
    ## Features to finish/implement.
     `Finishing the upload capability and integrating a profile image for the groomer should be on the list of features to be added.  Also the feature for a groomer to upload a licence/other credentials should be finished`
 
-    `Accessing the Calendly for the groomer is currently only available on the customer facing groomer profile page. A close look at the available Calendly integration options looks like it can be further embedded into the application and perhaps appointment data can be pulled to display within the Groomer Dashboard.`
-
     `UI can be improved.`
 
     `Groomer text search parameters should be increased.`
@@ -65,11 +63,18 @@ This part of the roadmap includes several 'features'
 
 *While the user profile is complete, please review and implement any changes you see fit.  As a user, I want to a simplistic profile, so that I can see my appointments, pet profile, and easy access to edit in one place. Also the ability to upload vaccines and link.*
 
-*
+* **Overview:** Features includeded in portion of the product roadmap:
+    1. The customer dashboard with tabs has been implemented and has great potential to be fleshed out.  The actual customer information that can be added/edited by a pet owner is limited.
+    2. An add pet form has been created and a button is in the pets tab.  It works for creating a pet, however the team was unable to complete the Pet Display components.  So no pet information is currently displayed on the front end. Similarly the upload of a pet photo and current vaccines has not been connected, although the capability to upload single files now exists on the backend.
+    3. Appointments need to be pulled and displayed but that has not yet been attempted.
 
-* **Changes:**
+* **Future Features/Potential:**  
 
-* **Future Potential:**
+    `Pet display component is a priority to be included in a dashboard tab.  Also brief information on customers pets could be shown on dashboard overview.`
+
+    `Finishing the upload feature in order to upload and display pet photos and vaccine records is also a priority.`
+
+    `Ideally the above would lead to the necessary information on a pet and customer being shared with a Groomer once an appointment was made and confirmed, possibly through SendGrid and/or Twilio integration.`
 
 <br>
 
@@ -77,9 +82,18 @@ This part of the roadmap includes several 'features'
 
 *Using the mapbox API, provide a way for users to search within an area.  The user should be able to enter an address, provide a search radius, and the output will be a list of groomers based on the criteria entered.  The user should also be able to pin the groomers or save for later.  In the groomer profile, there needs to be a component to upload license and add license number.*
 
-* **Changes:**
+* **Overview:** In reverse order ...
+    1. The groomer ability to upload a license through finishing the upload feature is partially addressed in the first "Groomer Search".  The simple addition of a field in the Groomer form for a licence number needs to be added. There are already a columns in the groomer table in the database for both 'license_number' and 'license_image_url'.
+    2. There is a tab in the Customer Dashboard for saved groomers, however this feature has in no way been implemented yet.
+    3.  The mapbox API has been integrated. Currently the map will display a groomer's location with an info popup and there is a button to zoom to the user's location.  But search by radius has NOT been implemented.  Currently [react-map-gl](https://visgl.github.io/react-map-gl/) is the component integrating mapbox.  There is a related library [react-map-gl-geocoder](https://www.npmjs.com/package/react-map-gl-geocoder) which would be first place to look for an implementation of search by radius.  
 
-* **Future Thoughts:**
+* **Future Features/Potential:**
+
+    `Finish upload feature and add upload component for Groomer to upload license image. Add field to groomer info form to input license number.  Add place to display license/other credential and license number.`
+
+    `Add search by radius to current mapbox integration, perhaps through react-map-gl-geocoder: https://www.npmjs.com/package/react-map-gl-geocoder.`
+
+    `Implement ability for customer to save favorite groomers and display in customer dashboard.`
 
 <br>
 
@@ -87,9 +101,16 @@ This part of the roadmap includes several 'features'
 
 *Groomers should be able to manage the request from users, schedule appointments, and have a way to manage their appointments.  Possible KanBan style.  This would be MVP.  Possible API integration for appoint scheduling/confirmation.*
 
-* **Changes:**
+* **Overview:** 
+   - Calendly has been integrated through the react-calendly library.  Currently the groomer must create a personal Calendly account and provide the link.  
+   - Temporary emails were used to create Calendly accounts for the current four groomers and new ones may need to be made. Perhaps through the 'emails' provided with each of the eight users (through Okta) provided in labs.
+   - The integration is visible on the customer facing groomer profile page where there is a 'make appointment' button and then Calendly comes up and a type of service, date, and time can be selected.
 
 * **Future Thoughts:**
+
+    `Accessing the Calendly for the groomer is currently only available on the customer facing groomer profile page. A close look at the available Calendly integration options looks like it can be further embedded into the application and perhaps appointment data can be pulled to display within the Groomer Dashboard. If Calendly is not viable, other scheduling options may need to be considered.`
+
+    `Integrating SendGrid and/or Twilio to provide confirmation of appointments and reminders would be the next feature to implement.  Also, upon confirmation of an appointment, perhaps an email could provide the Groomer with the customer's contact information and pet information.`
 
 <br>
 
@@ -97,9 +118,12 @@ This part of the roadmap includes several 'features'
 
 *Users will be able to rate groomers based on the experience they had.  This rating should be 1-5 stars and an option for the user to provide comments based on thier experience.*
 
-* **Changes:**
+* **Overview:** 
+    - Currently this feature is not implemented.  There is a very nice 'stars' component on the customer facing groomer profile, but it is not operational in any way.
 
 * **Future Thoughts:**
+    - Ideally a customer would only be able to rate or review a groomer they had already had an appointment with.  Reviews of a groomer could be displayed on the groomer profile page.  Groomers could recieve emails upon being reviewed if SendGrid was integrated.
+
 
 <br>
 
@@ -136,6 +160,22 @@ REACT_APP_API_URI=http://localhost:8000
 REACT_APP_MAPBOX_TOKEN=....
 REACT_APP_MAPBOX_STYLE=mapbox://styles/jgertig/ckjz150hz03vj17rw47oq53wb
 ```
+## **Styling**
+
+Per engineering standards [`ANT Design Library`](https://ant.design/) components have been used in this application. For more information be sure to search for Ant Design for React.
+
+Styled Components are also used for more direct styling.  SASS is also being used, however it might be best to factor those into plain css files or Less and remove Sass as Less is incorporated into Ant Design.
+
+For a comprehensive overview of the landing/info page please see the first 4 minutes of the onboarding/demo video linked at the beginning of this ReadME.
+
+### Theme-ing your app
+
+- A global stylesheet that comes with Ant Design, and you can control the theme of your application by changing things like font-family, sizes, border-radius', primary/accent colors etc.
+
+- To do this, simply go to the `theme-overrides.js` file and use the[ following properties to override the styles](https://ant.design/docs/react/customize-theme). `For this to work properly an craco plugin (devdependency) and a index.less file had to be created. The colors/choices currently in the theme-ovrrides.js file are not the teams choice, and need to be changed.`
+
+- **You will need to restart your app completely restart your dev server when making changes to this JS file**
+
 
 ## **Testing**
 
@@ -182,6 +222,8 @@ You can import the entire Postman Collection via this button:
 **`NOTE:`**  neither this documentation nor the Postman collection include the authentication headers with the Bearer Token needed to access protected routes.  
 
 Within the repo you will find almost all API calls being made via functions within the APIContext.js file (src/state/contexts/APIContext.js). Within that file you will see the function which generates the authheaders which hold the Bearer Token recieved from Okta.
+
+For this reason, currently routes have been tested in Postman in a local environment by first removing the authrequired middleware from the backend (in your local environment). If you choose to do so, do NOT forget to restore the middleware to any routes you are testing. And do NOT commit any such changes to the backend.  This is not best practice. If there is a way to get OKTA auth recognized in Postman, feel free to attempt it.  Alternatively you might research using Insomnia with Okta auth.
 
 <br>
 
