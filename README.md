@@ -49,13 +49,13 @@ This part of the roadmap includes several 'features'
     - The backend has a file upload to AWS s3 integrated and some routes for uploading images have been created.  An upload component has been created on the front end but it is not all connected properly yet as should be noted in the code.
     - The Groomer searchbar only allows searchs by city at the moment and searching by business name, service, zipcode, state etc. would be great improvements.
 
-    - **Summary**
+        **Summary**
    
-    `Finishing the upload capability and integrating a profile image for the groomer should be on the list of features to be added.  Also the feature for a groomer to upload a licence/other credentials should be finished`
+        `Finishing the upload capability and integrating a profile image for the groomer should be on the list of features to be added.  Also the feature for a groomer to upload a licence/other credentials should be finished`
 
-    `UI can be improved.`
+        `UI can be improved.`
 
-    `Groomer text search parameters should be increased.`
+        `Groomer text search parameters should be increased.`
 
 <br>
 
