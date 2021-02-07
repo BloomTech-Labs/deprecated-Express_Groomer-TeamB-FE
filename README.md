@@ -39,23 +39,23 @@ This part of the roadmap includes several 'features'
     3. Actual search bar which brings up relevant cards.  From these cards the customer may choose to view the full customer facing Groomer Profile.
 
 * **Further Notes:** This team built on the original team's basic rendering of the all of the above features, and made improvements:
-    1. A groomer dashboard feature with tabs (using an Ant Design component) was implemented.  The Groomer Profile takes up one of the tabs.
+    * A groomer dashboard feature with tabs (using an Ant Design component) was implemented.  The Groomer Profile takes up one of the tabs.
         - Three forms may be used to add general information, Groomer hours, and a list of services and prices.
         - Services are populated in a drop down menu from the back end to prevent duplications, user error, etc. The groomer can choose what price they will charge for a service if they add it to their profile. If a groomer has specialized services they want to add they are free to describe them in a general about section. The dropdown services menu is currently populated via a seeded table on the backend.
         - Hours default to closed for each day of the week, and the groomer may choose an open and close time for each day.  This is meant to be general information and not their specific appt avialabilty.  The hours form input is stringified and stored in the backend as a string, then when called the hours are parsed. This works perfectly after some tweaks and is easier than dealing with a complicated table/conversion library for the simple purpose of displaying hours open.  Groomers may edit their hours at any time.
 
-* **Future Potential:**
-    1. The groomer dashboard has great potential to be fleshed out and the initial view/tab used to display upcoming information such as appointments.
-    2. The backend has a file upload to AWS s3 integrated and some routes for uploading images have been created.  An upload component has been created on the front end but it is not all connected properly yet as should be noted in the code.
-    3. The Groomer searchbar only allows searchs by city at the moment and searching by business name, service, zipcode, state etc. would be great improvements.
+* **Future Features/Potential:**
+    - The groomer dashboard has great potential to be fleshed out and the initial view/tab used to display upcoming information such as appointments.
+    - The backend has a file upload to AWS s3 integrated and some routes for uploading images have been created.  An upload component has been created on the front end but it is not all connected properly yet as should be noted in the code.
+    - The Groomer searchbar only allows searchs by city at the moment and searching by business name, service, zipcode, state etc. would be great improvements.
 
-   ## Features to finish/implement.
+    - **Summary**
+   
     `Finishing the upload capability and integrating a profile image for the groomer should be on the list of features to be added.  Also the feature for a groomer to upload a licence/other credentials should be finished`
 
     `UI can be improved.`
 
     `Groomer text search parameters should be increased.`
-
 
 <br>
 
@@ -106,7 +106,7 @@ This part of the roadmap includes several 'features'
    - Temporary emails were used to create Calendly accounts for the current four groomers and new ones may need to be made. Perhaps through the 'emails' provided with each of the eight users (through Okta) provided in labs.
    - The integration is visible on the customer facing groomer profile page where there is a 'make appointment' button and then Calendly comes up and a type of service, date, and time can be selected.
 
-* **Future Thoughts:**
+* **Future Features/Thoughts:**
 
     `Accessing the Calendly for the groomer is currently only available on the customer facing groomer profile page. A close look at the available Calendly integration options looks like it can be further embedded into the application and perhaps appointment data can be pulled to display within the Groomer Dashboard. If Calendly is not viable, other scheduling options may need to be considered.`
 
@@ -142,6 +142,7 @@ This part of the roadmap includes several 'features'
 - Styled Components
 - Less (Installed with AntDesign)
 - Front end deployed to [`AWS Amplify`](https://b.expressgroomer.dev)
+- Sass
 
 <br>
 
